@@ -41,7 +41,7 @@ class AppElevatedButton extends StatelessWidget {
           shape: isBorderShape
               ? MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(buttonRadius ?? 5.px),
+                    borderRadius: BorderRadius.circular(buttonRadius ?? 8.px),
                     side: BorderSide(color: buttonColor),
                   ),
                 )

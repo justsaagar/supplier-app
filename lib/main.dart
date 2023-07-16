@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:supplier/constant/plumster_asset.dart';
 import 'package:supplier/routes/route_helper.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           child: GetMaterialApp(
             title: 'Supplier app',
             navigatorKey: Get.key,
-            theme: ThemeData(useMaterial3: true),
+            theme: ThemeData(useMaterial3: true, fontFamily: AppAsset.defaultFont),
             debugShowCheckedModeBanner: false,
             initialRoute: RouteHelper.getInitialRoute(),
             getPages: RouteHelper.routes,

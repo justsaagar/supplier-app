@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String isUserAuthenticated = 'isUserAuthenticated';
+const String authenticateUser = 'authenticateUser';
 const String authenticationToken = 'authenticationToken';
 
 Future<bool> checkPrefKey(String key) async {

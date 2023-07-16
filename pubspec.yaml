@@ -51,6 +51,10 @@ dependencies:
   url_launcher: ^6.1.12
   webview_flutter: ^4.2.2
 
+  # Package Info & Review
+  package_info_plus: any
+  open_store: ^0.5.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
