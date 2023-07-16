@@ -25,9 +25,12 @@ dependencies:
   # Animation :
   lottie: ^2.4.0
 
+  # Responsive UI :
+  responsive_sizer: ^3.1.1
+
   # Fetch server data & State management :
   get: ^4.6.5
-  http: ^0.13.6
+  http: ^1.1.0
   internet_connection_checker: ^1.0.0+1
   loading_animation_widget: ^1.2.0+4
   shimmer: ^3.0.0
@@ -42,10 +45,11 @@ dependencies:
 
   # Utills :
   share_plus: ^7.0.2
+  intl: ^0.18.0
 
   # Web module :
-  url_launcher: ^6.1.7
-  webview_flutter: ^3.0.4
+  url_launcher: ^6.1.12
+  webview_flutter: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +63,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    -
+    - assets/animation/
+
   fonts:
     - family: Poppins
       fonts:
