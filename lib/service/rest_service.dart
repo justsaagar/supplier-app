@@ -15,6 +15,7 @@ class RestConstants {
 
   //     ======================= API BaseUrl =======================     //
   final String baseUrl = 'product-service/product';
+  final int supplierAppVersion = 0;
 
   //     ======================= API EndPoints =======================     //
   /// TODO : final String products = 'product-service/product';

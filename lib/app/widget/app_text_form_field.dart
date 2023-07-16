@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/constant/plumster_asset.dart';
 
@@ -11,6 +12,7 @@ class AppTextFormField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final int? length;
   final String hintText;
+  final String headerTitle;
   final bool readOnly;
   final bool obscureText;
   final bool isNumber;
@@ -23,6 +25,7 @@ class AppTextFormField extends StatelessWidget {
     this.inputFormatters,
     this.length,
     required this.hintText,
+    required this.headerTitle,
     this.readOnly = false,
     this.obscureText = false,
     this.isNumber = false,
@@ -30,42 +33,50 @@ class AppTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50.px,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.px),
-        color: AppColorConstant.lightGreyColor,
-      ),
-      child: TextFormField(
-        controller: controller,
-        onChanged: onChanged,
-        style: TextStyle(
-          fontFamily: AppAsset.defaultFont,
-          fontSize: 14.px,
-          fontWeight: FontWeight.w600,
-          color: AppColorConstant.appWhite,
-        ),
-        readOnly: readOnly,
-        obscureText: obscureText,
-        keyboardType: keyboardType,
-        inputFormatters: inputFormatters ??
-            [
-              FilteringTextInputFormatter.deny(RegExp('^\\s')),
-              if (isNumber) FilteringTextInputFormatter.digitsOnly,
-              if (isNumber) LengthLimitingTextInputFormatter(length),
-            ],
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          hintText: hintText,
-          hintStyle: TextStyle(
-            fontFamily: AppAsset.defaultFont,
-            fontSize: 14.px,
-            fontWeight: FontWeight.w600,
-            color: AppColorConstant.lightGreyColor,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppText(headerTitle, fontSize: 16.px, fontWeight: FontWeight.w500, color: AppColorConstant.appWhite),
+        SizedBox(height: 2.px),
+        Container(
+          height: 50.px,
+          padding: EdgeInsets.only(left: 26.px),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.px),
+            color: AppColorConstant.lightGreyColor.withOpacity(0.19),
+          ),
+          child: TextFormField(
+            controller: controller,
+            onChanged: onChanged,
+            style: TextStyle(
+              fontFamily: AppAsset.defaultFont,
+              fontSize: 14.px,
+              fontWeight: FontWeight.w600,
+              color: AppColorConstant.appWhite,
+            ),
+            readOnly: readOnly,
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            inputFormatters: inputFormatters ??
+                [
+                  FilteringTextInputFormatter.deny(RegExp('^\\s')),
+                  if (isNumber) FilteringTextInputFormatter.digitsOnly,
+                  if (isNumber) LengthLimitingTextInputFormatter(length),
+                ],
+            decoration: InputDecoration(
+              border: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: hintText,
+              hintStyle: TextStyle(
+                fontFamily: AppAsset.defaultFont,
+                fontSize: 14.px,
+                fontWeight: FontWeight.w400,
+                color: AppColorConstant.lightGreyColor,
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
