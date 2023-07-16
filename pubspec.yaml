@@ -45,7 +45,7 @@ dependencies:
 
   # Utills :
   share_plus: ^7.0.2
-  intl: ^0.18.0
+  intl: ^0.18.1
 
   # Web module :
   url_launcher: ^6.1.12
