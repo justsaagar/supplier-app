@@ -16,4 +16,5 @@ class AppAsset {
 
   //     ======================= Icons =======================     //
   static const String backIcon = '${iconPath}back.svg';
+  static const String uploadIcon = '${iconPath}upload.svg';
 }

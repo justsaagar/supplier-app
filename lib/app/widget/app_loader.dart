@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/constant/color_constant.dart';
-import 'package:supplier/constant/plumster_asset.dart';
+import 'package:supplier/constant/app_asset.dart';
 
 class AppLoader extends StatelessWidget {
   final Color loaderColor;

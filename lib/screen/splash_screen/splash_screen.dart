@@ -6,7 +6,7 @@ import 'package:supplier/app/widget/app_forceupdate_dialog.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_no_internet_alert.dart';
 import 'package:supplier/constant/color_constant.dart';
-import 'package:supplier/constant/plumster_asset.dart';
+import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/routes/route_helper.dart';
 import 'package:supplier/service/connectivity_service.dart';
 import 'package:supplier/service/rest_service.dart';
