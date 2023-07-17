@@ -189,7 +189,10 @@ class SignUpScreen extends StatelessWidget {
                     hintText: 'Enter Pharmacist Name',
                   ),
                   SizedBox(height: 50.px),
-                  const AppElevatedButton(buttonName: 'Register'),
+                  AppElevatedButton(
+                    buttonName: 'Register',
+                    onPressed: () => Get.toNamed(RouteHelper.getMobileVerificationRoute()),
+                  ),
                   SizedBox(height: 50.px),
                   InkWell(
                     onTap: () => Get.toNamed(RouteHelper.getLoginRoute()),

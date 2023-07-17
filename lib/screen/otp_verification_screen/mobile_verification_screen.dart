@@ -21,6 +21,7 @@ class MobileVerificationScreen extends StatelessWidget {
     logs('Current screen --> $runtimeType');
     return Scaffold(
       body: GetBuilder<LoginController>(
+        init: LoginController() ,
         builder: (LoginController loginController) {
           return Stack(
             children: [
