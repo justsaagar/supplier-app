@@ -28,11 +28,6 @@ class AppImageAsset extends StatelessWidget {
           )
         : image.split('.').last != 'svg'
             ? Image.asset(image, fit: fit, height: height, width: width, color: color)
-            : SvgPicture.asset(
-                image,
-                height: height,
-                width: width,
-                colorFilter: ColorFilter.mode(color!, BlendMode.color),
-              );
+            : SvgPicture.asset(image, height: height, width: width, color: color);
   }
 }

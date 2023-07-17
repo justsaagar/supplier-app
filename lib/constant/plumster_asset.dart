@@ -15,4 +15,5 @@ class AppAsset {
   static const String underProcessImage = '${imagePath}under_process.png';
 
   //     ======================= Icons =======================     //
+  static const String backIcon = '${iconPath}back.svg';
 }

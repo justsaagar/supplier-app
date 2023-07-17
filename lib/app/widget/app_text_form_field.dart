@@ -10,6 +10,7 @@ class AppTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final Widget? prefixIcon;
   final int? length;
   final String hintText;
   final String headerTitle;
@@ -23,6 +24,7 @@ class AppTextFormField extends StatelessWidget {
     this.onChanged,
     this.keyboardType,
     this.inputFormatters,
+    this.prefixIcon,
     this.length,
     required this.hintText,
     required this.headerTitle,
@@ -40,40 +42,47 @@ class AppTextFormField extends StatelessWidget {
         SizedBox(height: 2.px),
         Container(
           height: 50.px,
-          padding: EdgeInsets.only(left: 26.px),
+          padding: EdgeInsets.only(left: prefixIcon == null ? 26.px : 0.px),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.px),
             color: AppColorConstant.lightGreyColor.withOpacity(0.19),
           ),
-          child: TextFormField(
-            controller: controller,
-            onChanged: onChanged,
-            style: TextStyle(
-              fontFamily: AppAsset.defaultFont,
-              fontSize: 14.px,
-              fontWeight: FontWeight.w600,
-              color: AppColorConstant.appWhite,
-            ),
-            readOnly: readOnly,
-            obscureText: obscureText,
-            keyboardType: keyboardType,
-            inputFormatters: inputFormatters ??
-                [
-                  FilteringTextInputFormatter.deny(RegExp('^\\s')),
-                  if (isNumber) FilteringTextInputFormatter.digitsOnly,
-                  if (isNumber) LengthLimitingTextInputFormatter(length),
-                ],
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: hintText,
-              hintStyle: TextStyle(
-                fontFamily: AppAsset.defaultFont,
-                fontSize: 14.px,
-                fontWeight: FontWeight.w400,
-                color: AppColorConstant.lightGreyColor,
+          child: Row(
+            children: [
+              if (prefixIcon != null) SizedBox(width: 48.px, child: prefixIcon),
+              Expanded(
+                child: TextFormField(
+                  controller: controller,
+                  onChanged: onChanged,
+                  style: TextStyle(
+                    fontFamily: AppAsset.defaultFont,
+                    fontSize: 14.px,
+                    fontWeight: FontWeight.w600,
+                    color: AppColorConstant.appWhite,
+                  ),
+                  readOnly: readOnly,
+                  obscureText: obscureText,
+                  keyboardType: keyboardType,
+                  inputFormatters: inputFormatters ??
+                      [
+                        FilteringTextInputFormatter.deny(RegExp('^\\s')),
+                        if (isNumber) FilteringTextInputFormatter.digitsOnly,
+                        if (isNumber) LengthLimitingTextInputFormatter(length),
+                      ],
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    hintText: hintText,
+                    hintStyle: TextStyle(
+                      fontFamily: AppAsset.defaultFont,
+                      fontSize: 14.px,
+                      fontWeight: FontWeight.w400,
+                      color: AppColorConstant.lightGreyColor,
+                    ),
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ],
