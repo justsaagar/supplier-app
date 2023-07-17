@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -7,6 +9,8 @@ class LoginController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController mobileNumberController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
+  Timer? timer;
+  double timerValue = 30;
   Country countryMap = const Country(
     name: "India",
     nameTranslations: {
@@ -42,5 +46,18 @@ class LoginController extends GetxController {
   void onCountryChange(Country value) {
     countryMap = value;
     mobileNumberController.clear();
+  }
+
+  void manageTimer() {
+    timerValue = 30;
+    if (timer != null) timer!.cancel();
+    timer = Timer.periodic(const Duration(seconds: 1), (timers) {
+      if (timerValue != 0) {
+        timerValue--;
+      } else {
+        timer!.cancel();
+      }
+      update();
+    });
   }
 }

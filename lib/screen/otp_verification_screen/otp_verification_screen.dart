@@ -22,6 +22,15 @@ class OtpVerificationScreen extends StatelessWidget {
     return Scaffold(
       body: GetBuilder<LoginController>(
         init: LoginController(),
+        initState: (state) {
+          Future.delayed(
+            Duration(microseconds: 300),
+            () {
+              final loginController = Get.find<LoginController>();
+              loginController.manageTimer();
+            },
+          );
+        },
         builder: (LoginController loginController) {
           return Stack(
             children: [
@@ -41,9 +50,15 @@ class OtpVerificationScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 28.px),
                   children: [
                     SizedBox(height: 22.px),
-                    Align(alignment: Alignment.centerLeft, child: AppImageAsset(image: AppAsset.backIcon, height: 18.px)),
+                    Align(
+                        alignment: Alignment.centerLeft, child: AppImageAsset(image: AppAsset.backIcon, height: 18.px)),
                     SizedBox(height: 34.px),
-                    AppText('ONE FINAL STEP...', fontSize: 30.px, fontWeight: FontWeight.w600, textAlign: TextAlign.center,),
+                    AppText(
+                      'ONE FINAL STEP...',
+                      fontSize: 30.px,
+                      fontWeight: FontWeight.w600,
+                      textAlign: TextAlign.center,
+                    ),
                     SizedBox(height: 100.px),
                     AppText(
                       ' OTP has been sent to\n${loginController.mobileNumberController.text}',
@@ -73,12 +88,33 @@ class OtpVerificationScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 36.px),
-                    AppText('00:30', fontSize: 24.px, color: AppColorConstant.appWhite, textAlign: TextAlign.center),
-                    SizedBox(height: 48.px),
-                    AppText('Didn’t receive it?', fontSize: 18.px, color: AppColorConstant.appOrange, textAlign: TextAlign.center),
-                    SizedBox(height: 48.px),
-                    AppText('Resend OTP', fontSize: 18.px, color: AppColorConstant.appWhite, textAlign: TextAlign.center),
+                    if (loginController.timerValue > 0) ...[
+                      SizedBox(height: 36.px),
+                      AppText(
+                        '00:${loginController.timerValue.toStringAsFixed(0).padLeft(2, '0')}',
+                        fontSize: 24.px,
+                        color: AppColorConstant.appWhite,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                    if (loginController.timerValue == 0) ...[
+                      SizedBox(height: 48.px),
+                      AppText(
+                        'Didn’t receive it?',
+                        fontSize: 18.px,
+                        color: AppColorConstant.appOrange,
+                        textAlign: TextAlign.center,
+                      ),
+                      InkWell(
+                        onTap: () => loginController.manageTimer(),
+                        child: AppText(
+                          'Resend OTP',
+                          fontSize: 18.px,
+                          color: AppColorConstant.appWhite,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -96,8 +132,7 @@ class OtpVerificationScreen extends StatelessWidget {
             SizedBox(height: 20.px),
             AppText('Terms and Conditions',
                 color: AppColorConstant.appWhite, fontWeight: FontWeight.w500, fontSize: 12.px),
-            AppText('Privacy policy',
-                color: AppColorConstant.appWhite, fontWeight: FontWeight.w500, fontSize: 12.px),
+            AppText('Privacy policy', color: AppColorConstant.appWhite, fontWeight: FontWeight.w500, fontSize: 12.px),
             SizedBox(height: 20.px),
           ],
         ),
