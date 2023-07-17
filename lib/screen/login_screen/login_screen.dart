@@ -6,7 +6,7 @@ import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/color_constant.dart';
-import 'package:supplier/constant/plumster_asset.dart';
+import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/controller/login_controller.dart';
 import 'package:supplier/routes/route_helper.dart';
 import 'package:supplier/utils/utils.dart';
@@ -79,12 +79,15 @@ class LogInScreen extends StatelessWidget {
                     onPressed: () => Get.toNamed(RouteHelper.getMobileVerificationRoute()),
                   ),
                   SizedBox(height: 50.px),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppText('New to LOCAL ? ', color: AppColorConstant.appGrey, fontWeight: FontWeight.w400),
-                      AppText('Register', color: AppColorConstant.appYellow, fontWeight: FontWeight.w400),
-                    ],
+                  InkWell(
+                    onTap: () => Get.toNamed(RouteHelper.getSignUpRoute()),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppText('New to LOCAL ? ', color: AppColorConstant.appGrey, fontWeight: FontWeight.w400),
+                        AppText('Register', color: AppColorConstant.appYellow, fontWeight: FontWeight.w400),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 4.px),
                   AppText('Terms and Conditions | Privacy policy', fontSize: 12.px, textAlign: TextAlign.center),
