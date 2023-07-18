@@ -9,9 +9,13 @@ import 'package:supplier/controller/dashboard_controller.dart';
 
 class AppAppBar extends PreferredSize {
   final double appBarHeight;
+  final bool showSuffix;
 
-  AppAppBar({super.key, required this.appBarHeight})
-      : super(child: Container(), preferredSize: Size.fromHeight(appBarHeight));
+  AppAppBar({
+    super.key,
+    required this.appBarHeight,
+    this.showSuffix = false,
+  }) : super(child: Container(), preferredSize: Size.fromHeight(appBarHeight));
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +37,22 @@ class AppAppBar extends PreferredSize {
               fontWeight: FontWeight.w600,
               color: AppColorConstant.appWhite,
             ),
-            GetBuilder<DashboardController>(builder: (logic) {
-              return Positioned(
-                right: 28.px,
-                child: InkWell(
-                  onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
-                      AppText('Orders', fontSize: 10.px, color: AppColorConstant.appWhite),
-                    ],
+            if (showSuffix)
+              GetBuilder<DashboardController>(builder: (logic) {
+                return Positioned(
+                  right: 28.px,
+                  child: InkWell(
+                    onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
+                        AppText('Orders', fontSize: 10.px, color: AppColorConstant.appWhite),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
           ],
         ),
       ),
