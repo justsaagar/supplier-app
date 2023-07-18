@@ -51,14 +51,14 @@ class AppDrawer extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                     AppText('($count)', color: AppColorConstant.appOrange, fontWeight: FontWeight.w500),
-                    Spacer(),
-                    AppImageAsset(image: AppAsset.rightChevronIcon)
+                    const Spacer(),
+                    const AppImageAsset(image: AppAsset.rightChevronIcon)
                   ],
                 ),
               ),
               Container(
                 height: 1.px,
-                decoration: BoxDecoration(color: AppColorConstant.appBottomBarGrey),
+                decoration: const BoxDecoration(color: AppColorConstant.appBottomBarGrey),
               ),
             ],
           );
