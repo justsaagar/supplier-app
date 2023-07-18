@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:supplier/routes/route_constant.dart';
+import 'package:supplier/screen/dashboard_module/dashboard_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
@@ -17,6 +18,7 @@ class RouteHelper {
   static String getSignUpRoute() => RouteConstant.signUp;
   static String getPendingVerificationRoute() => RouteConstant.pendingVerification;
   static String getVerifiedApplicationRoute() => RouteConstant.verifiedApplication;
+  static String getDashboardRoute() => RouteConstant.dashboard;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -28,5 +30,6 @@ class RouteHelper {
     GetPage(name: RouteConstant.signUp, page: () => const SignUpScreen()),
     GetPage(name: RouteConstant.pendingVerification, page: () => const PendingVerificationScreen()),
     GetPage(name: RouteConstant.verifiedApplication, page: () => const VerifiedApplicationScreen()),
+    GetPage(name: RouteConstant.dashboard, page: () => const DashboardScreen()),
   ];
 }

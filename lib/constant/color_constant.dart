@@ -19,6 +19,9 @@ class AppColorConstant {
   static const Color appGreen = Color(0xFF53B97C);
   static const Color appGrey = Color(0xFF838383);
   static const Color appBluest = Color(0xFF2D3648);
+  static const Color appDarkBlue = Color(0xFF0A074C);
+  static const Color appBottomBarGrey = Color(0xFFAAA8A8);
+  static const Color appLightWhite = Color(0xffECF0F3);
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();
