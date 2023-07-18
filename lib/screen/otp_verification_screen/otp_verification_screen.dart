@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/countries.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:pinput/pinput.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supplier/app/widget/app_elevated_button.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
-import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/controller/login_controller.dart';
@@ -25,7 +22,7 @@ class OtpVerificationScreen extends StatelessWidget {
         init: LoginController(),
         initState: (state) {
           Future.delayed(
-            Duration(microseconds: 300),
+            const Duration(microseconds: 300),
             () {
               final loginController = Get.find<LoginController>();
               loginController.manageTimer();
