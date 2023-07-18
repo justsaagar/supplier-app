@@ -11,6 +11,7 @@ import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/controller/login_controller.dart';
+import 'package:supplier/routes/route_helper.dart';
 import 'package:supplier/utils/utils.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
@@ -50,8 +51,7 @@ class OtpVerificationScreen extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 28.px),
                   children: [
                     SizedBox(height: 22.px),
-                    Align(
-                        alignment: Alignment.centerLeft, child: AppImageAsset(image: AppAsset.backIcon, height: 18.px)),
+                    Align(alignment: Alignment.centerLeft, child: AppImageAsset(image: AppAsset.backIcon, height: 18.px)),
                     SizedBox(height: 34.px),
                     AppText(
                       'ONE FINAL STEP...',
@@ -128,7 +128,11 @@ class OtpVerificationScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             AppElevatedButton(
-                buttonName: 'Verify Now', fontSize: 20.px, padding: const EdgeInsets.symmetric(horizontal: 24)),
+              buttonName: 'Verify Now',
+              fontSize: 20.px,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              onPressed: () => Get.toNamed(RouteHelper.getPendingVerificationRoute()),
+            ),
             SizedBox(height: 20.px),
             AppText('Terms and Conditions',
                 color: AppColorConstant.appWhite, fontWeight: FontWeight.w500, fontSize: 12.px),

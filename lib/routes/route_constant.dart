@@ -5,4 +5,6 @@ class RouteConstant {
   static const String mobileVerification = '/mobileVerification';
   static const String otpVerification = '/otpVerification';
   static const String signUp = '/signUp';
+  static const String pendingVerification = '/pendingVerification';
+  static const String verifiedApplication = '/verifiedApplication';
 }
