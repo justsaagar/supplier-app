@@ -5,6 +5,7 @@ import 'package:supplier/screen/dashboard_module/home_screen/home_screen.dart';
 
 class DashboardController extends GetxController {
   int selectedBottomIndex = 0;
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   List<Map<String, dynamic>> bottomBarItems = [
     {'name' : 'Home', 'icon': AppAsset.homeIcon, 'pageName': const HomeScreen()},
     {'name' : 'Masters', 'icon': AppAsset.mastersIcon, 'pageName': Container()},
