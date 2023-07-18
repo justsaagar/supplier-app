@@ -5,7 +5,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
-import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/home_controller.dart';
 import 'package:supplier/utils/utils.dart';
