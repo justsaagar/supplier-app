@@ -13,6 +13,8 @@ class AppAsset {
   static const String mobileVerificationImage = '${imagePath}mobile_verfication.png';
   static const String splashLogoImage = '${imagePath}splash_logo.png';
   static const String underProcessImage = '${imagePath}under_process.png';
+  static const String processApplication = '${imagePath}process_application.png';
+  static const String verifiedApplication = '${imagePath}verified.png';
 
   //     ======================= Icons =======================     //
   static const String backIcon = '${iconPath}back.svg';
