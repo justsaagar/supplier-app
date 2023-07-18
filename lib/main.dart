@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:supplier/constant/plumster_asset.dart';
+import 'package:supplier/constant/app_asset.dart';
+import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/routes/route_helper.dart';
+import 'package:supplier/utils/utils.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: AppColorConstant.appWhite,
+      statusBarColor: AppColorConstant.appBluest,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
+    ),
+  );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -13,6 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logs('Current screen --> $runtimeType');
     return ResponsiveSizer(
       builder: (BuildContext context, Orientation orientation, screenType) {
         return GestureDetector(

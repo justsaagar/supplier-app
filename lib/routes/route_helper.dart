@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:supplier/routes/route_constant.dart';
 import 'package:supplier/screen/dashboard_module/dashboard_screen.dart';
+import 'package:supplier/screen/dashboard_module/notification_screen/no_internet_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
@@ -22,8 +23,7 @@ class RouteHelper {
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
-    /// TODO : Change with no internet screen
-    GetPage(name: RouteConstant.noInternet, page: () => const SplashScreen()),
+    GetPage(name: RouteConstant.noInternet, page: () => const NoInternetScreen()),
     GetPage(name: RouteConstant.login, page: () => const LogInScreen()),
     GetPage(name: RouteConstant.mobileVerification, page: () => const MobileVerificationScreen()),
     GetPage(name: RouteConstant.otpVerification, page: () => const OtpVerificationScreen()),

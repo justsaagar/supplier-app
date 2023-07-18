@@ -28,6 +28,7 @@ class AppAsset {
   static const String homeIcon = '${iconPath}home.svg';
   static const String mastersIcon = '${iconPath}masters.svg';
   static const String notificationsIcon = '${iconPath}notifications.svg';
+  static const String noInternetIcon = '${iconPath}no_internet.png';
   static const String paymentsIcon = '${iconPath}payments.svg';
   static const String ordersIcon = '${iconPath}orders.svg';
   static const String rightChevronIcon = '${iconPath}right_chevron.svg';

@@ -6,12 +6,14 @@ import 'package:supplier/app/widget/app_drawer.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/dashboard_controller.dart';
 import 'package:supplier/screen/dashboard_module/dashboard_helper.dart';
+import 'package:supplier/utils/utils.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    logs('Current screen --> $runtimeType');
     return GetBuilder<DashboardController>(
       init: DashboardController(),
       builder: (DashboardController dashboardController) {
@@ -19,7 +21,7 @@ class DashboardScreen extends StatelessWidget {
           key: dashboardController.scaffoldKey,
           backgroundColor: AppColorConstant.appLightWhite,
           appBar: AppAppBar(appBarHeight: 60.px),
-          drawer: AppDrawer(),
+          drawer: const AppDrawer(),
           body: dashboardController.bottomBarItems[dashboardController.selectedBottomIndex]['pageName'],
           bottomNavigationBar: SafeArea(
             child: Row(
