@@ -8,4 +8,5 @@ class RouteConstant {
   static const String pendingVerification = '/pendingVerification';
   static const String verifiedApplication = '/verifiedApplication';
   static const String dashboard = '/dashboard';
+  static const String editProfile = '/editProfile';
 }

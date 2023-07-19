@@ -34,4 +34,5 @@ class AppAsset {
   static const String rightChevronIcon = '${iconPath}right_chevron.svg';
   static const String approveIcon = '${iconPath}approve.svg';
   static const String rejectIcon = '${iconPath}reject.svg';
+  static const String deleteIcon = '${iconPath}delete.svg';
 }
