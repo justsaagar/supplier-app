@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:supplier/routes/route_constant.dart';
 import 'package:supplier/screen/dashboard_module/dashboard_screen.dart';
 import 'package:supplier/screen/dashboard_module/notification_screen/no_internet_screen.dart';
+import 'package:supplier/screen/dashboard_module/profile_screen/edit_profile_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
@@ -20,6 +21,7 @@ class RouteHelper {
   static String getPendingVerificationRoute() => RouteConstant.pendingVerification;
   static String getVerifiedApplicationRoute() => RouteConstant.verifiedApplication;
   static String getDashboardRoute() => RouteConstant.dashboard;
+  static String getEditProfileRoute() => RouteConstant.editProfile;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -31,5 +33,6 @@ class RouteHelper {
     GetPage(name: RouteConstant.pendingVerification, page: () => const PendingVerificationScreen()),
     GetPage(name: RouteConstant.verifiedApplication, page: () => const VerifiedApplicationScreen()),
     GetPage(name: RouteConstant.dashboard, page: () => const DashboardScreen()),
+    GetPage(name: RouteConstant.editProfile, page: () => const EditProfileScreen()),
   ];
 }

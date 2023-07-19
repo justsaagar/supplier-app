@@ -11,12 +11,14 @@ class AppTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final int? length;
   final String hintText;
   final String headerTitle;
   final bool readOnly;
   final bool obscureText;
   final bool isNumber;
+  final bool isLightMode;
 
   const AppTextFormField({
     super.key,
@@ -25,12 +27,14 @@ class AppTextFormField extends StatelessWidget {
     this.keyboardType,
     this.inputFormatters,
     this.prefixIcon,
+    this.suffixIcon,
     this.length,
     required this.hintText,
     required this.headerTitle,
     this.readOnly = false,
     this.obscureText = false,
     this.isNumber = false,
+    this.isLightMode = false,
   });
 
   @override
@@ -38,7 +42,12 @@ class AppTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(headerTitle, fontSize: 16.px, fontWeight: FontWeight.w500, color: AppColorConstant.appWhite),
+        AppText(
+          headerTitle,
+          fontSize: 16.px,
+          fontWeight: FontWeight.w500,
+          color: isLightMode ? const Color(0xff404040) : AppColorConstant.appWhite,
+        ),
         SizedBox(height: 2.px),
         Container(
           height: 50.px,
@@ -49,7 +58,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              if (prefixIcon != null) SizedBox(width: 48.px, child: prefixIcon),
+              if (prefixIcon != null) SizedBox(width: 60.px, child: prefixIcon),
               Expanded(
                 child: TextFormField(
                   controller: controller,
@@ -58,7 +67,7 @@ class AppTextFormField extends StatelessWidget {
                     fontFamily: AppAsset.defaultFont,
                     fontSize: 14.px,
                     fontWeight: FontWeight.w600,
-                    color: AppColorConstant.appWhite,
+                    color: isLightMode ? AppColorConstant.appBluest : AppColorConstant.appWhite,
                   ),
                   readOnly: readOnly,
                   obscureText: obscureText,
@@ -82,6 +91,7 @@ class AppTextFormField extends StatelessWidget {
                   ),
                 ),
               ),
+              if (suffixIcon != null) Padding(padding: EdgeInsets.only(right: 12.px), child: suffixIcon!),
             ],
           ),
         ),
