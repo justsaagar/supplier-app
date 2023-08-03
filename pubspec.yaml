@@ -55,6 +55,11 @@ dependencies:
   url_launcher: ^6.1.12
   webview_flutter: ^4.2.2
 
+  #  Firebase :
+  firebase_core: ^2.9.0
+  firebase_remote_config: ^4.0.0
+  cloud_firestore: ^4.5.0
+
   # Package Info & Review
   package_info_plus: any
   open_store: ^0.5.0

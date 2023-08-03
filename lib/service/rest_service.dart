@@ -14,7 +14,7 @@ class RestConstants {
   static final RestConstants instance = RestConstants._privateConstructor();
 
   //     ======================= API BaseUrl =======================     //
-  final String baseUrl = 'product-service/product';
+  String supplierBaseUrl = '';
   final int supplierAppVersion = 0;
 
   //     ======================= API EndPoints =======================     //
@@ -45,8 +45,8 @@ class RestServices {
     }
     try {
       String requestUrl = addOns != null
-          ? '${RestConstants.instance.baseUrl}/$endpoint$addOns'
-          : '${RestConstants.instance.baseUrl}/$endpoint';
+          ? '${RestConstants.instance.supplierBaseUrl}/$endpoint$addOns'
+          : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
 
       Map<String, String> guestTokenHeader = {'Authorization': 'anonymous'};
@@ -92,8 +92,8 @@ class RestServices {
 
     try {
       String requestUrl = addOns != null
-          ? '${RestConstants.instance.baseUrl}/$endpoint$addOns'
-          : '${RestConstants.instance.baseUrl}/$endpoint';
+          ? '${RestConstants.instance.supplierBaseUrl}/$endpoint$addOns'
+          : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
       logs('Body map --> $body');
       headers['Content-Type'] = 'application/json';
@@ -157,7 +157,7 @@ class RestServices {
       return responseData;
     }
     try {
-      String requestUrl = '${RestConstants.instance.baseUrl}/$endpoint';
+      String requestUrl = '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
       MultipartRequest request = http.MultipartRequest('POST', requestedUri!);
       headers['Content-Type'] = 'multipart/form-data';
@@ -210,8 +210,8 @@ class RestServices {
     }
     try {
       String requestUrl = addOns != null
-          ? '${RestConstants.instance.baseUrl}/$endpoint$addOns'
-          : '${RestConstants.instance.baseUrl}/$endpoint';
+          ? '${RestConstants.instance.supplierBaseUrl}/$endpoint$addOns'
+          : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
 
       headers.remove('Content-Type');
@@ -255,8 +255,8 @@ class RestServices {
       String requestUrl = selectedFile != null
           ? addOns!
           : addOns != null
-              ? '${RestConstants.instance.baseUrl}/$endpoint/$addOns'
-              : '${RestConstants.instance.baseUrl}/$endpoint';
+              ? '${RestConstants.instance.supplierBaseUrl}/$endpoint/$addOns'
+              : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
 
       Map<String, String> header = {
@@ -307,8 +307,8 @@ class RestServices {
     }
     try {
       String requestUrl = addOns != null
-          ? '${RestConstants.instance.baseUrl}/$endpoint/$addOns'
-          : '${RestConstants.instance.baseUrl}/$endpoint';
+          ? '${RestConstants.instance.supplierBaseUrl}/$endpoint/$addOns'
+          : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
 
       logs('Body map --> $body');
