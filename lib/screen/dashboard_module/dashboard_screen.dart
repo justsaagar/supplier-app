@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supplier/app/widget/app_app_bar.dart';
 import 'package:supplier/app/widget/app_drawer.dart';
 import 'package:supplier/constant/color_constant.dart';
@@ -20,7 +19,7 @@ class DashboardScreen extends StatelessWidget {
         return Scaffold(
           key: dashboardController.scaffoldKey,
           backgroundColor: AppColorConstant.appLightWhite,
-          appBar: AppAppBar(appBarHeight: 60.px),
+          appBar: AppAppBar(title: 'Padyala Enterprises',showBack: false),
           drawer: const AppDrawer(),
           body: dashboardController.bottomBarItems[dashboardController.selectedBottomIndex]['pageName'],
           bottomNavigationBar: SafeArea(

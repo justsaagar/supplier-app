@@ -77,19 +77,22 @@ class HomeScreen extends StatelessWidget {
                 ),
                 itemCount: homeController.homeOptions.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: AppColorConstant.appWhite,
-                      boxShadow: AppColorConstant.appBoxShadow,
-                      borderRadius: BorderRadius.circular(10.px),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppImageAsset(image: homeController.homeOptions[index]['image'], height: 70.px, width: 70.px),
-                        SizedBox(height: 10.px),
-                        AppText(homeController.homeOptions[index]['name'], color: AppColorConstant.appBluest),
-                      ],
+                  return GestureDetector(
+                    onTap: ()=>Get.to(homeController.homeOptions[index]['pageName']),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: AppColorConstant.appWhite,
+                        boxShadow: AppColorConstant.appBoxShadow,
+                        borderRadius: BorderRadius.circular(10.px),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppImageAsset(image: homeController.homeOptions[index]['image'], height: 70.px, width: 70.px),
+                          SizedBox(height: 10.px),
+                          AppText(homeController.homeOptions[index]['name'], color: AppColorConstant.appBluest),
+                        ],
+                      ),
                     ),
                   );
                 },
