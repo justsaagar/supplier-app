@@ -35,4 +35,9 @@ class AppAsset {
   static const String approveIcon = '${iconPath}approve.svg';
   static const String rejectIcon = '${iconPath}reject.svg';
   static const String deleteIcon = '${iconPath}delete.svg';
+  static const String productIcon = '${iconPath}product.svg';
+  static const String rupeesIcon = '${iconPath}rupees.svg';
+  static const String customerIcon = '${iconPath}customer.svg';
+  static const String activeOrderIcon = '${iconPath}active_order.svg';
+  static const String orderIcon= '${iconPath}order.svg';
 }

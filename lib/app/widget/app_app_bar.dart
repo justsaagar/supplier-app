@@ -8,20 +8,23 @@ import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/dashboard_controller.dart';
 
 class AppAppBar extends PreferredSize {
-  final double appBarHeight;
   final bool showSuffix;
+  final bool showBack;
+  final String title;
 
   AppAppBar({
     super.key,
-    required this.appBarHeight,
+    this.showBack = true,
     this.showSuffix = false,
-  }) : super(child: Container(), preferredSize: Size.fromHeight(appBarHeight));
+    this.title = '',
+  }) : super(child: Container(), preferredSize: Size.fromHeight(60.px));
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        height: appBarHeight,
+        height: 60,
+        padding: const EdgeInsets.symmetric(horizontal: 18),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [AppColorConstant.lightBlue, AppColorConstant.darkBlue],
@@ -29,11 +32,22 @@ class AppAppBar extends PreferredSize {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Stack(
-          alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: showBack ? MainAxisAlignment.start : MainAxisAlignment.center,
           children: [
-            const AppText(
-              'Padyala Enterprises',
+            if (showBack)
+              GestureDetector(
+                onTap: () => Get.back(),
+                child: AppImageAsset(
+                  image: AppAsset.backIcon,
+                  height: 15.px,
+                  width: 15.px,
+                  color: AppColorConstant.appWhite,
+                ),
+              ),
+            if (showBack) const SizedBox(width: 15),
+            AppText(
+              title,
               fontWeight: FontWeight.w600,
               color: AppColorConstant.appWhite,
             ),

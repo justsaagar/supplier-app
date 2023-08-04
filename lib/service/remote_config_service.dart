@@ -18,7 +18,7 @@ class RemoteConfigProvider extends GetxController {
       } else {
         RestConstants.instance.supplierBaseUrl = responseMap['storeAdminDev'];
       }
-      RestConstants.instance.supplierBaseUrl = responseMap['storeAdminVersion'];
+      // RestConstants.instance.supplierBaseUrl = responseMap['storeAdminVersion'];
     } on FirebaseException catch (e) {
       e.message.toString().showError();
     }

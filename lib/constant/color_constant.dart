@@ -22,6 +22,14 @@ class AppColorConstant {
   static const Color appDarkBlue = Color(0xFF0A074C);
   static const Color appBottomBarGrey = Color(0xFFAAA8A8);
   static const Color appLightWhite = Color(0xffECF0F3);
+  static const Color appChartBlue = Color(0xff5388D8);
+  static const Color appChartRed = Color(0xffD13333);
+  static const Color appChartYellow = Color(0xffF4BE37);
+  static const Color appChartPurple = Color(0xff8812D0);
+  static const Color appChartDarkBlue= Color(0xff151BB5);
+  static const Color appChartLightBlue= Color(0xff29B6C9);
+  static const Color appChartPink= Color(0xffBD07B6);
+  static const Color appChartGreen= Color(0xff1EAA24);
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();

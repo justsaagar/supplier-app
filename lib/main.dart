@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -55,7 +54,7 @@ class MyAppState extends State<MyApp> {
             navigatorKey: Get.key,
             theme: ThemeData(useMaterial3: true, fontFamily: AppAsset.defaultFont),
             debugShowCheckedModeBanner: false,
-            initialRoute: kDebugMode ? RouteHelper.getDashboardRoute() : RouteHelper.getInitialRoute(),
+            initialRoute: RouteHelper.getDashboardRoute(),
             getPages: RouteHelper.routes,
             defaultTransition: Transition.fadeIn,
             scrollBehavior: MyBehavior(),

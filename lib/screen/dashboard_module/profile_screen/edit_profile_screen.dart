@@ -22,7 +22,7 @@ class EditProfileScreen extends StatelessWidget {
       init: EditProfileController(),
       builder: (EditProfileController editProfileController) {
         return Scaffold(
-          appBar: AppAppBar(appBarHeight: 60.px),
+          appBar: AppAppBar(title: 'Padyala Enterprises'),
           body: ListView(
             padding: EdgeInsets.all(24.px),
             children: [
