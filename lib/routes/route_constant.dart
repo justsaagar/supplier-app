@@ -11,4 +11,6 @@ class RouteConstant {
   static const String editProfile = '/editProfile';
   static const String paymentDetails = '/paymentDetails';
   static const String printInvoice = '/printInvoice';
+  static const String inventoryScreen = '/inventoryScreen';
+  static const String addItemScreen = '/addItemScreen';
 }

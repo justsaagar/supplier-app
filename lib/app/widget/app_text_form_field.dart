@@ -8,6 +8,7 @@ import 'package:supplier/constant/app_asset.dart';
 class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
+  final void Function()? onTap;
   final TextInputType? keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final Widget? prefixIcon;
@@ -19,11 +20,14 @@ class AppTextFormField extends StatelessWidget {
   final bool obscureText;
   final bool isNumber;
   final bool isLightMode;
+  final bool isBorder;
+  final Color? filedColor;
 
   const AppTextFormField({
     super.key,
     required this.controller,
     this.onChanged,
+    this.onTap,
     this.keyboardType,
     this.inputFormatters,
     this.prefixIcon,
@@ -34,7 +38,9 @@ class AppTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.obscureText = false,
     this.isNumber = false,
+    this.isBorder = false,
     this.isLightMode = false,
+    this.filedColor,
   });
 
   @override
@@ -42,19 +48,20 @@ class AppTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(
+        if(headerTitle.isNotEmpty)AppText(
           headerTitle,
-          fontSize: 16.px,
+          fontSize: 14.px,
           fontWeight: FontWeight.w500,
-          color: isLightMode ? const Color(0xff404040) : AppColorConstant.appWhite,
+          color: isLightMode ? const Color(0xff404040) : AppColorConstant.appBlack,
         ),
-        SizedBox(height: 2.px),
+        SizedBox(height: 4.px),
         Container(
-          height: 50.px,
+          height: 45.px,
           padding: EdgeInsets.only(left: prefixIcon == null ? 26.px : 0.px),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.px),
-            color: AppColorConstant.lightGreyColor.withOpacity(0.19),
+            border: isBorder ? Border.all(color: AppColorConstant.appGrey.withOpacity(0.5)) : null,
+            color: filedColor ?? AppColorConstant.lightGreyColor.withOpacity(0.19),
           ),
           child: Row(
             children: [
@@ -62,12 +69,13 @@ class AppTextFormField extends StatelessWidget {
               Expanded(
                 child: TextFormField(
                   controller: controller,
+                  onTap: onTap,
                   onChanged: onChanged,
                   style: TextStyle(
                     fontFamily: AppAsset.defaultFont,
                     fontSize: 14.px,
-                    fontWeight: FontWeight.w600,
-                    color: isLightMode ? AppColorConstant.appBluest : AppColorConstant.appWhite,
+                    fontWeight: FontWeight.w400,
+                    color: AppColorConstant.appBluest,
                   ),
                   readOnly: readOnly,
                   obscureText: obscureText,

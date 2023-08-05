@@ -19,17 +19,19 @@ class AppDropdownButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(headerTitle, fontSize: 16.px, fontWeight: FontWeight.w500, color: AppColorConstant.appWhite),
+        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500, color: AppColorConstant.appBlack),
+        SizedBox(height: 4.px),
         DropdownButtonHideUnderline(
           child: Container(
             height: 52,
-            padding: EdgeInsets.only(left: 18.px),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
+              border: Border.all(color: AppColorConstant.appGrey.withOpacity(0.5)),
               borderRadius: BorderRadius.circular(10.px),
-              color: AppColorConstant.lightGreyColor.withOpacity(0.19),
+              color: AppColorConstant.appWhite,
             ),
             child: DropdownButton2(
-              buttonPadding: const EdgeInsets.symmetric(horizontal: 8),
+              buttonPadding: const EdgeInsets.all(0),
               isExpanded: true,
               hint: AppText(
                 title,
@@ -39,6 +41,10 @@ class AppDropdownButton extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 color: AppColorConstant.lightGreyColor,
               ),
+              style: TextStyle(
+                fontSize: 14.px,
+                fontWeight: FontWeight.w400,
+              ),
               value: value,
               items: items,
               onChanged: onChanged,
@@ -46,9 +52,11 @@ class AppDropdownButton extends StatelessWidget {
               buttonDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10.px)),
               icon: const Icon(Icons.arrow_drop_down_rounded),
               itemHeight: 43,
+              itemPadding: const EdgeInsets.symmetric(horizontal: 10),
+              dropdownPadding: const EdgeInsets.symmetric(horizontal: 10),
               dropdownMaxHeight: 400,
-              dropdownWidth: Device.width - 28.px,
-              dropdownDecoration: BoxDecoration(borderRadius: BorderRadius.circular(10.px), color: AppColorConstant.lightBlue),
+              dropdownDecoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(10.px), color: AppColorConstant.appWhite),
               dropdownElevation: 8,
               scrollbarRadius: const Radius.circular(40),
               dropdownOverButton: false,

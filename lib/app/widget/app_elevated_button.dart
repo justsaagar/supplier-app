@@ -61,8 +61,14 @@ class AppElevatedButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if(isIconShow) AppImageAsset(image: imageString ??''),
-            if(isIconShow)const SizedBox(width: 12),
+            if (isIconShow)
+              AppImageAsset(
+                image: imageString ?? '',
+                height: 15,
+                width: 15,
+                color: AppColorConstant.appWhite,
+              ),
+            if (isIconShow) const SizedBox(width: 12),
             AppText(
               buttonName,
               fontSize: fontSize,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:supplier/app/widget/app_common_dropdown.dart';
+import 'package:supplier/app/widget/app_dropdown.dart';
 import 'package:supplier/app/widget/app_elevated_button.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';

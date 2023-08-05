@@ -42,4 +42,6 @@ class AppAsset {
   static const String orderIcon= '${iconPath}order.svg';
   static const String printIcon= '${iconPath}print.svg';
   static const String downloadIcon= '${iconPath}download.svg';
+  static const String searchIcon= '${iconPath}search.svg';
+  static const String addIcon= '${iconPath}add.png';
 }

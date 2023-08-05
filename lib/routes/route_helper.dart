@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
 import 'package:supplier/routes/route_constant.dart';
 import 'package:supplier/screen/dashboard_module/dashboard_screen.dart';
+import 'package:supplier/screen/dashboard_module/masters_screen/add_item_screen/add_item_screen.dart';
 import 'package:supplier/screen/dashboard_module/notification_screen/no_internet_screen.dart';
 import 'package:supplier/screen/dashboard_module/profile_screen/edit_profile_screen.dart';
+import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
@@ -26,6 +28,8 @@ class RouteHelper {
   static String getEditProfileRoute() => RouteConstant.editProfile;
   static String getPaymentDetailsRoute() => RouteConstant.paymentDetails;
   static String getPrintInvoiceRoute() => RouteConstant.printInvoice;
+  static String getInventoryRoute() => RouteConstant.inventoryScreen;
+  static String getAddItemRoute() => RouteConstant.addItemScreen;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -40,5 +44,7 @@ class RouteHelper {
     GetPage(name: RouteConstant.editProfile, page: () => const EditProfileScreen()),
     GetPage(name: RouteConstant.paymentDetails, page: () => const PaymentDetailsScreen()),
     GetPage(name: RouteConstant.printInvoice, page: () => const PrintInvoiceScreen()),
+    GetPage(name: RouteConstant.inventoryScreen, page: () => const InventoryScreen()),
+    GetPage(name: RouteConstant.addItemScreen, page: () => const AddItemScreen()),
   ];
 }
