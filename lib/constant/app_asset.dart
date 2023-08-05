@@ -20,6 +20,8 @@ class AppAsset {
   static const String invoice = '${imagePath}invoice.png';
   static const String newOrders = '${imagePath}new_orders.png';
   static const String retailers = '${imagePath}retailers.png';
+  static const String chanaDummy = '${imagePath}chana_dummy.png';
+  static const String chanaPackDummy = '${imagePath}chana_pack_dummy.png';
 
   //     ======================= Icons =======================     //
   static const String backIcon = '${iconPath}back.svg';

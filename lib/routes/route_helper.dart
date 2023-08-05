@@ -15,6 +15,8 @@ import 'package:supplier/screen/payment_screen/print_invoice_screen/print_invoic
 import 'package:supplier/screen/signup_screen/signup_screen.dart';
 import 'package:supplier/screen/splash_screen/splash_screen.dart';
 
+import '../screen/retailers_screen/retailers_details_screen/retailers_details_view.dart';
+
 class RouteHelper {
   static String getInitialRoute() => RouteConstant.initial;
   static String getNoInternetRoute() => RouteConstant.initial;
@@ -30,6 +32,7 @@ class RouteHelper {
   static String getPrintInvoiceRoute() => RouteConstant.printInvoice;
   static String getInventoryRoute() => RouteConstant.inventoryScreen;
   static String getAddItemRoute() => RouteConstant.addItemScreen;
+  static String getRetailerDetailsRoute() => RouteConstant.retailersDetails;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -46,5 +49,6 @@ class RouteHelper {
     GetPage(name: RouteConstant.printInvoice, page: () => const PrintInvoiceScreen()),
     GetPage(name: RouteConstant.inventoryScreen, page: () => const InventoryScreen()),
     GetPage(name: RouteConstant.addItemScreen, page: () => const AddItemScreen()),
+    GetPage(name: RouteConstant.retailersDetails, page: () => const RetailersDetailsView()),
   ];
 }

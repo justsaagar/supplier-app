@@ -27,20 +27,7 @@ class MastersScreen extends StatelessWidget {
               onTabChanged: (index) => mastersController.onTabChanged(index),
               currentIndex: mastersController.currentIndex,
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-              child: AppTextFormField(
-                controller: mastersController.searchController,
-                hintText: 'Search',
-                headerTitle: '',
-                filedColor: AppColorConstant.appWhite,
-                isBorder: true,
-                prefixIcon: const AppImageAsset(
-                  image: AppAsset.searchIcon,
-                  color: AppColorConstant.appGrey,
-                ),
-              ),
-            ),
+            searchBarView(mastersController),
             Expanded(
               child: buildCurrentScreen(
                 mastersController.currentIndex,
@@ -50,6 +37,23 @@ class MastersScreen extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  searchBarView(MastersController mastersController) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 25, vertical: 5),
+      child: AppTextFormField(
+        controller: mastersController.searchController,
+        hintText: 'Search',
+        headerTitle: '',
+        filedColor: AppColorConstant.appWhite,
+        isBorder: true,
+        prefixIcon: const AppImageAsset(
+          image: AppAsset.searchIcon,
+          color: AppColorConstant.appGrey,
+        ),
+      ),
     );
   }
 
