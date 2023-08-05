@@ -65,7 +65,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              if (prefixIcon != null) SizedBox(width: 60.px, child: prefixIcon),
+              if (prefixIcon != null) SizedBox(width: 40.px, child: prefixIcon),
               Expanded(
                 child: TextFormField(
                   controller: controller,
