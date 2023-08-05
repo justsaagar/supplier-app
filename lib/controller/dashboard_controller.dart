@@ -5,6 +5,7 @@ import 'package:supplier/screen/dashboard_module/home/home_screen/home_screen.da
 import 'package:supplier/screen/dashboard_module/masters_screen/masters_screen.dart';
 import 'package:supplier/screen/dashboard_module/notification_screen/notification_screen.dart';
 import 'package:supplier/screen/dashboard_module/profile_screen/profile_screen.dart';
+import 'package:supplier/screen/payment_screen/payment_screen.dart';
 
 class DashboardController extends GetxController {
   int selectedBottomIndex = 0;
@@ -12,7 +13,7 @@ class DashboardController extends GetxController {
   List<Map<String, dynamic>> bottomBarItems = [
     {'percentage':'45%','title' : 'home', 'icon': AppAsset.homeIcon, 'pageName': const HomeScreen()},
     {'percentage':'45%','title' : 'Masters', 'icon': AppAsset.mastersIcon, 'pageName': const MastersScreen()},
-    {'percentage':'45%','title' : 'Payments', 'icon': AppAsset.paymentsIcon, 'pageName': Container()},
+    {'percentage':'45%','title' : 'Payments', 'icon': AppAsset.paymentsIcon, 'pageName': const PaymentScreen()},
     {'percentage':'45%','title' : 'Notifications', 'icon': AppAsset.notificationsIcon, 'pageName': const NotificationScreen()},
     {'percentage':'45%','title' : 'Account', 'icon': AppAsset.accountIcon, 'pageName': const ProfileScreen()},
   ];

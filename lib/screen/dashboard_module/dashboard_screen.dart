@@ -19,7 +19,9 @@ class DashboardScreen extends StatelessWidget {
         return Scaffold(
           key: dashboardController.scaffoldKey,
           backgroundColor: AppColorConstant.appLightWhite,
-          appBar: AppAppBar(title: 'Padyala Enterprises',showBack: false),
+          appBar: AppAppBar(title: dashboardController.selectedBottomIndex == 2
+              ? 'Payments'
+              : 'Padyala Enterprises', showBack: false),
           drawer: const AppDrawer(),
           body: dashboardController.bottomBarItems[dashboardController.selectedBottomIndex]['pageName'],
           bottomNavigationBar: SafeArea(

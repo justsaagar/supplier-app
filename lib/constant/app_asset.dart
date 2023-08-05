@@ -40,4 +40,6 @@ class AppAsset {
   static const String customerIcon = '${iconPath}customer.svg';
   static const String activeOrderIcon = '${iconPath}active_order.svg';
   static const String orderIcon= '${iconPath}order.svg';
+  static const String printIcon= '${iconPath}print.svg';
+  static const String downloadIcon= '${iconPath}download.svg';
 }

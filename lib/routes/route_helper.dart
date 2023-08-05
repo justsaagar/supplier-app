@@ -8,6 +8,8 @@ import 'package:supplier/screen/otp_verification_screen/mobile_verification_scre
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/pending_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/verified_application_screen.dart';
+import 'package:supplier/screen/payment_screen/payment_details_screen/payment_details_screen.dart';
+import 'package:supplier/screen/payment_screen/print_invoice_screen/print_invoice_screen.dart';
 import 'package:supplier/screen/signup_screen/signup_screen.dart';
 import 'package:supplier/screen/splash_screen/splash_screen.dart';
 
@@ -22,6 +24,8 @@ class RouteHelper {
   static String getVerifiedApplicationRoute() => RouteConstant.verifiedApplication;
   static String getDashboardRoute() => RouteConstant.dashboard;
   static String getEditProfileRoute() => RouteConstant.editProfile;
+  static String getPaymentDetailsRoute() => RouteConstant.paymentDetails;
+  static String getPrintInvoiceRoute() => RouteConstant.printInvoice;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -34,5 +38,7 @@ class RouteHelper {
     GetPage(name: RouteConstant.verifiedApplication, page: () => const VerifiedApplicationScreen()),
     GetPage(name: RouteConstant.dashboard, page: () => const DashboardScreen()),
     GetPage(name: RouteConstant.editProfile, page: () => const EditProfileScreen()),
+    GetPage(name: RouteConstant.paymentDetails, page: () => const PaymentDetailsScreen()),
+    GetPage(name: RouteConstant.printInvoice, page: () => const PrintInvoiceScreen()),
   ];
 }

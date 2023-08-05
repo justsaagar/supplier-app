@@ -16,7 +16,7 @@ class AppColorConstant {
   static const Color appRed = Color(0xFFC62828);
   static const Color appYellow = Color(0xFFFD8C20);
   static const Color appOrange = Color(0xFFFB700D);
-  static const Color appGreen = Color(0xFF53B97C);
+  static const Color appGreen = Color(0xFF1EAA24);
   static const Color appGrey = Color(0xFF838383);
   static const Color appBluest = Color(0xFF2D3648);
   static const Color appDarkBlue = Color(0xFF0A074C);
@@ -45,4 +45,16 @@ class AppColorConstant {
   static List<BoxShadow> appDarkBoxShadow = [
     BoxShadow(offset: const Offset(0, 3), spreadRadius: 0.2, color: appWhite.withOpacity(0.2), blurRadius: 2),
   ];
+
+  static BoxDecoration boxDecoration = BoxDecoration(
+    color: AppColorConstant.appWhite,
+    borderRadius: BorderRadius.circular(5),
+    boxShadow: [
+      BoxShadow(
+        color: AppColorConstant.appGrey.withOpacity(0.3),
+        blurRadius: 4,
+        offset: const Offset(0, 0),
+      ),
+    ],
+  );
 }
