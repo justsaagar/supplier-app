@@ -66,17 +66,15 @@ class RetailersDetailsView extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        AppText('ORDER ', color: AppColorConstant.appBlack),
+                        AppText('ORDER '),
                         AppText(
                           '#53785452 ',
-                          color: AppColorConstant.appBlack,
                           fontWeight: FontWeight.w500,
                         ),
                       ],
                     ),
                     AppText(
                       '2 October 2022',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                       fontSize: 12,
                     ),
@@ -101,7 +99,6 @@ class RetailersDetailsView extends StatelessWidget {
                       child: const AppText(
                         '+2',
                         fontSize: 12,
-                        color: AppColorConstant.appBlack,
                       ),
                     ),
                   ],
@@ -109,14 +106,13 @@ class RetailersDetailsView extends StatelessWidget {
                 const SizedBox(height: 7),
                 const Row(
                   children: [
-                    AppText('Total: ', color: AppColorConstant.appBlack),
-                    AppText('₹128', color: AppColorConstant.appBlack, fontWeight: FontWeight.w500),
+                    AppText('Total: '),
+                    AppText('₹128',fontWeight: FontWeight.w500),
                   ],
                 ),
                 const SizedBox(height: 3),
                 const AppText(
                   'Delivered 05 -October -2022 ',
-                  color: AppColorConstant.appBlack,
                   fontWeight: FontWeight.w600,
                 ),
               ],

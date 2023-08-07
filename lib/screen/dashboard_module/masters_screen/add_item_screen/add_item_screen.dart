@@ -69,7 +69,6 @@ class AddItemScreen extends StatelessWidget {
                       value: addItemController.discountTypeList[index],
                       child: AppText(
                         addItemController.discountTypeList[index],
-                        color: AppColorConstant.appBlack,
                       ),
                     ),
                   ),

@@ -19,7 +19,7 @@ class AppDropdownButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500, color: AppColorConstant.appBlack),
+        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500),
         SizedBox(height: 4.px),
         DropdownButtonHideUnderline(
           child: Container(

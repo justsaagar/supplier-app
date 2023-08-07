@@ -34,7 +34,6 @@ class InVoiceDetailsScreen extends StatelessWidget {
               ),
               AppText(
                 'Mishra Enterprises',
-                color: AppColorConstant.appBlack,
                 maxLines: 2,
                 fontWeight: FontWeight.w600,
               ),
@@ -45,7 +44,6 @@ class InVoiceDetailsScreen extends StatelessWidget {
               ),
               AppText(
                 '04/08/2022',
-                color: AppColorConstant.appBlack,
                 maxLines: 2,
                 fontWeight: FontWeight.w600,
               ),
@@ -63,7 +61,6 @@ class InVoiceDetailsScreen extends StatelessWidget {
               ),
               AppText(
                   '1223546465',
-                  color: AppColorConstant.appBlack,
                   maxLines: 2,
                   fontWeight: FontWeight.w600,
               ),
@@ -74,7 +71,6 @@ class InVoiceDetailsScreen extends StatelessWidget {
               ),
               AppText(
                   '04/08/2022',
-                  color: AppColorConstant.appBlack,
                   maxLines: 2,
                   fontWeight: FontWeight.w600,
               ),
@@ -101,9 +97,9 @@ class InVoiceDetailsScreen extends StatelessWidget {
           ),
           child: const Row(
             children: [
-              Expanded(flex: 6, child: AppText('Product')),
-              Expanded(child: AppText('MRP')),
-              Expanded(child: AppText('QTY', textAlign: TextAlign.end)),
+              Expanded(flex: 6, child: AppText('Product',color: AppColorConstant.appWhite)),
+              Expanded(child: AppText('MRP',color: AppColorConstant.appWhite)),
+              Expanded(child: AppText('QTY',color: AppColorConstant.appWhite, textAlign: TextAlign.end)),
             ],
           ),
         ),
@@ -140,19 +136,17 @@ class InVoiceDetailsScreen extends StatelessWidget {
                     flex: 6,
                     child: AppText(
                       'Mariegold Biscuit 250gm',
-                      color: AppColorConstant.appBlack,
                       maxLines: 2,
                     ),
                   ),
                   SizedBox(width: 5),
                   Expanded(
-                    child: AppText('₹70', color: AppColorConstant.appBlack),
+                    child: AppText('₹70'),
                   ),
                   SizedBox(width: 5),
                   Expanded(
                     child: AppText(
                       '50',
-                      color: AppColorConstant.appBlack,
                       textAlign: TextAlign.end,
                     ),
                   ),

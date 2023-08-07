@@ -88,7 +88,6 @@ class AddNewInVoiceScreen extends StatelessWidget {
                 'Added items (3)',
                 fontSize: 14.px,
                 fontWeight: FontWeight.w500,
-                color: AppColorConstant.appBlack,
               ),
               addedItems(),
               const SizedBox(height: 15),
@@ -96,7 +95,6 @@ class AddNewInVoiceScreen extends StatelessWidget {
                 'Item Description',
                 fontSize: 14.px,
                 fontWeight: FontWeight.w500,
-                color: AppColorConstant.appBlack,
               ),
               itemDescription(addNewInVoiceController),
             ],
@@ -177,14 +175,14 @@ class AddNewInVoiceScreen extends StatelessWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: AppText('Product'),
+                child: AppText('Product',color: AppColorConstant.appWhite),
               ),
               Expanded(
-                child: AppText('MRP'),
+                child: AppText('MRP',color: AppColorConstant.appWhite),
               ),
               Expanded(
                 child: AppText(
-                  'QTY',
+                  'QTY',color: AppColorConstant.appWhite,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -223,19 +221,17 @@ class AddNewInVoiceScreen extends StatelessWidget {
                 flex: 4,
                 child: AppText(
                   'Mariegold Biscuit 250gm',
-                  color: AppColorConstant.appBlack,
                   maxLines: 2,
                 ),
               ),
               SizedBox(width: 5),
               Expanded(
-                child: AppText('₹70', color: AppColorConstant.appBlack),
+                child: AppText('₹70'),
               ),
               SizedBox(width: 5),
               Expanded(
                 child: AppText(
                   '50',
-                  color: AppColorConstant.appBlack,
                   textAlign: TextAlign.start,
                 ),
               ),

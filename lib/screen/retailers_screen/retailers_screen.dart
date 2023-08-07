@@ -66,7 +66,6 @@ class RetailersScreen extends StatelessWidget {
                     Expanded(
                       child: AppText(
                         'Srinivas Store',
-                        color: AppColorConstant.appBlack,
                         fontWeight: FontWeight.w500,
                         maxLines: 2,
                       ),
@@ -88,12 +87,10 @@ class RetailersScreen extends StatelessWidget {
                   children: [
                     AppText(
                       'Order count: ',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                     ),
                     AppText(
                       '50',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                     ),
                   ],

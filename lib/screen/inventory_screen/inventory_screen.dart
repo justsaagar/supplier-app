@@ -63,14 +63,13 @@ class InventoryScreen extends StatelessWidget {
                   Expanded(
                     child: AppText(
                       'Tata Chana dal',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                       maxLines: 2,
                     ),
                   ),
                   Row(
                     children: [
-                      AppText('Sale Price  ', color: AppColorConstant.appBlack),
+                      AppText('Sale Price  '),
                       AppText(
                         '₹70',
                         color: AppColorConstant.appBlack,
@@ -88,7 +87,6 @@ class InventoryScreen extends StatelessWidget {
                     children: [
                       AppText(
                         '1 kg',
-                        color: AppColorConstant.appBlack,
                         fontWeight: FontWeight.w500,
                       ),
                     ],
@@ -97,7 +95,6 @@ class InventoryScreen extends StatelessWidget {
                     children: [
                       AppText(
                         'MRP : ',
-                        color: AppColorConstant.appBlack,
                         fontSize: 12,
                       ),
                       AppText(
@@ -119,12 +116,10 @@ class InventoryScreen extends StatelessWidget {
                     children: [
                       AppText(
                         'In Stock: ',
-                        color: AppColorConstant.appBlack,
                         fontWeight: FontWeight.w500,
                       ),
                       AppText(
                         '50',
-                        color: AppColorConstant.appBlack,
                         fontWeight: FontWeight.w500,
                       ),
                     ],
@@ -133,7 +128,6 @@ class InventoryScreen extends StatelessWidget {
                     children: [
                       AppText(
                         'PTR : ',
-                        color: AppColorConstant.appBlack,
                         fontSize: 12,
                       ),
                       AppText(

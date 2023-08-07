@@ -72,7 +72,6 @@ class InvoiceScreen extends StatelessWidget {
                       AppText(
                         'Today, 04 Aug 22',
                         fontSize: 12,
-                        color: AppColorConstant.appBlack,
                         fontWeight: FontWeight.w500,
                       ),
                       Row(
@@ -87,7 +86,6 @@ class InvoiceScreen extends StatelessWidget {
                               ),
                               AppText(
                                 '119',
-                                color: AppColorConstant.appBlack,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                               ),
@@ -102,7 +100,6 @@ class InvoiceScreen extends StatelessWidget {
                               ),
                               AppText(
                                 '119',
-                                color: AppColorConstant.appBlack,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                               ),
@@ -117,7 +114,6 @@ class InvoiceScreen extends StatelessWidget {
                               ),
                               AppText(
                                 '₹ 1,11,088',
-                                color: AppColorConstant.appBlack,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                               ),
@@ -142,12 +138,10 @@ class InvoiceScreen extends StatelessWidget {
                             AppText(
                               'Mishra Enterprises',
                               fontWeight: FontWeight.w500,
-                              color: AppColorConstant.appBlack,
                             ),
                             AppText(
                               '₹15,236',
                               fontWeight: FontWeight.w500,
-                              color: AppColorConstant.appBlack,
                             ),
                           ],
                         ),
@@ -160,22 +154,21 @@ class InvoiceScreen extends StatelessWidget {
                               children: [
                                 AppText(
                                   '12:30pm | Masab tank, Hyderabad',
-                                  color: AppColorConstant.appBlack,
                                 ),
                                 Row(
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        AppText('Items : ', color: AppColorConstant.appBlack),
-                                        AppText('30', color: AppColorConstant.appBlack),
+                                        AppText('Items : '),
+                                        AppText('30'),
                                       ],
                                     ),
                                     SizedBox(width: 10),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        AppText('Status : ', color: AppColorConstant.appBlack),
+                                        AppText('Status : '),
                                         AppText('Billed',
                                             color: AppColorConstant.appGreen, fontWeight: FontWeight.w500),
                                       ],
@@ -192,8 +185,7 @@ class InvoiceScreen extends StatelessWidget {
                                 border: Border.all(color: AppColorConstant.appBlack),
                               ),
                               child: const AppText(
-                                'Details',
-                                color: AppColorConstant.appBlack,
+                                'Details'
                               ),
                             ),
                           ],

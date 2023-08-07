@@ -85,7 +85,6 @@ class AnalyticsScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: 30),
                   child: AppText(
                     'Top Performing Categories',
-                    color: AppColorConstant.appBlack,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -182,7 +181,6 @@ firstChartView(AnalyticsController analyticsController) {
         analyticsController.analysisItemList[analyticsController.selectedIndex]['title']
             .toString()
             .replaceAll(' ', '\n'),
-        color: AppColorConstant.appBlack,
         textAlign: TextAlign.center,
         fontWeight: FontWeight.w500,
       ),
@@ -215,7 +213,6 @@ secondChartView(AnalyticsController analyticsController) {
     children: [
       const AppText(
         'Categories',
-        color: AppColorConstant.appBlack,
         textAlign: TextAlign.center,
         fontWeight: FontWeight.w500,
       ),
