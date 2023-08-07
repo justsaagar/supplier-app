@@ -66,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText('Business Details', color: AppColorConstant.appBlack, fontWeight: FontWeight.w600),
+                    const AppText('Business Details', fontWeight: FontWeight.w600),
                     SizedBox(height: 16.px),
                     buildProfileDetails('Business type', 'Retailer'),
                     SizedBox(height: 16.px),
@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText('Contact', color: AppColorConstant.appBlack, fontWeight: FontWeight.w600),
+                    const AppText('Contact', fontWeight: FontWeight.w600),
                     SizedBox(height: 16.px),
                     buildProfileDetails('Mobile Number', '9876543233'),
                     SizedBox(height: 16.px),
@@ -125,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText('Licence', color: AppColorConstant.appBlack, fontWeight: FontWeight.w600),
+                    const AppText('Licence', fontWeight: FontWeight.w600),
                     SizedBox(height: 16.px),
                     buildProfileDetails('Deals in', 'Groceries, Essentials'),
                     SizedBox(height: 16.px),
@@ -150,7 +150,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const AppText('Store Timing info', color: AppColorConstant.appBlack, fontWeight: FontWeight.w600),
+                    const AppText('Store Timing info',fontWeight: FontWeight.w600),
                     SizedBox(height: 16.px),
                     buildProfileDetails('Store opening time', '9 am'),
                     SizedBox(height: 16.px),
@@ -178,12 +178,11 @@ class ProfileScreen extends StatelessWidget {
           width: Device.width / 3.4,
           child: AppText(
             headerTitle,
-            color: AppColorConstant.appBlack,
             fontWeight: FontWeight.w500,
           ),
         ),
-        const AppText(' : ', color: AppColorConstant.appBlack, fontWeight: FontWeight.w500),
-        Expanded(child: AppText(bodyText, color: AppColorConstant.appBlack)),
+        const AppText(' : ', fontWeight: FontWeight.w500),
+        Expanded(child: AppText(bodyText)),
       ],
     );
   }

@@ -39,7 +39,6 @@ class PrintInvoiceScreen extends StatelessWidget {
                         child: const AppText(
                           'Tax Invoice',
                           fontWeight: FontWeight.w500,
-                          color: AppColorConstant.appBlack,
                         ),
                       ),
                       Container(
@@ -56,13 +55,11 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     children: [
                                       AppText(
                                         'Sold By : XYZ General Store',
-                                        color: AppColorConstant.appBlack,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 11,
                                       ),
                                       AppText(
                                         'Shop 1&2, CGO Complex,\nKavadiguda, Hyderabad\n500080\nPhone No. 0000000000',
-                                        color: AppColorConstant.appBlack,
                                         fontSize: 11,
                                       ),
                                     ],
@@ -74,11 +71,9 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       Row(
                                         children: [
                                           AppText('Order Id: ',
-                                              color: AppColorConstant.appBlack,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 10),
                                           AppText('253658',
-                                              color: AppColorConstant.appBlack,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 10),
                                         ],
@@ -86,19 +81,17 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       Row(
                                         children: [
                                           AppText('Order Date: ',
-                                              color: AppColorConstant.appBlack,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 10),
-                                          AppText('11-02-2022', color: AppColorConstant.appBlack, fontSize: 10),
+                                          AppText('11-02-2022',fontSize: 10),
                                         ],
                                       ),
                                       Row(
                                         children: [
                                           AppText('Invoice Date: ',
-                                              color: AppColorConstant.appBlack,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 10),
-                                          AppText('11-02-2022', color: AppColorConstant.appBlack, fontSize: 10),
+                                          AppText('11-02-2022',fontSize: 10),
                                         ],
                                       ),
                                     ],
@@ -120,11 +113,9 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     children: [
                                       AppText('Delivery to:',
                                           color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('S. Srinivas',
-                                          color: AppColorConstant.appBlack, fontWeight: FontWeight.w600, fontSize: 10),
+                                      AppText('S. Srinivas', fontWeight: FontWeight.w600, fontSize: 10),
                                       AppText(
                                           'Flat no.- 307, JyothiGiri Mansion,Opp. Military Ground,West Maredpally, Hyderabad,Telangana 500026Contact - 0000000000',
-                                          color: AppColorConstant.appBlack,
                                           fontWeight: FontWeight.w500,
                                           fontSize: 10),
                                     ],
@@ -138,13 +129,11 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     children: [
                                       AppText('Payment Method ',
                                           color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('BHIM UPI',
-                                          color: AppColorConstant.appBlack, fontWeight: FontWeight.w600, fontSize: 10),
+                                      AppText('BHIM UPI',fontWeight: FontWeight.w600, fontSize: 10),
                                       SizedBox(height: 5),
                                       AppText('Delivery Date and Type',
                                           color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('11 February 2022 \nInstant',
-                                          color: AppColorConstant.appBlack, fontWeight: FontWeight.w600, fontSize: 10),
+                                      AppText('11 February 2022 \nInstant',fontWeight: FontWeight.w600, fontSize: 10),
                                     ],
                                   ),
                                 ),
@@ -162,21 +151,21 @@ class PrintInvoiceScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 2,
-                                    child: AppText('\u20B9Product', fontSize: 12, color: AppColorConstant.appBlack),
+                                    child: AppText('\u20B9Product', fontSize: 12),
                                   ),
                                   Expanded(
-                                    child: AppText('Qty', fontSize: 12, color: AppColorConstant.appBlack),
+                                    child: AppText('Qty', fontSize: 12),
                                   ),
                                   Expanded(
-                                    child: AppText('MRP  ', fontSize: 12, color: AppColorConstant.appBlack),
+                                    child: AppText('MRP  ', fontSize: 12),
                                   ),
                                   Expanded(
                                     flex: 2,
                                     child: AppText('Discount',
-                                        fontSize: 12, textAlign: TextAlign.center, color: AppColorConstant.appBlack),
+                                        fontSize: 12, textAlign: TextAlign.center),
                                   ),
                                   Expanded(
-                                    child: AppText('Total', fontSize: 12, color: AppColorConstant.appBlack),
+                                    child: AppText('Total', fontSize: 12,),
                                   ),
                                 ],
                               ),
@@ -196,19 +185,17 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       child: AppText(
                                         'India Gate Basmati Rice',
                                         fontSize: 11,
-                                        color: AppColorConstant.appBlack,
                                         maxLines: 2,
                                       ),
                                     ),
                                     Expanded(
                                       child:
-                                          AppText('11kg', fontSize: 12, color: AppColorConstant.appBlack, maxLines: 2),
+                                          AppText('11kg', fontSize: 12, maxLines: 2),
                                     ),
                                     Expanded(
                                       child: AppText(
                                         '₹10000',
                                         fontSize: 12,
-                                        color: AppColorConstant.appBlack,
                                         maxLines: 2,
                                       ),
                                     ),
@@ -218,7 +205,6 @@ class PrintInvoiceScreen extends StatelessWidget {
                                         '₹ 2',
                                         fontSize: 12,
                                         textAlign: TextAlign.center,
-                                        color: AppColorConstant.appBlack,
                                         maxLines: 2,
                                       ),
                                     ),
@@ -226,7 +212,6 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       child: AppText(
                                         '₹ 98',
                                         fontSize: 12,
-                                        color: AppColorConstant.appBlack,
                                         maxLines: 2,
                                       ),
                                     ),
@@ -286,9 +271,9 @@ class PrintInvoiceScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        AppText(title, color: AppColorConstant.appBlack, fontSize: 12, fontWeight: fontWeight),
+        AppText(title,fontSize: 12, fontWeight: fontWeight),
         const SizedBox(width: 25),
-        AppText(subTitle, color: AppColorConstant.appBlack, fontSize: 12, fontWeight: fontWeight),
+        AppText(subTitle,fontSize: 12, fontWeight: fontWeight),
       ],
     );
   }

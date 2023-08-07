@@ -61,11 +61,11 @@ class PaymentRequestScreen extends StatelessWidget {
               children: [
                 Expanded(
                     child: AppText('Mishra ram retailer',
-                        maxLines: 2, fontWeight: FontWeight.w600, color: AppColorConstant.appBlack)),
+                        maxLines: 2, fontWeight: FontWeight.w600)),
                 Row(
                   children: [
-                    AppText('Status: ', fontSize: 12, color: AppColorConstant.appBlack),
-                    AppText('Billed', fontWeight: FontWeight.w600, fontSize: 12, color: AppColorConstant.appBlack),
+                    AppText('Status: ', fontSize: 12),
+                    AppText('Billed', fontWeight: FontWeight.w600, fontSize: 12),
                   ],
                 ),
               ],
@@ -137,7 +137,6 @@ class PaymentRequestScreen extends StatelessWidget {
           AppText(
             '$title: ',
             fontSize: 12,
-            color: AppColorConstant.appBlack,
           ),
           const SizedBox(height: 2),
           AppText(
@@ -155,7 +154,6 @@ class PaymentRequestScreen extends StatelessWidget {
     return AppText(
       '$title: ',
       fontSize: 12,
-      color: AppColorConstant.appBlack,
     );
   }
 
@@ -190,11 +188,11 @@ class FullyPaidScreen extends StatelessWidget {
               children: [
                 Expanded(
                     child: AppText('Mishra ram retailer',
-                        maxLines: 2, fontWeight: FontWeight.w600, color: AppColorConstant.appBlack)),
+                        maxLines: 2, fontWeight: FontWeight.w600)),
                 Row(
                   children: [
-                    AppText('Status: ', fontSize: 12, color: AppColorConstant.appBlack),
-                    AppText('Billed', fontWeight: FontWeight.w600, fontSize: 12, color: AppColorConstant.appBlack),
+                    AppText('Status: ', fontSize: 12),
+                    AppText('Billed', fontWeight: FontWeight.w600, fontSize: 12),
                   ],
                 ),
               ],
@@ -248,7 +246,6 @@ titleAndSubTitleView(String title, String subTitle, {Color fontColor = AppColorC
         AppText(
           '$title: ',
           fontSize: 11,
-          color: AppColorConstant.appBlack,
         ),
         const SizedBox(height: 2),
         AppText(

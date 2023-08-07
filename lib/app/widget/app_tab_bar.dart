@@ -39,7 +39,6 @@ class AppTabBar extends StatelessWidget {
         const SizedBox(height: 3),
         AppText(
           tabTitle,
-          color: AppColorConstant.appBlack,
           fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
           fontSize: 13,
         ),

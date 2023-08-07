@@ -20,12 +20,14 @@ class DashboardScreen extends StatelessWidget {
           key: dashboardController.scaffoldKey,
           backgroundColor: AppColorConstant.appWhite,
           appBar: AppAppBar(
-              title: dashboardController.selectedBottomIndex == 2
-                  ? 'Payments'
-                  : dashboardController.selectedBottomIndex == 1
-                      ? 'Masters'
-                      : 'Padyala Enterprises',
-              showBack: false),
+            title: dashboardController.selectedBottomIndex == 2
+                ? 'Payments'
+                : dashboardController.selectedBottomIndex == 1
+                    ? 'Masters'
+                    : 'Padyala Enterprises',
+            showBack: false,
+            showSuffix: dashboardController.selectedBottomIndex == 0,
+          ),
           drawer: const AppDrawer(),
           body: dashboardController.bottomBarItems[dashboardController.selectedBottomIndex]['pageName'],
           bottomNavigationBar: SafeArea(

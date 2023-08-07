@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           AppImageAsset(image: homeController.homeOptions[index]['image'], height: 70.px, width: 70.px),
                           SizedBox(height: 10.px),
-                          AppText(homeController.homeOptions[index]['name'], color: AppColorConstant.appBluest),
+                          AppText(homeController. homeOptions[index]['name'], color: AppColorConstant.appBluest),
                         ],
                       ),
                     ),

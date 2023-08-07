@@ -91,7 +91,6 @@ class ProductsScreen extends StatelessWidget {
                 const Expanded(
                   child: AppText(
                     'Tata Chana dal',
-                    color: AppColorConstant.appBlack,
                     fontWeight: FontWeight.w500,
                     maxLines: 2,
                   ),
@@ -114,15 +113,13 @@ class ProductsScreen extends StatelessWidget {
               children: [
                 AppText(
                   '1 kg',
-                  color: AppColorConstant.appBlack,
                   fontWeight: FontWeight.w500,
                 ),
                 Row(
                   children: [
-                    AppText('Sale Price  ', color: AppColorConstant.appBlack),
+                    AppText('Sale Price  '),
                     AppText(
                       '₹70',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                       fontSize: 15,
                     ),
@@ -138,19 +135,17 @@ class ProductsScreen extends StatelessWidget {
                   children: [
                     AppText(
                       'Stock: ',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                     ),
                     AppText(
                       '50',
-                      color: AppColorConstant.appBlack,
                       fontWeight: FontWeight.w500,
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    AppText('MRP ', color: AppColorConstant.appBlack),
+                    AppText('MRP '),
                     AppText(
                       '₹75',
                       color: AppColorConstant.appGrey,
@@ -200,9 +195,8 @@ class TodaysDealScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AppText('Daawat Basmati Rice 5kg',
-                                color: AppColorConstant.appBlack, fontWeight: FontWeight.w500, maxLines: 2),
-                            AppText('Foodgrains & Masalas ', color: AppColorConstant.appBlack, fontSize: 11),
+                            AppText('Daawat Basmati Rice 5kg',fontWeight: FontWeight.w500, maxLines: 2),
+                            AppText('Foodgrains & Masalas ',fontSize: 11),
                           ],
                         ),
                       ),
@@ -226,14 +220,13 @@ class TodaysDealScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              AppText('Sale Price: ', color: AppColorConstant.appBlack, fontWeight: FontWeight.w500),
-                              AppText('₹70',
-                                  color: AppColorConstant.appBlack, fontWeight: FontWeight.w500, fontSize: 15),
+                              AppText('Sale Price: ',fontWeight: FontWeight.w500),
+                              AppText('₹70', fontWeight: FontWeight.w500, fontSize: 15),
                             ],
                           ),
                           Row(
                             children: [
-                              AppText('MRP: ', color: AppColorConstant.appBlack, fontSize: 12),
+                              AppText('MRP: ',fontSize: 12),
                               AppText('₹75',
                                   color: AppColorConstant.appGrey,
                                   textAlign: TextAlign.start,

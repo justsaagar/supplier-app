@@ -33,7 +33,7 @@ class AppAppBar extends PreferredSize {
           ),
         ),
         child: Row(
-          mainAxisAlignment: showBack ? MainAxisAlignment.start : MainAxisAlignment.center,
+          mainAxisAlignment: showBack ? MainAxisAlignment.start : MainAxisAlignment.spaceBetween,
           children: [
             if (showBack)
               GestureDetector(
@@ -51,12 +51,14 @@ class AppAppBar extends PreferredSize {
               fontWeight: FontWeight.w600,
               color: AppColorConstant.appWhite,
             ),
+            if (showSuffix)const Spacer(),
             if (showSuffix)
               GetBuilder<DashboardController>(builder: (logic) {
                 return Positioned(
                   right: 28.px,
                   child: InkWell(
-                    onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
+                    onTap: () => Scaffold.of(context).openDrawer(),
+                    // onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

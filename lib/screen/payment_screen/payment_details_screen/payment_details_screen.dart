@@ -32,8 +32,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                         child: AppText(
                           'Mishra ram retailer',
                           maxLines: 2,
-                          fontWeight: FontWeight.w600,
-                          color: AppColorConstant.appBlack,
+                          fontWeight: FontWeight.w600
                         ),
                       ),
                       Row(
@@ -41,7 +40,6 @@ class PaymentDetailsScreen extends StatelessWidget {
                           AppText(
                             'Status: ',
                             fontSize: 12,
-                            color: AppColorConstant.appBlack,
                           ),
                           AppText(
                             'Completed',
@@ -159,13 +157,11 @@ class PaymentDetailsScreen extends StatelessWidget {
             children: [
               AppText(
                 '20-08-20222',
-                color: AppColorConstant.appBlack,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
               AppText(
                 '₹ 2500/-',
-                color: AppColorConstant.appBlack,
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
               ),
