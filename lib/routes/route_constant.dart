@@ -9,4 +9,9 @@ class RouteConstant {
   static const String verifiedApplication = '/verifiedApplication';
   static const String dashboard = '/dashboard';
   static const String editProfile = '/editProfile';
+  static const String paymentDetails = '/paymentDetails';
+  static const String printInvoice = '/printInvoice';
+  static const String inventoryScreen = '/inventoryScreen';
+  static const String addItemScreen = '/addItemScreen';
+  static const String retailersDetails = '/retailersDetails';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
 
@@ -9,11 +10,15 @@ class AppElevatedButton extends StatelessWidget {
   final String buttonName;
   final double? fontSize;
   final Color fontColor;
+  final FontWeight fontWeight;
   final double? buttonRadius;
   final Color buttonColor;
+  final Color borderColor;
   final double? buttonHeight;
   final double buttonWidth;
   final bool isBorderShape;
+  final bool isIconShow;
+  final String? imageString;
 
   const AppElevatedButton({
     Key? key,
@@ -21,12 +26,16 @@ class AppElevatedButton extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     required this.buttonName,
     this.fontSize,
+    this.fontWeight = FontWeight.w600,
     this.fontColor = AppColorConstant.appWhite,
     this.buttonRadius,
     this.buttonColor = AppColorConstant.appYellow,
+    this.borderColor = AppColorConstant.appOrange,
     this.buttonHeight,
     this.buttonWidth = double.infinity,
     this.isBorderShape = false,
+    this.isIconShow = false,
+    this.imageString,
   }) : super(key: key);
 
   @override
@@ -36,24 +45,37 @@ class AppElevatedButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          minimumSize: MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 48.px)),
+          minimumSize: MaterialStateProperty.all(Size(buttonWidth, buttonHeight ?? 43.px)),
           backgroundColor: MaterialStateProperty.all(isBorderShape ? AppColorConstant.appWhite : buttonColor),
           shape: isBorderShape
               ? MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(buttonRadius ?? 8.px),
-                    side: BorderSide(color: buttonColor),
+                    side: BorderSide(color: borderColor),
                   ),
                 )
               : MaterialStateProperty.all(
                   RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonRadius ?? 5.px)),
                 ),
         ),
-        child: AppText(
-          buttonName,
-          fontSize: fontSize,
-          color: isBorderShape ? buttonColor : fontColor,
-          fontWeight: FontWeight.w600,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            if (isIconShow)
+              AppImageAsset(
+                image: imageString ?? '',
+                height: 15,
+                width: 15,
+                color: AppColorConstant.appWhite,
+              ),
+            if (isIconShow) const SizedBox(width: 12),
+            AppText(
+              buttonName,
+              fontSize: fontSize,
+              color: isBorderShape ? buttonColor : fontColor,
+              fontWeight: fontWeight,
+            ),
+          ],
         ),
       ),
     );
