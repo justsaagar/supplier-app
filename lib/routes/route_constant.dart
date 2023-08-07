@@ -16,4 +16,6 @@ class RouteConstant {
   static const String retailersDetails = '/retailersDetails';
   static const String addNewInVoiceScreen = '/addNewInVoiceScreen';
   static const String invoiceDetailsScreen = '/invoiceDetailsScreen';
+  static const String newOrdersScreen = '/newOrdersScreen';
+  static const String manageOrderScreen = '/manageOrderScreen';
 }

@@ -7,6 +7,8 @@ import 'package:supplier/screen/dashboard_module/profile_screen/edit_profile_scr
 import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
 import 'package:supplier/screen/invoice_screen/invoice_details_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
+import 'package:supplier/screen/new_orders_screen/manage_order_screen.dart';
+import 'package:supplier/screen/new_orders_screen/orders_screen/orders_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/pending_verification_screen.dart';
@@ -21,22 +23,42 @@ import '../screen/retailers_screen/retailers_details_screen/retailers_details_vi
 
 class RouteHelper {
   static String getInitialRoute() => RouteConstant.initial;
+
   static String getNoInternetRoute() => RouteConstant.initial;
+
   static String getLoginRoute() => RouteConstant.login;
+
   static String getMobileVerificationRoute() => RouteConstant.mobileVerification;
+
   static String getOtpVerificationRoute() => RouteConstant.otpVerification;
+
   static String getSignUpRoute() => RouteConstant.signUp;
+
   static String getPendingVerificationRoute() => RouteConstant.pendingVerification;
+
   static String getVerifiedApplicationRoute() => RouteConstant.verifiedApplication;
+
   static String getDashboardRoute() => RouteConstant.dashboard;
+
   static String getEditProfileRoute() => RouteConstant.editProfile;
+
   static String getPaymentDetailsRoute() => RouteConstant.paymentDetails;
+
   static String getPrintInvoiceRoute() => RouteConstant.printInvoice;
+
   static String getInventoryRoute() => RouteConstant.inventoryScreen;
+
   static String getAddItemRoute() => RouteConstant.addItemScreen;
+
   static String getRetailerDetailsRoute() => RouteConstant.retailersDetails;
+
   static String getAddNewInVoiceRoute() => RouteConstant.addNewInVoiceScreen;
+
   static String getInvoiceDetailsRoute() => RouteConstant.invoiceDetailsScreen;
+
+  static String getNewOrdersRoute() => RouteConstant.newOrdersScreen;
+
+  static String getManageOrdersRoute() => RouteConstant.manageOrderScreen;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -56,5 +78,7 @@ class RouteHelper {
     GetPage(name: RouteConstant.retailersDetails, page: () => const RetailersDetailsView()),
     GetPage(name: RouteConstant.addNewInVoiceScreen, page: () => const AddNewInVoiceScreen()),
     GetPage(name: RouteConstant.invoiceDetailsScreen, page: () => const InVoiceDetailsScreen()),
+    GetPage(name: RouteConstant.newOrdersScreen, page: () => const NewOrdersScreen()),
+    GetPage(name: RouteConstant.manageOrderScreen, page: () => const ManageOrdersScreen()),
   ];
 }

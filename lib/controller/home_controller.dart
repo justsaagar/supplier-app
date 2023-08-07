@@ -5,7 +5,7 @@ import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/screen/dashboard_module/home/analytics_screen/analytics_screen.dart';
 import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
 import 'package:supplier/screen/invoice_screen/invoice_screen.dart';
-import 'package:supplier/screen/new_orders_screen/new_orders_screen.dart';
+import 'package:supplier/screen/new_orders_screen/manage_order_screen.dart';
 import 'package:supplier/screen/retailers_screen/retailers_screen.dart';
 
 class HomeController extends GetxController {

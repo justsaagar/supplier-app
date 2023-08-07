@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/routes/route_helper.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -36,31 +38,34 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Column buildDrawerOptions(String name, String count) {
-    return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 30.px),
-                child: Row(
-                  children: [
-                    AppText(
-                      '$name ',
-                      color: AppColorConstant.appBluest,
-                      fontSize: 18.px,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    AppText('($count)', color: AppColorConstant.appOrange, fontWeight: FontWeight.w500),
-                    const Spacer(),
-                    const AppImageAsset(image: AppAsset.rightChevronIcon)
-                  ],
+  InkWell buildDrawerOptions(String name, String count) {
+    return InkWell(
+      onTap: () => Get.toNamed(RouteHelper.getManageOrdersRoute(), parameters: {'pageName': name}),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 30.px),
+            child: Row(
+              children: [
+                AppText(
+                  '$name ',
+                  color: AppColorConstant.appBluest,
+                  fontSize: 18.px,
+                  fontWeight: FontWeight.w500,
                 ),
-              ),
-              Container(
-                height: 1.px,
-                decoration: const BoxDecoration(color: AppColorConstant.appBottomBarGrey),
-              ),
-            ],
-          );
+                AppText('($count)', color: AppColorConstant.appOrange, fontWeight: FontWeight.w500),
+                const Spacer(),
+                const AppImageAsset(image: AppAsset.rightChevronIcon)
+              ],
+            ),
+          ),
+          Container(
+            height: 1.px,
+            decoration: const BoxDecoration(color: AppColorConstant.appBottomBarGrey),
+          ),
+        ],
+      ),
+    );
   }
 }
