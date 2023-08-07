@@ -103,7 +103,7 @@ class RetailersDetailsView extends StatelessWidget {
                         fontSize: 12,
                         color: AppColorConstant.appBlack,
                       ),
-                    )
+                    ),
                   ],
                 ),
                 const SizedBox(height: 7),

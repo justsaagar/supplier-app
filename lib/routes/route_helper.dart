@@ -5,6 +5,7 @@ import 'package:supplier/screen/dashboard_module/masters_screen/add_item_screen/
 import 'package:supplier/screen/dashboard_module/notification_screen/no_internet_screen.dart';
 import 'package:supplier/screen/dashboard_module/profile_screen/edit_profile_screen.dart';
 import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
+import 'package:supplier/screen/invoice_screen/invoice_details_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
@@ -15,6 +16,7 @@ import 'package:supplier/screen/payment_screen/print_invoice_screen/print_invoic
 import 'package:supplier/screen/signup_screen/signup_screen.dart';
 import 'package:supplier/screen/splash_screen/splash_screen.dart';
 
+import '../screen/invoice_screen/add_new_invoice_screen/add_new_invoice_screen.dart';
 import '../screen/retailers_screen/retailers_details_screen/retailers_details_view.dart';
 
 class RouteHelper {
@@ -33,6 +35,8 @@ class RouteHelper {
   static String getInventoryRoute() => RouteConstant.inventoryScreen;
   static String getAddItemRoute() => RouteConstant.addItemScreen;
   static String getRetailerDetailsRoute() => RouteConstant.retailersDetails;
+  static String getAddNewInVoiceRoute() => RouteConstant.addNewInVoiceScreen;
+  static String getInvoiceDetailsRoute() => RouteConstant.invoiceDetailsScreen;
 
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
@@ -50,5 +54,7 @@ class RouteHelper {
     GetPage(name: RouteConstant.inventoryScreen, page: () => const InventoryScreen()),
     GetPage(name: RouteConstant.addItemScreen, page: () => const AddItemScreen()),
     GetPage(name: RouteConstant.retailersDetails, page: () => const RetailersDetailsView()),
+    GetPage(name: RouteConstant.addNewInVoiceScreen, page: () => const AddNewInVoiceScreen()),
+    GetPage(name: RouteConstant.invoiceDetailsScreen, page: () => const InVoiceDetailsScreen()),
   ];
 }
