@@ -75,7 +75,9 @@ class AppTextFormField extends StatelessWidget {
                     fontFamily: AppAsset.defaultFont,
                     fontSize: 14.px,
                     fontWeight: FontWeight.w400,
-                    color: AppColorConstant.appWhite,
+                    color: !isLightMode
+                        ? AppColorConstant.darkBlue
+                        : AppColorConstant.appWhite,
                   ),
                   readOnly: readOnly,
                   obscureText: obscureText,

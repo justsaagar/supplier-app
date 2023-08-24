@@ -83,52 +83,52 @@ class EditProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.emailAddressController,
                 hintText: 'Enter email',
                 headerTitle: 'Email',
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.weddingAnniversaryController,
                 headerTitle: 'Wedding anniversary date',
                 hintText: 'DD/MM/YYYY',
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.childOneController,
                 headerTitle: 'Child 1 birth date',
                 hintText: 'DD/MM/YYYY',
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.childTwoController,
                 headerTitle: 'Child 2 birth date',
                 hintText: 'DD/MM/YYYY',
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.addressController,
                 headerTitle: 'Address',
                 hintText: 'Enter address',
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.areaController,
                 headerTitle: 'Area',
                 hintText: 'Enter area',
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.dealsInController,
                 headerTitle: 'Deals in',
                 hintText: '',
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.popularInController,
                 headerTitle: 'Popular in',
                 hintText: '',
               ),
@@ -137,7 +137,7 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.gstNumberController,
                       headerTitle: 'GST',
                       hintText: 'Enter GST number',
                       readOnly: true,
@@ -159,7 +159,7 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.storeLicenseNumberController,
                       headerTitle: 'Store License',
                       hintText: 'Enter License number',
                       readOnly: true,
@@ -181,7 +181,7 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.drugNumberController,
                       headerTitle: 'Drug License',
                       hintText: 'Enter License number',
                       readOnly: true,
