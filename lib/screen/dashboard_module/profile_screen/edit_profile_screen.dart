@@ -9,6 +9,7 @@ import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/controller/edit_profile_controller.dart';
 import 'package:supplier/utils/utils.dart';
 
@@ -22,7 +23,7 @@ class EditProfileScreen extends StatelessWidget {
       init: EditProfileController(),
       builder: (EditProfileController editProfileController) {
         return Scaffold(
-          appBar: AppAppBar(title: 'Padyala Enterprises'),
+          appBar: AppAppBar(title: AppStringConstants.storeName),
           body: ListView(
             padding: EdgeInsets.all(24.px),
             children: [

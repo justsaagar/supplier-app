@@ -20,6 +20,8 @@ class RestConstants {
   //     ======================= API EndPoints =======================     //
   final String logInWithPhone = 'api-auth/verify/phone';
   final String sendOtp = 'api-auth/send/otp';
+  final String storeLoginOtp = 'api-auth/store/login/otp';
+  final String storeProfile = 'api-auth/store/profile';
 }
 
 class RestServices {

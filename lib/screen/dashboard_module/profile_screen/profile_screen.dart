@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/routes/route_helper.dart';
 import 'package:supplier/utils/utils.dart';
 
@@ -20,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
           child: Row(
             children: [
               AppText(
-                'Padyala enterprises',
+                AppStringConstants.storeName,
                 color: AppColorConstant.appYellow,
                 fontSize: 20.px,
                 fontWeight: FontWeight.w600,
