@@ -75,7 +75,7 @@ class SplashScreenState extends State<SplashScreen> {
     logs('IsAuthenticated --> $isAuthenticated');
     Future.delayed(
       const Duration(seconds: 2),
-      () => Get.toNamed(isAuthenticated ? RouteHelper.getLoginRoute() : RouteHelper.getLoginRoute()),
+      () => Get.toNamed(isAuthenticated ? RouteHelper.getDashboardRoute() : RouteHelper.getMobileVerificationRoute()),
     );
   }
 }

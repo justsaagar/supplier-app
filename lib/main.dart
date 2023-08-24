@@ -54,13 +54,12 @@ class MyAppState extends State<MyApp> {
             navigatorKey: Get.key,
             theme: ThemeData(useMaterial3: true, fontFamily: AppAsset.defaultFont),
             debugShowCheckedModeBanner: false,
-            initialRoute: RouteHelper.getDashboardRoute(),
+            initialRoute: RouteHelper.getInitialRoute(),
             getPages: RouteHelper.routes,
             defaultTransition: Transition.fadeIn,
             scrollBehavior: MyBehavior(),
             builder: (context, child) {
-              child =
-                  MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0), child: child ?? Container());
+              child = MediaQuery(data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0), child: child ?? Container());
               return child;
             },
           ),

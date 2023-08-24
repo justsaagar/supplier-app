@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -44,8 +45,14 @@ class MobileVerificationScreen extends StatelessWidget {
                   SizedBox(height: 60.px),
                   AppTextFormField(
                     controller: loginController.mobileNumberController,
-                    hintText: 'Mobile number',
-                    headerTitle: 'Enter mobile number',
+                    hintText: 'Store number',
+                    headerTitle: 'Enter store number',
+                    isLightMode: true,
+                    keyboardType: const TextInputType.numberWithOptions(),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(10),
+                    ],
                     prefixIcon: IntlPhoneField(
                       flagsButtonMargin: EdgeInsets.zero,
                       onCountryChanged: (Country value) => loginController.onCountryChange(value),
@@ -98,7 +105,10 @@ class MobileVerificationScreen extends StatelessWidget {
               buttonName: 'Continue',
               fontSize: 20.px,
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              onPressed: () => Get.toNamed(RouteHelper.getOtpVerificationRoute()),
+              onPressed: () {
+                final loginController = Get.find<LoginController>();
+                loginController.signInPhoneNumber();
+              },
             ),
             SizedBox(height: 20.px),
             AppText('By continuing, you agree to our', color: AppColorConstant.appWhite, fontWeight: FontWeight.w500, fontSize: 12.px),

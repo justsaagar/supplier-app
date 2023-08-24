@@ -45,6 +45,7 @@ class EditProfileScreen extends StatelessWidget {
                 headerTitle: 'Mobile number',
                 hintText: 'Enter mobile number',
                 isLightMode: true,
+                keyboardType: const TextInputType.numberWithOptions(),
                 prefixIcon: IntlPhoneField(
                   flagsButtonMargin: EdgeInsets.zero,
                   onCountryChanged: (Country value) => editProfileController.onCountryChange(value),

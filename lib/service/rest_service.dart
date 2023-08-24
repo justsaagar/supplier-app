@@ -18,7 +18,8 @@ class RestConstants {
   final int supplierAppVersion = 0;
 
   //     ======================= API EndPoints =======================     //
-  /// TODO : final String products = 'product-service/product';
+  final String logInWithPhone = 'api-auth/verify/phone';
+  final String sendOtp = 'api-auth/send/otp';
 }
 
 class RestServices {

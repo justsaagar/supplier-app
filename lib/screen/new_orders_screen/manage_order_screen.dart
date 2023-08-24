@@ -6,7 +6,6 @@ import 'package:supplier/app/widget/app_elevated_button.dart';
 import 'package:supplier/app/widget/app_tab_bar.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
-import 'package:supplier/controller/dashboard_controller.dart';
 import 'package:supplier/controller/new_orders_controller.dart';
 import 'package:supplier/routes/route_helper.dart';
 
