@@ -2,6 +2,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String authenticateUser = 'authenticateUser';
 const String authenticationToken = 'authenticationToken';
+const String storeLogInId = 'storeLogInId';
+const String storeCategoryId = 'storeCategoryId';
+const String storeName = 'storeName';
 
 Future<bool> checkPrefKey(String key) async {
   final prefs = await SharedPreferences.getInstance();

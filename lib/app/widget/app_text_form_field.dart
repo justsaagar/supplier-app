@@ -52,7 +52,7 @@ class AppTextFormField extends StatelessWidget {
           headerTitle,
           fontSize: 14.px,
           fontWeight: FontWeight.w500,
-          color: isLightMode ? const Color(0xff404040) : AppColorConstant.appBlack,
+          color: isLightMode ? AppColorConstant.appWhite : AppColorConstant.appBlack,
         ),
         if(headerTitle.isNotEmpty)SizedBox(height: 4.px),
         Container(
@@ -65,7 +65,7 @@ class AppTextFormField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              if (prefixIcon != null) SizedBox(width: 40.px, child: prefixIcon),
+              if (prefixIcon != null) SizedBox(width: 60.px, child: prefixIcon),
               Expanded(
                 child: TextFormField(
                   controller: controller,
@@ -75,7 +75,9 @@ class AppTextFormField extends StatelessWidget {
                     fontFamily: AppAsset.defaultFont,
                     fontSize: 14.px,
                     fontWeight: FontWeight.w400,
-                    color: AppColorConstant.appBluest,
+                    color: !isLightMode
+                        ? AppColorConstant.darkBlue
+                        : AppColorConstant.appWhite,
                   ),
                   readOnly: readOnly,
                   obscureText: obscureText,

@@ -19,16 +19,16 @@ class AppDropdownButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500),
+        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500, color: AppColorConstant.appWhite),
         SizedBox(height: 4.px),
         DropdownButtonHideUnderline(
           child: Container(
             height: 52,
             padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-              border: Border.all(color: AppColorConstant.appGrey.withOpacity(0.5)),
+              // border: Border.all(color: AppColorConstant.appGrey.withOpacity(0.5)),
               borderRadius: BorderRadius.circular(10.px),
-              color: AppColorConstant.appWhite,
+              color: AppColorConstant.lightGreyColor.withOpacity(0.19),
             ),
             child: DropdownButton2(
               buttonPadding: const EdgeInsets.all(0),

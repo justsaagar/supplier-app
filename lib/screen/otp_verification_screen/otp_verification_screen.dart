@@ -55,6 +55,7 @@ class OtpVerificationScreen extends StatelessWidget {
                       fontSize: 30.px,
                       fontWeight: FontWeight.w600,
                       textAlign: TextAlign.center,
+                      color: AppColorConstant.appWhite,
                     ),
                     SizedBox(height: 100.px),
                     AppText(
@@ -62,6 +63,7 @@ class OtpVerificationScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       fontSize: 18.px,
                       textAlign: TextAlign.center,
+                      color: AppColorConstant.appWhite,
                     ),
                     SizedBox(height: 16.px),
                     Padding(
@@ -128,7 +130,10 @@ class OtpVerificationScreen extends StatelessWidget {
               buttonName: 'Verify Now',
               fontSize: 20.px,
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              onPressed: () => Get.toNamed(RouteHelper.getPendingVerificationRoute()),
+              onPressed: () {
+                final loginController = Get.find<LoginController>();
+                loginController.mobileVerify();
+              },
             ),
             SizedBox(height: 20.px),
             AppText('Terms and Conditions',

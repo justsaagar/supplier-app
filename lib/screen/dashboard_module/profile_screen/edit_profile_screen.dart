@@ -9,6 +9,7 @@ import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/controller/edit_profile_controller.dart';
 import 'package:supplier/utils/utils.dart';
 
@@ -22,7 +23,7 @@ class EditProfileScreen extends StatelessWidget {
       init: EditProfileController(),
       builder: (EditProfileController editProfileController) {
         return Scaffold(
-          appBar: AppAppBar(title: 'Padyala Enterprises'),
+          appBar: AppAppBar(title: AppStringConstants.storeName),
           body: ListView(
             padding: EdgeInsets.all(24.px),
             children: [
@@ -30,21 +31,19 @@ class EditProfileScreen extends StatelessWidget {
                 controller: editProfileController.ownerNameController,
                 hintText: 'Enter Owner Name',
                 headerTitle: 'Owner Name',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
                 controller: editProfileController.storeNameController,
                 hintText: 'Enter your Store Name',
                 headerTitle: 'Store Name',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
                 controller: editProfileController.mobileNumberController,
                 headerTitle: 'Mobile number',
                 hintText: 'Enter mobile number',
-                isLightMode: true,
+                keyboardType: const TextInputType.numberWithOptions(),
                 prefixIcon: IntlPhoneField(
                   flagsButtonMargin: EdgeInsets.zero,
                   onCountryChanged: (Country value) => editProfileController.onCountryChange(value),
@@ -84,72 +83,63 @@ class EditProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.emailAddressController,
                 hintText: 'Enter email',
                 headerTitle: 'Email',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.weddingAnniversaryController,
                 headerTitle: 'Wedding anniversary date',
                 hintText: 'DD/MM/YYYY',
-                isLightMode: true,
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.childOneController,
                 headerTitle: 'Child 1 birth date',
                 hintText: 'DD/MM/YYYY',
-                isLightMode: true,
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.childTwoController,
                 headerTitle: 'Child 2 birth date',
                 hintText: 'DD/MM/YYYY',
-                isLightMode: true,
                 suffixIcon: const Icon(Icons.calendar_today, color: AppColorConstant.appGrey),
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.addressController,
                 headerTitle: 'Address',
                 hintText: 'Enter address',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.areaController,
                 headerTitle: 'Area',
                 hintText: 'Enter area',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.dealsInController,
                 headerTitle: 'Deals in',
                 hintText: '',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               AppTextFormField(
-                controller: editProfileController.storeNameController,
+                controller: editProfileController.popularInController,
                 headerTitle: 'Popular in',
                 hintText: '',
-                isLightMode: true,
               ),
               SizedBox(height: 16.px),
               Row(
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.gstNumberController,
                       headerTitle: 'GST',
                       hintText: 'Enter GST number',
-                      isLightMode: true,
                       readOnly: true,
                     ),
                   ),
@@ -169,10 +159,9 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.storeLicenseNumberController,
                       headerTitle: 'Store License',
                       hintText: 'Enter License number',
-                      isLightMode: true,
                       readOnly: true,
                     ),
                   ),
@@ -192,10 +181,9 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: AppTextFormField(
-                      controller: editProfileController.storeNameController,
+                      controller: editProfileController.drugNumberController,
                       headerTitle: 'Drug License',
                       hintText: 'Enter License number',
-                      isLightMode: true,
                       readOnly: true,
                     ),
                   ),

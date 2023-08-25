@@ -45,12 +45,14 @@ class SignUpScreen extends StatelessWidget {
                     controller: signUpController.usernameController,
                     headerTitle: 'User Name*',
                     hintText: 'E-mail address / User ID',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
                     controller: signUpController.phoneNoController,
                     headerTitle: 'Phone no.*',
                     hintText: 'Enter Phone Number',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
@@ -58,6 +60,7 @@ class SignUpScreen extends StatelessWidget {
                     headerTitle: 'Password*',
                     hintText: 'Enter Password',
                     obscureText: true,
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
@@ -65,6 +68,7 @@ class SignUpScreen extends StatelessWidget {
                     headerTitle: 'Confirm password*',
                     hintText: 'Confirm password',
                     obscureText: true,
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppDropdownButton(
@@ -88,24 +92,28 @@ class SignUpScreen extends StatelessWidget {
                     controller: signUpController.emailController,
                     headerTitle: 'Email*',
                     hintText: 'Enter your email address',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
                     controller: signUpController.storeNameController,
                     headerTitle: 'Store Name*',
                     hintText: 'Enter Your Store Name',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
                     controller: signUpController.areaNameController,
                     headerTitle: 'Area*',
                     hintText: 'Enter Your Area',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   AppTextFormField(
                     controller: signUpController.addressController,
                     headerTitle: 'Address',
                     hintText: 'Enter Your Address',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 16.px),
                   Row(
@@ -116,6 +124,7 @@ class SignUpScreen extends StatelessWidget {
                           controller: signUpController.passwordController,
                           headerTitle: 'Drug License Number*',
                           hintText: 'Enter drug licence number',
+                          isLightMode: true,
                         ),
                       ),
                       SizedBox(width: 10.px),
@@ -141,6 +150,7 @@ class SignUpScreen extends StatelessWidget {
                           controller: signUpController.gstNumberController,
                           headerTitle: 'GST Number*',
                           hintText: 'Enter GST number',
+                          isLightMode: true,
                         ),
                       ),
                       SizedBox(width: 10.px),
@@ -166,6 +176,7 @@ class SignUpScreen extends StatelessWidget {
                           controller: signUpController.storeRegisterController,
                           headerTitle: 'Store Registration',
                           hintText: 'Enter Store Registration Number',
+                          isLightMode: true,
                         ),
                       ),
                       SizedBox(width: 10.px),
@@ -187,6 +198,7 @@ class SignUpScreen extends StatelessWidget {
                     controller: signUpController.pharmaController,
                     headerTitle: 'Registered Pharmacist Name*',
                     hintText: 'Enter Pharmacist Name',
+                    isLightMode: true,
                   ),
                   SizedBox(height: 50.px),
                   AppElevatedButton(
@@ -195,7 +207,7 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 50.px),
                   InkWell(
-                    onTap: () => Get.toNamed(RouteHelper.getLoginRoute()),
+                    onTap: () => Get.toNamed(RouteHelper.getMobileVerificationRoute()),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
