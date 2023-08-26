@@ -53,19 +53,17 @@ class AppAppBar extends PreferredSize {
             ),
             if (showSuffix)const Spacer(),
             if (showSuffix)
-              GetBuilder<DashboardController>(builder: (logic) {
-                return InkWell(
-                  onTap: () => Scaffold.of(context).openDrawer(),
-                  // onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
-                      AppText('Orders', fontSize: 10.px, color: AppColorConstant.appWhite),
-                    ],
-                  ),
-                );
-              }),
+              InkWell(
+                onTap: () => Scaffold.of(context).openDrawer(),
+                // onTap: () => logic.scaffoldKey.currentState!.openDrawer(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
+                    AppText('Orders', fontSize: 10.px, color: AppColorConstant.appWhite),
+                  ],
+                ),
+              ),
           ],
         ),
       ),

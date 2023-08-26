@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supplier/constant/app_asset.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/screen/dashboard_module/home/home_screen/home_screen.dart';
 import 'package:supplier/screen/dashboard_module/masters_screen/masters_screen.dart';
 import 'package:supplier/screen/dashboard_module/notification_screen/notification_screen.dart';
 import 'package:supplier/screen/dashboard_module/profile_screen/profile_screen.dart';
 import 'package:supplier/screen/payment_screen/payment_screen.dart';
+import 'package:supplier/utils/shared_preference.dart';
 
 class DashboardController extends GetxController {
   int selectedBottomIndex = 0;
@@ -21,5 +23,11 @@ class DashboardController extends GetxController {
   void updatePageIndex(int index) {
     selectedBottomIndex = index;
     update();
+  }
+
+  Future<void> initializeValue() async {
+    AppStringConstants.storeName = await getPrefStringValue(storeName) ?? '';
+    AppStringConstants.storeLogInId = await getPrefStringValue(storeLogInId) ?? '';
+    AppStringConstants.storeCategoryId = await getPrefStringValue(storeCategoryId) ?? '';
   }
 }

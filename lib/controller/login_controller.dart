@@ -1,8 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
+import 'package:supplier/routes/route_helper.dart';
+import 'package:supplier/service/rest_service.dart';
+import 'package:supplier/utils/shared_preference.dart';
+import 'package:supplier/utils/string_extensions.dart';
+import 'package:supplier/utils/utils.dart';
 
 class LoginController extends GetxController {
   final TextEditingController usernameController = TextEditingController();
@@ -59,5 +66,70 @@ class LoginController extends GetxController {
       }
       update();
     });
+  }
+
+  Future<void> signInPhoneNumber() async {
+    try {
+      final response = await RestServices.instance.postRestCall(
+        endpoint: RestConstants.instance.logInWithPhone,
+        addOns: '?phoneNumber=${mobileNumberController.value.text.trim()}&role=Supplier',
+        body: {},
+      );
+      if (response != null && response.isNotEmpty) {
+        final Map<String, dynamic> responseMap = jsonDecode(response);
+        if (responseMap['response']) {
+          await sendOtp('send');
+          Get.toNamed(RouteHelper.getOtpVerificationRoute());
+        } else {
+          'Store number is not registered.!'.showError();
+        }
+      }
+    } on SocketException catch (e) {
+      logs('Catch exception in signInPhoneNumber --> ${e.message}');
+    }
+  }
+
+  Future<void> sendOtp(String otpType) async {
+    try {
+      final response = await RestServices.instance.postRestCall(
+        endpoint: RestConstants.instance.sendOtp,
+        addOns: '/$otpType?phoneNumber=${mobileNumberController.text}',
+        body: {},
+      );
+      if (response != null && response.isNotEmpty) {
+        final Map<String, dynamic> responseMap = jsonDecode(response);
+        if (responseMap.containsKey('type') && responseMap['type'] == 'success') {
+          Get.toNamed(RouteHelper.getOtpVerificationRoute());
+        }
+      }
+    } on SocketException catch (e) {
+      logs('Catch exception in signInPhoneNumber --> ${e.message}');
+    }
+  }
+
+  Future<dynamic> mobileVerify() async {
+    try {
+      /// Todo : add FCM token
+      final response = await RestServices.instance.postRestCall(
+        endpoint: RestConstants.instance.storeLoginOtp,
+        addOns: '?otp=${otpController.text}&phoneNumber=${mobileNumberController.text}&fcmToken=token&role=Supplier',
+        body: {},
+      );
+      if (response != null && response.isNotEmpty) {
+        final Map<String, dynamic> responseMap = jsonDecode(response);
+        if (responseMap['applicationStatus'] == 'Onboarded') {
+          await setPrefBoolValue(authenticateUser, true);
+          await setPrefStringValue(authenticationToken, responseMap['token']);
+          await setPrefStringValue(storeLogInId, responseMap['logInId']);
+          await setPrefStringValue(storeCategoryId, responseMap['categoryId']);
+          await setPrefStringValue(storeName, responseMap['userName']);
+          Get.offAllNamed(RouteHelper.getDashboardRoute());
+        } else /*if (responseMap['applicationStatus'] == 'Pending')*/ {
+          Get.toNamed(RouteHelper.getPendingVerificationRoute());
+        }
+      }
+    } on SocketException catch (e){
+      logs('Catch exception in mobileVerify --> ${e.message}');
+    }
   }
 }

@@ -28,7 +28,7 @@ class ConnectivityService {
         switch (event) {
           case InternetConnectionStatus.connected:
             Get.back();
-            Get.toNamed(isAuthenticated ? RouteHelper.getLoginRoute() : RouteHelper.getLoginRoute());
+            Get.toNamed(isAuthenticated ? RouteHelper.getDashboardRoute() : RouteHelper.getMobileVerificationRoute());
             logs('Data connection is available.');
             break;
           case InternetConnectionStatus.disconnected:
