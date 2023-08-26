@@ -28,6 +28,14 @@ class EditProfileController extends GetxController {
   String storeLicenseDocument = '';
   String drugLicenceDocument = '';
   StoreProfileModel? storeProfileModel;
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    getStoreProfile();
+      super.onInit();
+  }
+
   Country countryMap = const Country(
     name: "India",
     nameTranslations: {

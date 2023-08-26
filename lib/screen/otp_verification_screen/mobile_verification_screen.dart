@@ -11,7 +11,6 @@ import 'package:supplier/app/widget/app_text_form_field.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/controller/login_controller.dart';
-import 'package:supplier/routes/route_helper.dart';
 import 'package:supplier/utils/utils.dart';
 
 class MobileVerificationScreen extends StatelessWidget {
