@@ -7,8 +7,8 @@ import 'package:supplier/screen/dashboard_module/profile_screen/edit_profile_scr
 import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
 import 'package:supplier/screen/invoice_screen/invoice_details_screen.dart';
 import 'package:supplier/screen/login_screen/login_screen.dart';
-import 'package:supplier/screen/new_orders_screen/manage_order_screen.dart';
 import 'package:supplier/screen/new_orders_screen/orders_screen/orders_screen.dart';
+import 'package:supplier/screen/new_orders_screen/review_order_screen/review_order_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/mobile_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/otp_verification_screen.dart';
 import 'package:supplier/screen/otp_verification_screen/pending_verification_screen.dart';
@@ -60,6 +60,8 @@ class RouteHelper {
 
   static String getManageOrdersRoute() => RouteConstant.manageOrderScreen;
 
+  static String getReviewOrderRoute() => RouteConstant.reviewOrderScreen;
+
   static List<GetPage> routes = [
     GetPage(name: RouteConstant.initial, page: () => const SplashScreen()),
     GetPage(name: RouteConstant.noInternet, page: () => const NoInternetScreen()),
@@ -78,7 +80,8 @@ class RouteHelper {
     GetPage(name: RouteConstant.retailersDetails, page: () => const RetailersDetailsView()),
     GetPage(name: RouteConstant.addNewInVoiceScreen, page: () => const AddNewInVoiceScreen()),
     GetPage(name: RouteConstant.invoiceDetailsScreen, page: () => const InVoiceDetailsScreen()),
-    GetPage(name: RouteConstant.newOrdersScreen, page: () => const NewOrdersScreen()),
+    GetPage(name: RouteConstant.newOrdersScreen, page: () => const ManageOrdersScreen()),
     GetPage(name: RouteConstant.manageOrderScreen, page: () => const ManageOrdersScreen()),
+    GetPage(name: RouteConstant.reviewOrderScreen, page: () => const ReviewOrderScreen()),
   ];
 }

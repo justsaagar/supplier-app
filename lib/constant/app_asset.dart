@@ -46,4 +46,5 @@ class AppAsset {
   static const String downloadIcon= '${iconPath}download.svg';
   static const String searchIcon= '${iconPath}search.svg';
   static const String addIcon= '${iconPath}add.png';
+  static const String mapIcon= '${iconPath}map.png';
 }

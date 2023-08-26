@@ -9,8 +9,8 @@ import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/new_orders_controller.dart';
 import 'package:supplier/routes/route_helper.dart';
 
-class NewOrdersScreen extends StatelessWidget {
-  const NewOrdersScreen({Key? key}) : super(key: key);
+class ManageOrderScreen extends StatelessWidget {
+  const ManageOrderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,7 @@ class NewOrdersScreen extends StatelessWidget {
                 onTabChanged: (index) => newOrdersController.onTabChanged(index),
                 currentIndex: newOrdersController.currentIndex,
               ),
-              Expanded(
-                child: NewAndAcceptedOrdersTab(isAcceptedOrder: newOrdersController.currentIndex != 1 ? false : true),
-              ),
+              NewAndAcceptedOrdersTab(isAcceptedOrder: newOrdersController.currentIndex != 1 ? false : true),
             ],
           ),
         );
@@ -84,11 +82,12 @@ class NewAndAcceptedOrdersTab extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(width: 20),
                 Expanded(
                   child: AppElevatedButton(
                     buttonName: isAcceptedOrder ? 'Bill' : 'Review',
                     buttonHeight: 35,
-                    onPressed: () => Get.toNamed(RouteHelper.getManageOrdersRoute()),
+                    onPressed: () => Get.toNamed(RouteHelper.getReviewOrderRoute()),
                     fontWeight: FontWeight.w400,
                     buttonColor: AppColorConstant.appBluest,
                   ),

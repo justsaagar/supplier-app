@@ -12,7 +12,7 @@ class HomeController extends GetxController {
   PageController controller = PageController();
   final BehaviorSubject<int> buyingGuidesController = BehaviorSubject<int>();
   List<Map<String, dynamic>> homeOptions = [
-    {'image': AppAsset.newOrders, 'name': 'New orders', 'pageName': const NewOrdersScreen()},
+    {'image': AppAsset.newOrders, 'name': 'New orders', 'pageName': const ManageOrderScreen()},
     {'image': AppAsset.analysis, 'name': 'Analytics', 'pageName': const AnalyticsScreen()},
     {'image': AppAsset.retailers, 'name': 'Retailers', 'pageName': const RetailersScreen()},
     {'image': AppAsset.inventory, 'name': 'Inventory', 'pageName': const InventoryScreen()},
