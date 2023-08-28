@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:supplier/model/delivery_slots_model.dart';
+
 StoreProfileModel storeProfileModelFromJson(String str) => StoreProfileModel.fromJson(json.decode(str));
 
 String storeProfileModelToJson(StoreProfileModel data) => json.encode(data.toJson());
@@ -28,12 +30,12 @@ class StoreProfileModel {
   String? closeTime;
   dynamic deliveryStrength;
   String? applicationStatus;
-  DateTime? applicationStatusDate;
+  String? applicationStatusDate;
   String? boarded;
-  DateTime? retailerBirthday;
-  DateTime? retailerMarriageDay;
-  DateTime? retailerChildOneBirthDay;
-  DateTime? retailerChildTwoBirthDay;
+  String? retailerBirthday;
+  String? retailerMarriageDay;
+  String? retailerChildOneBirthDay;
+  String? retailerChildTwoBirthDay;
   String? retailerMessage;
   String? storeRating;
   String? storeLiveStatus;
@@ -43,7 +45,7 @@ class StoreProfileModel {
   StoreLicense? storeLicense;
   DrugLicense? drugLicense;
   dynamic deliveryType;
-  List<Slot> slots;
+  List<DeliverySlotsModel> slots;
   List<StoreAddressDetailRequest> storeAddressDetailRequest;
   ImageUrl? imageUrl;
   dynamic drugLicenseAddress;
@@ -103,7 +105,7 @@ class StoreProfileModel {
     this.storeLicense,
     this.drugLicense,
     this.deliveryType,
-    this.slots = const <Slot>[],
+    this.slots = const <DeliverySlotsModel>[],
     this.storeAddressDetailRequest = const <StoreAddressDetailRequest>[],
     this.imageUrl,
     this.drugLicenseAddress,
@@ -150,14 +152,12 @@ class StoreProfileModel {
         closeTime: json["closeTime"],
         deliveryStrength: json["deliveryStrength"],
         applicationStatus: json["applicationStatus"],
-        applicationStatusDate: DateTime.parse(json["applicationStatusDate"]),
+        applicationStatusDate: json["applicationStatusDate"],
         boarded: json["boarded"],
-        retailerBirthday: DateTime.parse(json["retailerBirthday"]),
-        retailerMarriageDay: DateTime.parse(json["retailerMarriageDay"]),
-        retailerChildOneBirthDay:
-            DateTime.parse(json["retailerChildOneBirthDay"]),
-        retailerChildTwoBirthDay:
-            DateTime.parse(json["retailerChildTwoBirthDay"]),
+        retailerBirthday: json["retailerBirthday"],
+        retailerMarriageDay: json["retailerMarriageDay"],
+        retailerChildOneBirthDay: json["retailerChildOneBirthDay"],
+        retailerChildTwoBirthDay: json["retailerChildTwoBirthDay"],
         retailerMessage: json["retailerMessage"],
         storeRating: json["storeRating"],
         storeLiveStatus: json["storeLiveStatus"],
@@ -167,7 +167,7 @@ class StoreProfileModel {
         storeLicense: StoreLicense.fromJson(json["storeLicense"]),
         drugLicense: DrugLicense.fromJson(json["drugLicense"]),
         deliveryType: json["deliveryType"],
-        slots: List<Slot>.from(json["slots"].map((x) => Slot.fromJson(x))),
+        slots: List<DeliverySlotsModel>.from(json["slots"].map((x) => DeliverySlotsModel.fromJson(x))),
         storeAddressDetailRequest: List<StoreAddressDetailRequest>.from(
             json["storeAddressDetailRequest"]
                 .map((x) => StoreAddressDetailRequest.fromJson(x))),
@@ -215,17 +215,17 @@ class StoreProfileModel {
         "closeTime": closeTime,
         "deliveryStrength": deliveryStrength,
         "applicationStatus": applicationStatus,
-        "applicationStatusDate":
-            "${applicationStatusDate!.year.toString().padLeft(4, '0')}-${applicationStatusDate?.month.toString().padLeft(2, '0')}-${applicationStatusDate?.day.toString().padLeft(2, '0')}",
+        "applicationStatusDate": applicationStatusDate,
+            // "${applicationStatusDate!.year.toString().padLeft(4, '0')}-${applicationStatusDate?.month.toString().padLeft(2, '0')}-${applicationStatusDate?.day.toString().padLeft(2, '0')}",
         "boarded": boarded,
-        "retailerBirthday":
-            "${retailerBirthday?.year.toString().padLeft(4, '0')}-${retailerBirthday?.month.toString().padLeft(2, '0')}-${retailerBirthday?.day.toString().padLeft(2, '0')}",
-        "retailerMarriageDay":
-            "${retailerMarriageDay?.year.toString().padLeft(4, '0')}-${retailerMarriageDay?.month.toString().padLeft(2, '0')}-${retailerMarriageDay?.day.toString().padLeft(2, '0')}",
-        "retailerChildOneBirthDay":
-            "${retailerChildOneBirthDay?.year.toString().padLeft(4, '0')}-${retailerChildOneBirthDay?.month.toString().padLeft(2, '0')}-${retailerChildOneBirthDay?.day.toString().padLeft(2, '0')}",
-        "retailerChildTwoBirthDay":
-            "${retailerChildTwoBirthDay?.year.toString().padLeft(4, '0')}-${retailerChildTwoBirthDay?.month.toString().padLeft(2, '0')}-${retailerChildTwoBirthDay?.day.toString().padLeft(2, '0')}",
+        "retailerBirthday": retailerBirthday,
+            // "${retailerBirthday?.year.toString().padLeft(4, '0')}-${retailerBirthday?.month.toString().padLeft(2, '0')}-${retailerBirthday?.day.toString().padLeft(2, '0')}",
+        "retailerMarriageDay": retailerMarriageDay,
+            // "${retailerMarriageDay?.year.toString().padLeft(4, '0')}-${retailerMarriageDay?.month.toString().padLeft(2, '0')}-${retailerMarriageDay?.day.toString().padLeft(2, '0')}",
+        "retailerChildOneBirthDay": retailerChildOneBirthDay,
+            // "${retailerChildOneBirthDay?.year.toString().padLeft(4, '0')}-${retailerChildOneBirthDay?.month.toString().padLeft(2, '0')}-${retailerChildOneBirthDay?.day.toString().padLeft(2, '0')}",
+        "retailerChildTwoBirthDay": retailerChildTwoBirthDay,
+            // "${retailerChildTwoBirthDay?.year.toString().padLeft(4, '0')}-${retailerChildTwoBirthDay?.month.toString().padLeft(2, '0')}-${retailerChildTwoBirthDay?.day.toString().padLeft(2, '0')}",
         "retailerMessage": retailerMessage,
         "storeRating": storeRating,
         "storeLiveStatus": storeLiveStatus,
@@ -316,42 +316,6 @@ class ImageUrl {
   Map<String, dynamic> toJson() => {
         "bannerImageId": bannerImageId,
         "profileImageId": profileImageId,
-      };
-}
-
-class Slot {
-  String? slotId;
-  String? slotName;
-  String? startTime;
-  String? endTime;
-  bool isChecked;
-  num? displayOrder;
-
-  Slot({
-    this.slotId,
-    this.slotName,
-    this.startTime,
-    this.endTime,
-    this.isChecked = false,
-    this.displayOrder,
-  });
-
-  factory Slot.fromJson(Map<String, dynamic> json) => Slot(
-        slotId: json["slotId"],
-        slotName: json["slotName"],
-        startTime: json["startTime"],
-        endTime: json["endTime"],
-        isChecked: json["isChecked"],
-        displayOrder: json["displayOrder"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "slotId": slotId,
-        "slotName": slotName,
-        "startTime": startTime,
-        "endTime": endTime,
-        "isChecked": isChecked,
-        "displayOrder": displayOrder,
       };
 }
 
