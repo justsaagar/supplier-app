@@ -13,6 +13,7 @@ class RestConstants {
 
   static final RestConstants instance = RestConstants._privateConstructor();
 
+
   //     ======================= API BaseUrl =======================     //
   String supplierBaseUrl = '';
   final int supplierAppVersion = 0;
@@ -23,8 +24,8 @@ class RestConstants {
   final String storeLoginOtp = 'api-auth/store/login/otp';
   final String storeProfile = 'api-auth/store/profile';
   final String storeCategory = 'api-product/categorys';
+  final String editProfile = 'api-auth/store/profile';
 }
-
 class RestServices {
   RestServices._privateConstructor();
 

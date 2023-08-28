@@ -26,9 +26,6 @@ class EditProfileScreen extends StatelessWidget {
       builder: (EditProfileController editProfileController) {
         return Scaffold(
           appBar: AppAppBar(title: AppStringConstants.storeName),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => editProfileController.getStoreProfile(),
-          ),
           body: ListView(
             padding: const EdgeInsets.only(right: 20, left: 20, top: 20),
             children: [

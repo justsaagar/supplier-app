@@ -322,6 +322,8 @@ class EditProfileController extends GetxController {
       );
       if (response != null && response.isNotEmpty) {
         final Map<String, dynamic> responseMap = jsonDecode(response);
+        getStoreProfile();
+        Get.back();
         'Profile updated successfully'.showSuccess();
       }
       update();

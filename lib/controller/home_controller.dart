@@ -7,6 +7,7 @@ import 'package:supplier/screen/inventory_screen/inventory_screen.dart';
 import 'package:supplier/screen/invoice_screen/invoice_screen.dart';
 import 'package:supplier/screen/new_orders_screen/manage_order_screen.dart';
 import 'package:supplier/screen/retailers_screen/retailers_screen.dart';
+import '../screen/bank_screen/bank_screen.dart';
 
 class HomeController extends GetxController {
   PageController controller = PageController();
@@ -17,5 +18,6 @@ class HomeController extends GetxController {
     {'image': AppAsset.retailers, 'name': 'Retailers', 'pageName': const RetailersScreen()},
     {'image': AppAsset.inventory, 'name': 'Inventory', 'pageName': const InventoryScreen()},
     {'image': AppAsset.invoice, 'name': 'Invoice', 'pageName': const InvoiceScreen()},
+    {'image': AppAsset.bank, 'name': 'Bank detail', 'pageName': const BankScreen()},
   ];
 }
