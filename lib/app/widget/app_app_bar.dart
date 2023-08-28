@@ -5,7 +5,6 @@ import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
-import 'package:supplier/controller/dashboard_controller.dart';
 
 class AppAppBar extends PreferredSize {
   final bool showSuffix;

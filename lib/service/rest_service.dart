@@ -22,6 +22,7 @@ class RestConstants {
   final String sendOtp = 'api-auth/send/otp';
   final String storeLoginOtp = 'api-auth/store/login/otp';
   final String storeProfile = 'api-auth/store/profile';
+  final String storeCategory = 'api-product/categorys';
 }
 
 class RestServices {

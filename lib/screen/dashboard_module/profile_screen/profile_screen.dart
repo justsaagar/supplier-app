@@ -6,7 +6,10 @@ import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/routes/route_helper.dart';
+import 'package:supplier/utils/date_format_service.dart';
 import 'package:supplier/utils/utils.dart';
+
+import '../../../controller/edit_profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -14,292 +17,325 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     logs('Current screen --> $runtimeType');
-    return Column(
-      children: [
-        SizedBox(height: 15.px),
-        Expanded(
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 16.px),
+    return GetBuilder(
+        init: EditProfileController(),
+        builder: (EditProfileController editProfileController) {
+          return Column(
             children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 12.px, horizontal: 12.px),
-                    decoration: BoxDecoration(
-                        color: AppColorConstant.appWhite,
-                        borderRadius: BorderRadius.circular(10.px),
-                        border: Border.all(color: AppColorConstant.appGrey)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 110,
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(horizontal: 12.px),
-                          decoration: BoxDecoration(
-                            color: AppColorConstant.appBluest,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: const AppImageAsset(image: AppAsset.customerIcon),
-                          ),
-                        ),
-                        SizedBox(height: 50.px),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            AppText('MySaa', fontSize: 18, fontWeight: FontWeight.w500),
-                            AppImageAsset(
-                              image: AppAsset.mapIcon,
-                              color: AppColorConstant.appYellow,
-                              height: 20,
-                              width: 20,
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const AppText('Store Rating', fontSize: 13),
-                            Row(
-                              children: List.generate(
-                                5,
-                                (index) => Icon(
-                                  Icons.star,
-                                  size: 16,
-                                  color: index == 0 || index == 1
-                                      ? AppColorConstant.appYellow
-                                      : AppColorConstant.appGrey.withOpacity(0.5),
+              SizedBox(height: 15.px),
+              if (editProfileController.storeProfileModel != null)
+                Expanded(
+                  child: ListView(
+                    padding: EdgeInsets.symmetric(horizontal: 16.px),
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 12.px, horizontal: 12.px),
+                            decoration: BoxDecoration(
+                                color: AppColorConstant.appWhite,
+                                borderRadius: BorderRadius.circular(10.px),
+                                border: Border.all(color: AppColorConstant.appGrey)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: 110,
+                                  width: double.infinity,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: AppImageAsset(
+                                      image: editProfileController.storeProfileModel!.imageUrl!.bannerImageId!,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
+                                SizedBox(height: 70.px),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    AppText(editProfileController.storeProfileModel!.storeName ?? '',
+                                        fontSize: 18, fontWeight: FontWeight.w500),
+                                    const AppImageAsset(
+                                      image: AppAsset.mapIcon,
+                                      color: AppColorConstant.appYellow,
+                                      height: 20,
+                                      width: 20,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const AppText('Store Rating', fontSize: 13),
+                                    Row(
+                                      children: List.generate(
+                                        5,
+                                        (index) => Icon(
+                                          Icons.star,
+                                          size: 16,
+                                          color: index == editProfileController.storeProfileModel!.storeRating
+                                              ? AppColorConstant.appYellow
+                                              : AppColorConstant.appGrey.withOpacity(0.5),
+                                        ),
+                                      ),
+                                    ),
+                                    AppText('(${editProfileController.storeProfileModel!.storeRating!.length})',
+                                        fontSize: 13),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Expanded(flex: 2, child: AppText('Application Status', fontSize: 13)),
+                                    Expanded(
+                                      flex: 3,
+                                      child: AppText(' : ${editProfileController.storeProfileModel!.applicationStatus}',
+                                          fontSize: 13, color: AppColorConstant.appGreen, fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Expanded(flex: 2, child: AppText('Store Status', fontSize: 13)),
+                                    Expanded(
+                                      flex: 3,
+                                      child: AppText(' : ${editProfileController.storeProfileModel!.storeLiveStatus}',
+                                          fontSize: 13, color: AppColorConstant.appRed, fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    const Expanded(flex: 2, child: AppText('Onboarded On', fontSize: 13)),
+                                    if (editProfileController.storeProfileModel!.applicationStatusDate != null)
+                                      Expanded(
+                                          flex: 3,
+                                          child: AppText(
+                                              ' : ${editProfileController.storeProfileModel!.applicationStatusDate ?? ''}',
+                                              fontSize: 13)),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                        child: commonButton(
+                                      'Edit Profile',
+                                      Icons.edit,
+                                      () => Get.toNamed(RouteHelper.getEditProfileRoute()),
+                                    )),
+                                    const SizedBox(width: 18),
+                                    Expanded(
+                                        child: commonButton('Share my store', Icons.share, () {},
+                                            borderColor: AppColorConstant.appYellow)),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 110,
+                            width: 110,
+                            margin: const EdgeInsets.only(bottom: 100),
+                            padding: const EdgeInsets.all(3),
+                            decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColorConstant.appWhite),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: AppColorConstant.appGrey, width: 3)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: AppImageAsset(
+                                    image: editProfileController.storeProfileModel!.imageUrl!.profileImageId!),
                               ),
                             ),
-                            const AppText('(5)', fontSize: 13),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 16.px),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)
+                            // boxShadow: AppColorConstant.appBoxShadow,
+                            ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppText('Business Details', fontWeight: FontWeight.w600),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Business', editProfileController.storeProfileModel!.businessType ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Store name', '${editProfileController.storeProfileModel!.storeName}'),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Store number', editProfileController.storeProfileModel!.storeNumber ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Owner', editProfileController.storeProfileModel!.ownerName ?? ''),
                           ],
                         ),
-                        const Row(
+                      ),
+                      SizedBox(height: 16.px),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)
+                            // boxShadow: AppColorConstant.appBoxShadow,
+                            ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Expanded(flex: 2, child: AppText('Application Status', fontSize: 13)),
-                            Expanded(
-                              flex: 3,
-                              child: AppText(' : Onboarded',
-                                  fontSize: 13, color: AppColorConstant.appGreen, fontWeight: FontWeight.w500),
+                            const AppText('Bank Details', fontWeight: FontWeight.w600),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Account number', editProfileController.storeProfileModel!.accountNumber ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Account name', editProfileController.storeProfileModel!.accuntName ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('IFSC code', editProfileController.storeProfileModel!.ifsc ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Bank branch', editProfileController.storeProfileModel!.bankbranch ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Bank name', editProfileController.storeProfileModel!.bank ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Google pay', editProfileController.storeProfileModel!.googlepay ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Phone pay', editProfileController.storeProfileModel!.phonepay ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Paytm', editProfileController.storeProfileModel!.paytm ?? ''),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 16.px),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppText('Contact', fontWeight: FontWeight.w600),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Mobile Number', editProfileController.storeProfileModel!.phoneNumber ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Email', editProfileController.storeProfileModel!.email ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Application Started date',
+                                editProfileController.storeProfileModel!.applicationStatusDate ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Child 1 birth date', '04/02/1970 dummy'),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Child 2 birth date', '04/02/1970 dummy'),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Address',
+                                editProfileController.storeProfileModel!.storeAddressDetailRequest[0].addressLine1!),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Deals in', editProfileController.storeProfileModel!.dealsIn ?? ''),
+                            buildProfileDetails('Popular in', editProfileController.storeProfileModel!.popularIn ?? ''),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 16.px),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppText('Licence', fontWeight: FontWeight.w600),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('GST', editProfileController.storeProfileModel!.gst!.gstNumber ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails('Store License',
+                                editProfileController.storeProfileModel!.storeLicense!.storeLicenseNumber ?? ''),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 16.px),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppText('Store Timing info', fontWeight: FontWeight.w600),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Opening time', editProfileController.storeProfileModel!.openTime ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Closing time', editProfileController.storeProfileModel!.closeTime ?? ''),
+                            SizedBox(height: 16.px),
+                            buildProfileDetails(
+                                'Delivery strength', editProfileController.storeProfileModel!.deliveryStrength ?? ''),
+                            SizedBox(height: 16.px),
+                            const AppText('Slots :', fontWeight: FontWeight.w500),
+                            if (editProfileController.storeProfileModel!.slots.isNotEmpty) ...[
+                              SizedBox(height: 16.px),
+                              buildProfileDetails('Forenoon',
+                                  '${editProfileController.storeProfileModel!.slots[0].startTime ?? ''} - ${editProfileController.storeProfileModel!.slots[0].endTime ?? ''}'),
+                              SizedBox(height: 16.px),
+                              buildProfileDetails('Afternoon',
+                                  '${editProfileController.storeProfileModel!.slots[1].startTime ?? ''} - ${editProfileController.storeProfileModel!.slots[1].endTime ?? ''}'),
+                              SizedBox(height: 16.px),
+                              buildProfileDetails('Late Afternoon',
+                                  '${editProfileController.storeProfileModel!.slots[2].startTime ?? ''} - ${editProfileController.storeProfileModel!.slots[2].endTime ?? ''}'),
+                              SizedBox(height: 16.px),
+                              buildProfileDetails('Evening',
+                                  '${editProfileController.storeProfileModel!.slots[3].startTime ?? ''} - ${editProfileController.storeProfileModel!.slots[3].endTime ?? ''}'),
+                              SizedBox(height: 16.px),
+                              buildProfileDetails('Morning',
+                                  '${editProfileController.storeProfileModel!.slots[4].startTime ?? ''} - ${editProfileController.storeProfileModel!.slots[4].endTime ?? ''}'),
+                            ],
+                          ],
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 10.px, horizontal: 12.px),
+                        margin: EdgeInsets.symmetric(vertical: 10.px),
+                        decoration: BoxDecoration(
+                            color: AppColorConstant.appWhite,
+                            borderRadius: BorderRadius.circular(10.px),
+                            border: Border.all(color: AppColorConstant.appGrey)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const AppText(
+                              'Message to customer from retailer :',
+                              fontWeight: FontWeight.w600,
+                              maxLines: 2,
+                            ),
+                            AppText(
+                              editProfileController.storeProfileModel!.reason ?? '',
+                              maxLines: 2,
                             ),
                           ],
                         ),
-                        const Row(
-                          children: [
-                            Expanded(flex: 2, child: AppText('Store Status', fontSize: 13)),
-                            Expanded(
-                              flex: 3,
-                              child: AppText(' : Inactive',
-                                  fontSize: 13, color: AppColorConstant.appRed, fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        ),
-                        const Row(
-                          children: [
-                            Expanded(flex: 2, child: AppText('Onboarded On', fontSize: 13)),
-                            Expanded(flex: 3, child: AppText(' : 2023-08-21', fontSize: 13)),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Expanded(
-                                child: commonButton(
-                              'Edit Profile',
-                              Icons.edit,
-                              () => Get.toNamed(RouteHelper.getEditProfileRoute()),
-                            )),
-                            const SizedBox(width: 18),
-                            Expanded(
-                                child: commonButton('Share my store', Icons.share, () {},
-                                    borderColor: AppColorConstant.appYellow)),
-                          ],
-                        )
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 30.px),
+                    ],
                   ),
-                  Container(
-                    height: 110,
-                    width: 110,
-                    margin: const EdgeInsets.only(bottom: 85),
-                    padding: const EdgeInsets.all(3),
-                    decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColorConstant.appWhite),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColorConstant.appRed,
-                          border: Border.all(color: AppColorConstant.appGrey, width: 3)),
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height: 16.px),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)
-                    // boxShadow: AppColorConstant.appBoxShadow,
-                    ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText('Business Details', fontWeight: FontWeight.w600),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Business', 'Retailer'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Store name', 'Suresh store'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Store number', '1231231231'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Owner', 'Suresh'),
-                  ],
                 ),
-              ),
-              SizedBox(height: 16.px),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)
-                    // boxShadow: AppColorConstant.appBoxShadow,
-                    ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText('Bank Details', fontWeight: FontWeight.w600),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Account number', '1231231231'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Account name', 'Suresh'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('IFSC code', '1231231231'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Bank branch', '1231231231'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Bank name', '1231231231'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Google pay', 'Suresh'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Phone pay', '9784561236'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Paytm', '9784561236'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.px),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText('Contact', fontWeight: FontWeight.w600),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Mobile Number', '9876543233'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Email', 'grocerystore@gmail.com'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Application Started date', '04/02/1970'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Child 1 birth date', '04/02/1970'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Child 2 birth date', '04/02/1970'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Address',
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. '),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Deals in', 'Premium Products'),
-                    buildProfileDetails('Popular in', 'High Quality Products'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.px),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText('Licence', fontWeight: FontWeight.w600),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('GST', '123456789123'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Store License', 'JG 64767 5589799'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 16.px),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 16.px, horizontal: 12.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText('Store Timing info', fontWeight: FontWeight.w600),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Opening time', '09:30'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Closing time', '09:30'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Delivery strength', '3'),
-                    SizedBox(height: 16.px),
-                    const AppText('Slots :', fontWeight: FontWeight.w500),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Forenoon', '09:30 AM - 09:30 PM'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Afternoon', '09:30 AM - 09:30 PM'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Late Afternoon', '09:30 AM - 09:30 PM'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Evening', '09:30 AM - 09:30 PM'),
-                    SizedBox(height: 16.px),
-                    buildProfileDetails('Morning', '09:30 AM - 09:30 PM'),
-                  ],
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.px, horizontal: 12.px),
-                margin: EdgeInsets.symmetric(vertical: 10.px),
-                decoration: BoxDecoration(
-                    color: AppColorConstant.appWhite,
-                    borderRadius: BorderRadius.circular(10.px),
-                    border: Border.all(color: AppColorConstant.appGrey)),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppText(
-                      'Message to customer from retailer :',
-                      fontWeight: FontWeight.w600,
-                      maxLines: 2,
-                    ),
-                    AppText(
-                      'Where Quality Matters',
-                      maxLines: 2,
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 30.px),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+        });
   }
 
   Row buildProfileDetails(String headerTitle, String bodyText) {

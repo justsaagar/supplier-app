@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,8 +13,9 @@ class AppImageAsset extends StatelessWidget {
   final double? width;
   final Color? color;
   final BoxFit? fit;
+  final bool isFile;
 
-  const AppImageAsset({Key? key, required this.image, this.fit, this.height, this.width, this.color}) : super(key: key);
+  const AppImageAsset({Key? key, required this.image, this.fit, this.height, this.width, this.color, this.isFile = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +31,10 @@ class AppImageAsset extends StatelessWidget {
             ),
             errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red),
           )
-        : image.split('.').last != 'svg'
-            ? Image.asset(image, fit: fit, height: height, width: width, color: color)
-            : SvgPicture.asset(image, height: height, width: width, color: color);
+        : isFile
+            ? Image.file(File(image), fit: fit, height: height, width: width, color: color)
+            : image.split('.').last != 'svg'
+                ? Image.asset(image, fit: fit, height: height, width: width, color: color)
+                : SvgPicture.asset(image, height: height, width: width, color: color);
   }
 }

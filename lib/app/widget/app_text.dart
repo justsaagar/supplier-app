@@ -52,3 +52,26 @@ class AppText extends StatelessWidget {
     );
   }
 }
+class AppHeaderText extends StatelessWidget {
+  final String headerText;
+  final Color headerColor;
+
+  const AppHeaderText(
+      {Key? key, required this.headerText, required this.headerColor})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 2),
+      child: AppText(
+        headerText,
+        color: headerColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
+    );
+  }
+}

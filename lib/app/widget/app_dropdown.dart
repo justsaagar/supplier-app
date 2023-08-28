@@ -10,16 +10,17 @@ class AppDropdownButton extends StatelessWidget {
   final List<DropdownMenuItem<dynamic>>? items;
   final String title;
   final String headerTitle;
+  final Color headerColor;
 
   const AppDropdownButton(
-      {super.key, this.value, this.onChanged, this.items, required this.title, required this.headerTitle});
+      {super.key, this.value, this.onChanged, this.items, required this.title, required this.headerTitle, this.headerColor = AppColorConstant.appWhite});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500, color: AppColorConstant.appWhite),
+        AppText(headerTitle, fontSize: 14.px, fontWeight: FontWeight.w500, color: headerColor),
         SizedBox(height: 4.px),
         DropdownButtonHideUnderline(
           child: Container(
