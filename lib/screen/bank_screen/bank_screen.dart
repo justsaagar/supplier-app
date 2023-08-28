@@ -125,29 +125,36 @@ class BankScreen extends StatelessWidget {
                                 isBorder: true,
                                 isNumber: true,
                                 length: 10,
+                                isVerified: controller.googlePayVerified,
                                 controller: controller.googlePayController,
                                 keyboardType: TextInputType.number,
                                 hintText: 'Enter google pay number',
                                 headerTitle: 'Enter google pay number',
                               ),
                             ),
-                            (controller.googlePayVerified == false)
-                                ? AppText('')
-                                : Container(
-                                    margin: EdgeInsets.only(
-                                        top: 24.px, left: 5.px),
-                                    width: 100.px,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(10.px),
-                                      color: AppColorConstant.appChartGreen,
-                                    ),
-                                    alignment: Alignment.center,
-                                    height: 45.px,
-                                    child: AppText('Verify',
-                                        fontSize: 18.px,
-                                        color: AppColorConstant.appWhite),
-                                  ),
+                            InkWell(
+                              onTap: () async {
+                                controller.googlePayVerified = await controller.signInPhoneNumber(controller.googlePayController.text);
+                                controller.update();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(top: 24.px, left: 5.px),
+                                width: 100.px,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.px),
+                                  color: controller.googlePayVerified == null
+                                      ? AppColorConstant.appGrey.withOpacity(0.5)
+                                      : (controller.googlePayVerified ?? false)
+                                          ? AppColorConstant.appGreen
+                                          : AppColorConstant.appRed,
+                                ),
+                                alignment: Alignment.center,
+                                height: 45.px,
+                                child: AppText('Verify',
+                                    fontSize: 18.px,
+                                    color: AppColorConstant.appWhite),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -165,29 +172,36 @@ class BankScreen extends StatelessWidget {
                                 isBorder: true,
                                 isNumber: true,
                                 length: 10,
+                                isVerified: controller.phonePayVerified,
                                 controller: controller.phonePayController,
                                 hintText: 'Enter phone pay number',
                                 keyboardType: TextInputType.number,
                                 headerTitle: 'Enter phone pay number',
                               ),
                             ),
-                            (controller.phonePayVerified == false)
-                                ? AppText('')
-                                : Container(
-                                    margin: EdgeInsets.only(
-                                        top: 24.px, left: 5.px),
-                                    width: 100.px,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(10.px),
-                                      color: AppColorConstant.appChartGreen,
-                                    ),
-                                    alignment: Alignment.center,
-                                    height: 45.px,
-                                    child: AppText('Verify',
-                                        fontSize: 18.px,
-                                        color: AppColorConstant.appWhite),
-                                  ),
+                            InkWell(
+                              onTap: () async {
+                                controller.phonePayVerified = await controller.signInPhoneNumber(controller.phonePayController.text);
+                                controller.update();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(top: 24.px, left: 5.px),
+                                width: 100.px,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.px),
+                                  color: controller.phonePayVerified == null
+                                      ? AppColorConstant.appGrey.withOpacity(0.5)
+                                      : (controller.phonePayVerified ?? false)
+                                          ? AppColorConstant.appGreen
+                                          : AppColorConstant.appRed,
+                                ),
+                                alignment: Alignment.center,
+                                height: 45.px,
+                                child: AppText('Verify',
+                                    fontSize: 18.px,
+                                    color: AppColorConstant.appWhite),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -205,29 +219,36 @@ class BankScreen extends StatelessWidget {
                                 isBorder: true,
                                 filedColor: AppColorConstant.appWhite,
                                 isNumber: true,
+                                isVerified: controller.paytmVerified,
                                 controller: controller.paytmController,
                                 keyboardType: TextInputType.number,
                                 hintText: 'Enter paytm number',
                                 headerTitle: 'Enter paytm number',
                               ),
                             ),
-                            (controller.paytmVerified == false)
-                                ? AppText('')
-                                : Container(
-                                    margin: EdgeInsets.only(
-                                        top: 24.px, left: 5.px),
-                                    width: 100.px,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(10.px),
-                                      color: AppColorConstant.appChartGreen,
-                                    ),
-                                    alignment: Alignment.center,
-                                    height: 45.px,
-                                    child: AppText('Verify',
-                                        fontSize: 18.px,
-                                        color: AppColorConstant.appWhite),
-                                  ),
+                            InkWell(
+                              onTap: () async {
+                                controller.paytmVerified = await controller.signInPhoneNumber(controller.paytmController.text);
+                                controller.update();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(top: 24.px, left: 5.px),
+                                width: 100.px,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.px),
+                                  color: controller.paytmVerified == null
+                                      ? AppColorConstant.appGrey.withOpacity(0.5)
+                                      : (controller.paytmVerified ?? false)
+                                          ? AppColorConstant.appGreen
+                                          : AppColorConstant.appRed,
+                                ),
+                                alignment: Alignment.center,
+                                height: 45.px,
+                                child: AppText('Verify',
+                                    fontSize: 18.px,
+                                    color: AppColorConstant.appWhite),
+                              ),
+                            ),
                           ],
                         ),
                       ),

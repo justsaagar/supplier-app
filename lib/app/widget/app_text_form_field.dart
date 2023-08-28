@@ -18,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
   final String headerTitle;
   final bool readOnly;
   final bool obscureText;
+  final bool? isVerified;
   final bool isNumber;
   final bool isLightMode;
   final bool isBorder;
@@ -38,6 +39,7 @@ class AppTextFormField extends StatelessWidget {
     this.readOnly = false,
     this.obscureText = false,
     this.isNumber = false,
+    this.isVerified,
     this.isBorder = false,
     this.isLightMode = false,
     this.filedColor,
@@ -61,7 +63,14 @@ class AppTextFormField extends StatelessWidget {
           padding: EdgeInsets.only(left: prefixIcon == null ? 26.px : 0.px),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.px),
-            border: isBorder ? Border.all(color: AppColorConstant.appGrey.withOpacity(0.5)) : null,
+            border: isBorder
+                ? Border.all(
+                    color: isVerified == null
+                        ? AppColorConstant.appGrey.withOpacity(0.5)
+                        : (isVerified ?? false)
+                            ? AppColorConstant.appGreen
+                            : AppColorConstant.appRed)
+                : null,
             color: filedColor ?? AppColorConstant.lightGreyColor.withOpacity(0.19),
           ),
           child: Row(
