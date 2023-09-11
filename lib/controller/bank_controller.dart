@@ -175,7 +175,7 @@ class BankDetailsController extends GetxController {
       }
       final response = await RestServices.instance.postRestCall(
         endpoint: RestConstants.instance.sendOtp,
-        addOns: '/send?phoneNumber=${phoneController}',
+        addOns: '/send?phoneNumber=$phoneController',
         body: {},
       );
       if (response != null && response.isNotEmpty) {

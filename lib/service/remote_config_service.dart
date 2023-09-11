@@ -10,15 +10,14 @@ class RemoteConfigProvider extends GetxController {
 
   Future<void> getCurrentUser() async {
     try {
-      DocumentSnapshot documentSnapshot = await userCollection.doc('JoinLocal').get();
+      DocumentSnapshot documentSnapshot = await userCollection.doc('supplier').get();
       logs('Document --> ${documentSnapshot.data()}');
       Map<String, dynamic> responseMap = documentSnapshot.data() as Map<String, dynamic>;
       if (kReleaseMode) {
-        RestConstants.instance.supplierBaseUrl = responseMap['storeAdminProd'];
+        RestConstants.instance.supplierBaseUrl = responseMap['supplierProd'];
       } else {
-        RestConstants.instance.supplierBaseUrl = responseMap['storeAdminDev'];
+        RestConstants.instance.supplierBaseUrl = responseMap['supplierDev'];
       }
-      RestConstants.instance.supplierBaseUrl = 'http://137.59.201.109:8090';
     } on FirebaseException catch (e) {
       e.message.toString().showError();
     }

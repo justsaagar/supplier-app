@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -109,10 +110,10 @@ class LoginController extends GetxController {
 
   Future<dynamic> mobileVerify() async {
     try {
-      /// Todo : add FCM token
+      String fcmToken = await FirebaseMessaging.instance.getToken() ?? '';
       final response = await RestServices.instance.postRestCall(
         endpoint: RestConstants.instance.storeLoginOtp,
-        addOns: '?otp=${otpController.text}&phoneNumber=${mobileNumberController.text}&fcmToken=token&role=Supplier',
+        addOns: '?otp=${otpController.text}&phoneNumber=${mobileNumberController.text}&fcmToken=$fcmToken&role=Supplier',
         body: {},
       );
       if (response != null && response.isNotEmpty) {

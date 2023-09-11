@@ -13,12 +13,12 @@ dependencies:
     sdk: flutter
 
   # Enhance UI :
-  cupertino_icons: ^1.0.5
-  pinput: ^2.2.31
+  cupertino_icons: ^1.0.6
+  pinput: ^3.0.1
   dropdown_button2: ^1.9.4
-  image_picker: ^1.0.1
+  image_picker: ^1.0.4
   intl_phone_field: ^3.2.0
-  syncfusion_flutter_charts: ^22.2.7
+  syncfusion_flutter_charts: ^22.2.12
   flutter_switch: ^0.3.2
   pdf: ^3.10.4
 
@@ -27,13 +27,13 @@ dependencies:
   smooth_page_indicator: ^1.1.0
 
   # Local Database :
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.2.1
 
   # Animation :
-  lottie: ^2.4.0
+  lottie: ^2.6.0
 
   # Responsive UI :
-  responsive_sizer: ^3.1.1
+  responsive_sizer: ^3.2.0
 
   # Fetch server data & State management :
   get: ^4.6.5
@@ -51,30 +51,31 @@ dependencies:
   cached_network_image: ^3.2.3
 
   # Utills :
-  share_plus: ^7.0.2
+  share_plus: ^7.1.0
   intl: ^0.18.1
 
   # Web module :
-  url_launcher: ^6.1.12
-  webview_flutter: ^4.2.2
+  url_launcher: ^6.1.14
+  webview_flutter: ^4.2.4
 
   #  Firebase :
-  firebase_core: ^2.9.0
-  firebase_remote_config: ^4.0.0
-  cloud_firestore: ^4.5.0
+  firebase_core: ^2.15.1
+  firebase_remote_config: ^4.2.5
+  cloud_firestore: ^4.9.1
   firebase_messaging: ^14.6.7
+  flutter_local_notifications: ^15.1.1
 
   # Package Info & Review
   package_info_plus: any
   open_store: ^0.5.0
-  path_provider: ^2.0.9
-  open_file: ^3.2.1
+  path_provider: ^2.1.1
+  open_file: ^3.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.2
+  flutter_lints: ^2.0.3
 
 flutter:
   uses-material-design: true
