@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                 itemCount: homeController.homeOptions.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: ()=>Get.to(homeController.homeOptions[index]['pageName']),
+                    onTap: () => Get.to(homeController.homeOptions[index]['pageName']),
                     child: Container(
                       decoration: BoxDecoration(
                         color: AppColorConstant.appWhite,

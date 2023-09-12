@@ -95,10 +95,10 @@ class AllOrders {
   String? orderEventId;
   String? storeName;
   String? storeImageUrl;
-  dynamic orderCreatedDate;
-  dynamic orderUpdatedDate;
-  dynamic orderAssignedDate;
-  dynamic orderDelivaryDate;
+  DateTime? orderCreatedDate;
+  DateTime? orderUpdatedDate;
+  DateTime? orderAssignedDate;
+  DateTime? orderDelivaryDate;
   bool prescVerified;
   bool prescAdded;
   bool prescIsExistingCustomer;
@@ -234,10 +234,10 @@ class AllOrders {
     orderEventId: json["orderEventId"],
     storeName: json["storeName"],
     storeImageUrl: json["storeImageURL"],
-    orderCreatedDate: json["orderCreatedDate"],
-    orderUpdatedDate: json["orderUpdatedDate"],
-    orderAssignedDate: json["orderAssignedDate"],
-    orderDelivaryDate: json["orderDelivaryDate"],
+    orderCreatedDate: DateTime.parse(json["orderCreatedDate"] ?? DateTime.now().toIso8601String()),
+    orderUpdatedDate: DateTime.parse(json["orderUpdatedDate"] ?? DateTime.now().toIso8601String()),
+    orderAssignedDate: DateTime.parse(json["orderAssignedDate"] ?? DateTime.now().toIso8601String()),
+    orderDelivaryDate: DateTime.parse(json["orderDelivaryDate"] ?? DateTime.now().toIso8601String()),
     prescVerified: json["prescVerified"],
     prescAdded: json["prescAdded"],
     prescIsExistingCustomer: json["prescIsExistingCutomer"],
@@ -304,10 +304,10 @@ class AllOrders {
     "orderEventId": orderEventId,
     "storeName": storeName,
     "storeImageURL": storeImageUrl,
-    "orderCreatedDate": orderCreatedDate,
-    "orderUpdatedDate": orderUpdatedDate,
-    "orderAssignedDate": orderAssignedDate,
-    "orderDelivaryDate": orderDelivaryDate,
+    "orderCreatedDate": orderCreatedDate?.toIso8601String(),
+    "orderUpdatedDate": orderUpdatedDate?.toIso8601String(),
+    "orderAssignedDate": orderAssignedDate?.toIso8601String(),
+    "orderDelivaryDate": orderDelivaryDate?.toIso8601String(),
     "prescVerified": prescVerified,
     "prescAdded": prescAdded,
     "prescIsExistingCutomer": prescIsExistingCustomer,
