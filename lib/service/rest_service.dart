@@ -26,6 +26,9 @@ class RestConstants {
   final String storeCategory = 'api-product/categorys';
   final String editProfile = 'api-auth/store/profile';
   final String allOrders = 'api-oms/order/store';
+  final String uploadImage = 'api-auth/image';
+  final String registerRider = 'api-auth/rider/register';
+  final String getAllRiders = 'api-auth/emp/store/getAllRiders/';
 }
 class RestServices {
   RestServices._privateConstructor();

@@ -33,6 +33,7 @@ class AppColorConstant {
   static const Color appHintGrey= Color(0xff8B8888);
   static const Color semiGreyColor = Color(0xffC4C4C4);
   static const Color primaryColor = Color(0xffFF8A00);
+  static const Color greyBgColor = const Color(0xffF3F3F3);
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();
@@ -60,4 +61,9 @@ class AppColorConstant {
       ),
     ],
   );
+
+  static List<Color> appGradientColor = const [
+    Color(0xff2E384A),
+    Color(0xff0B111D)
+  ];
 }
