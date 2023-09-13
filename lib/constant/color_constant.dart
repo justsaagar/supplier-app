@@ -33,7 +33,10 @@ class AppColorConstant {
   static const Color appHintGrey= Color(0xff8B8888);
   static const Color semiGreyColor = Color(0xffC4C4C4);
   static const Color primaryColor = Color(0xffFF8A00);
-  static const Color greyBgColor = const Color(0xffF3F3F3);
+  static const Color greyBgColor = Color(0xffF3F3F3);
+  static const Color textBlackColor = Color(0xff404040);
+  static const Color dividerColor = Color(0xffE5E5E5);
+  static const Color borderColor = Color(0xff949292);
 
   static Color hex(String hexString) {
     final buffer = StringBuffer();
