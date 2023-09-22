@@ -13,6 +13,7 @@ class NewOrdersController extends GetxController {
   Map<String, dynamic> manageOrderMap = {};
   List<AllOrders> allOrdersModelList = [];
   int currentPage = 0;
+  bool isLoading = false;
 
   Future<void> onTabChanged(index) async {
     currentIndex = index;
@@ -21,6 +22,8 @@ class NewOrdersController extends GetxController {
   }
 
   Future<void> getAllOrders(int orderType, {bool isRefresh = true}) async {
+    isLoading = true;
+    update();
     if (isRefresh) {
       allOrdersModelList.clear();
       currentPage = 0;
@@ -39,6 +42,7 @@ class NewOrdersController extends GetxController {
     } on SocketException catch (e) {
       logs('Catch socketException in getAllOrders --> ${e.message}');
     }
+    isLoading = false;
     update();
   }
 }

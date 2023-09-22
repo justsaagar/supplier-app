@@ -21,6 +21,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.2.12
   flutter_switch: ^0.3.2
   pdf: ^3.10.4
+  flutter_typeahead: ^4.7.0
 
   # Image slider :
   carousel_slider: ^4.2.1
@@ -57,6 +58,7 @@ dependencies:
   # Web module :
   url_launcher: ^6.1.14
   webview_flutter: ^4.2.4
+  flutter_html: any
 
   #  Firebase :
   firebase_core: ^2.15.1

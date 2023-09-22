@@ -1,66 +1,70 @@
+// To parse this JSON data, do
+//
+//     final ordersModel = ordersModelFromJson(jsonString);
+
 import 'dart:convert';
 
-AllOrdersModel allOrdersModelFromJson(String str) => AllOrdersModel.fromJson(json.decode(str));
+OrdersModel ordersModelFromJson(String str) => OrdersModel.fromJson(json.decode(str));
 
-String allOrdersModelToJson(AllOrdersModel data) => json.encode(data.toJson());
+String ordersModelToJson(OrdersModel data) => json.encode(data.toJson());
 
-class AllOrdersModel {
-  List<AllOrders> allOrdersModelList;
+class OrdersModel {
+  List<OrdersContent> ordersContent;
   Pageable? pageable;
-  bool last;
-  num? totalElements;
   num? totalPages;
+  num? totalElements;
+  bool last;
+  num? numberOfElements;
   num? size;
   num? number;
-  Sort? sort;
   bool first;
-  num? numberOfElements;
+  Sort? sort;
   bool empty;
 
-  AllOrdersModel({
-    this.allOrdersModelList = const <AllOrders>[],
+  OrdersModel({
+    this.ordersContent = const <OrdersContent>[],
     this.pageable,
-    this.last = false,
-    this.totalElements,
     this.totalPages,
+    this.totalElements,
+    this.last = false,
+    this.numberOfElements,
     this.size,
     this.number,
-    this.sort,
     this.first = false,
-    this.numberOfElements,
+    this.sort,
     this.empty = false,
   });
 
-  factory AllOrdersModel.fromJson(Map<String, dynamic> json) => AllOrdersModel(
-    allOrdersModelList: List<AllOrders>.from(json["content"].map((x) => AllOrders.fromJson(x))),
+  factory OrdersModel.fromJson(Map<String, dynamic> json) => OrdersModel(
+    ordersContent: List<OrdersContent>.from(json["content"].map((x) => OrdersContent.fromJson(x))),
     pageable: Pageable.fromJson(json["pageable"]),
-    last: json["last"],
-    totalElements: json["totalElements"],
     totalPages: json["totalPages"],
+    totalElements: json["totalElements"],
+    last: json["last"],
+    numberOfElements: json["numberOfElements"],
     size: json["size"],
     number: json["number"],
-    sort: Sort.fromJson(json["sort"]),
     first: json["first"],
-    numberOfElements: json["numberOfElements"],
+    sort: Sort.fromJson(json["sort"]),
     empty: json["empty"],
   );
 
   Map<String, dynamic> toJson() => {
-    "content": List<dynamic>.from(allOrdersModelList.map((x) => x.toJson())),
+    "content": List<dynamic>.from(ordersContent.map((x) => x.toJson())),
     "pageable": pageable?.toJson(),
-    "last": last,
-    "totalElements": totalElements,
     "totalPages": totalPages,
+    "totalElements": totalElements,
+    "last": last,
+    "numberOfElements": numberOfElements,
     "size": size,
     "number": number,
-    "sort": sort?.toJson(),
     "first": first,
-    "numberOfElements": numberOfElements,
+    "sort": sort?.toJson(),
     "empty": empty,
   };
 }
 
-class AllOrders {
+class OrdersContent {
   String? id;
   dynamic usedRewards;
   dynamic usedCashBack;
@@ -79,8 +83,8 @@ class AllOrders {
   dynamic couponInfo;
   dynamic discounts;
   String? paymentMode;
-  Map<String, String> pickupAddress;
-  Map<String, String> deliveryAddress;
+  Address? pickupAddress;
+  Address? deliveryAddress;
   String? deliveryDate;
   String? slot;
   String? isExpressDelivery;
@@ -88,25 +92,25 @@ class AllOrders {
   dynamic orderAssignedStatus;
   String? deliveryStatus;
   String? riderOrderAcceptStatus;
-  dynamic isPickedFromStore;
+  dynamic isPickedfromStore;
   dynamic atLocation;
   String? orderEventStatus;
   dynamic orderStatus;
   String? orderEventId;
   String? storeName;
   String? storeImageUrl;
-  DateTime? orderCreatedDate;
-  DateTime? orderUpdatedDate;
-  DateTime? orderAssignedDate;
-  DateTime? orderDelivaryDate;
+  dynamic orderCreatedDate;
+  dynamic orderUpdatedDate;
+  dynamic orderAssignedDate;
+  dynamic orderDelivaryDate;
   bool prescVerified;
   bool prescAdded;
-  bool prescIsExistingCustomer;
+  bool prescIsExistingCutomer;
   dynamic rewardPoints;
   dynamic validTillDate;
-  dynamic prescImages;
+  dynamic prescImgs;
   bool consultDoctor;
-  String? paymentTransactionId;
+  String? paymentTrasactionId;
   dynamic categoryId;
   dynamic categoryName;
   dynamic subCategoryId;
@@ -129,7 +133,7 @@ class AllOrders {
   dynamic totalSgstAmount;
   dynamic discountAmount;
 
-  AllOrders({
+  OrdersContent({
     this.id,
     this.usedRewards,
     this.usedCashBack,
@@ -148,8 +152,8 @@ class AllOrders {
     this.couponInfo,
     this.discounts,
     this.paymentMode,
-    this.pickupAddress = const {},
-    this.deliveryAddress = const {},
+    this.pickupAddress,
+    this.deliveryAddress,
     this.deliveryDate,
     this.slot,
     this.isExpressDelivery,
@@ -157,7 +161,7 @@ class AllOrders {
     this.orderAssignedStatus,
     this.deliveryStatus,
     this.riderOrderAcceptStatus,
-    this.isPickedFromStore,
+    this.isPickedfromStore,
     this.atLocation,
     this.orderEventStatus,
     this.orderStatus,
@@ -170,12 +174,12 @@ class AllOrders {
     this.orderDelivaryDate,
     this.prescVerified = false,
     this.prescAdded = false,
-    this.prescIsExistingCustomer = false,
+    this.prescIsExistingCutomer = false,
     this.rewardPoints,
     this.validTillDate,
-    this.prescImages,
+    this.prescImgs,
     this.consultDoctor = false,
-    this.paymentTransactionId,
+    this.paymentTrasactionId,
     this.categoryId,
     this.categoryName,
     this.subCategoryId,
@@ -199,7 +203,7 @@ class AllOrders {
     this.discountAmount,
   });
 
-  factory AllOrders.fromJson(Map<String, dynamic> json) => AllOrders(
+  factory OrdersContent.fromJson(Map<String, dynamic> json) => OrdersContent(
     id: json["id"],
     usedRewards: json["usedRewards"],
     usedCashBack: json["usedCashBack"],
@@ -207,7 +211,7 @@ class AllOrders {
     userId: json["userId"],
     userName: json["userName"],
     mobileNumber: json["mobileNumber"],
-    orderTotalValue: json["orderTotalValue"],
+    orderTotalValue: json["orderTotalValue"].toDouble(),
     paidAmount: json["paidAmount"],
     orderValue: json["orderValue"],
     storeId: json["storeId"],
@@ -218,8 +222,8 @@ class AllOrders {
     couponInfo: json["couponInfo"],
     discounts: json["discounts"],
     paymentMode: json["paymentMode"],
-    pickupAddress: Map.from(json["pickupAddress"]).map((k, v) => MapEntry<String, String>(k, (v ?? ''))),
-    deliveryAddress: Map.from(json["deliveryAddress"]).map((k, v) => MapEntry<String, String>(k, (v ?? ''))),
+    pickupAddress: Address.fromJson(json["pickupAddress"]),
+    deliveryAddress: Address.fromJson(json["deliveryAddress"]),
     deliveryDate: json["deliveryDate"],
     slot: json["slot"],
     isExpressDelivery: json["isExpressDelivery"],
@@ -227,25 +231,25 @@ class AllOrders {
     orderAssignedStatus: json["orderAssignedStatus"],
     deliveryStatus: json["deliveryStatus"],
     riderOrderAcceptStatus: json["riderOrderAcceptStatus"],
-    isPickedFromStore: json["isPickedfromStore"],
+    isPickedfromStore: json["isPickedfromStore"],
     atLocation: json["atLocation"],
     orderEventStatus: json["orderEventStatus"],
     orderStatus: json["orderStatus"],
     orderEventId: json["orderEventId"],
     storeName: json["storeName"],
     storeImageUrl: json["storeImageURL"],
-    orderCreatedDate: DateTime.parse(json["orderCreatedDate"] ?? DateTime.now().toIso8601String()),
-    orderUpdatedDate: DateTime.parse(json["orderUpdatedDate"] ?? DateTime.now().toIso8601String()),
-    orderAssignedDate: DateTime.parse(json["orderAssignedDate"] ?? DateTime.now().toIso8601String()),
-    orderDelivaryDate: DateTime.parse(json["orderDelivaryDate"] ?? DateTime.now().toIso8601String()),
+    orderCreatedDate: json["orderCreatedDate"],
+    orderUpdatedDate: json["orderUpdatedDate"],
+    orderAssignedDate: json["orderAssignedDate"],
+    orderDelivaryDate: json["orderDelivaryDate"],
     prescVerified: json["prescVerified"],
     prescAdded: json["prescAdded"],
-    prescIsExistingCustomer: json["prescIsExistingCutomer"],
+    prescIsExistingCutomer: json["prescIsExistingCutomer"],
     rewardPoints: json["rewardPoints"],
     validTillDate: json["validTillDate"],
-    prescImages: json["prescImgs"],
+    prescImgs: json["prescImgs"],
     consultDoctor: json["consultDoctor"],
-    paymentTransactionId: json["paymentTrasactionId"],
+    paymentTrasactionId: json["paymentTrasactionId"],
     categoryId: json["categoryId"],
     categoryName: json["categoryName"],
     subCategoryId: json["subCategoryId"],
@@ -288,8 +292,8 @@ class AllOrders {
     "couponInfo": couponInfo,
     "discounts": discounts,
     "paymentMode": paymentMode,
-    "pickupAddress": Map.from(pickupAddress).map((k, v) => MapEntry<String, dynamic>(k, v)),
-    "deliveryAddress": Map.from(deliveryAddress).map((k, v) => MapEntry<String, dynamic>(k, v)),
+    "pickupAddress": pickupAddress?.toJson(),
+    "deliveryAddress": deliveryAddress?.toJson(),
     "deliveryDate": deliveryDate,
     "slot": slot,
     "isExpressDelivery": isExpressDelivery,
@@ -297,25 +301,25 @@ class AllOrders {
     "orderAssignedStatus": orderAssignedStatus,
     "deliveryStatus": deliveryStatus,
     "riderOrderAcceptStatus": riderOrderAcceptStatus,
-    "isPickedfromStore": isPickedFromStore,
+    "isPickedfromStore": isPickedfromStore,
     "atLocation": atLocation,
     "orderEventStatus": orderEventStatus,
     "orderStatus": orderStatus,
     "orderEventId": orderEventId,
     "storeName": storeName,
     "storeImageURL": storeImageUrl,
-    "orderCreatedDate": orderCreatedDate?.toIso8601String(),
-    "orderUpdatedDate": orderUpdatedDate?.toIso8601String(),
-    "orderAssignedDate": orderAssignedDate?.toIso8601String(),
-    "orderDelivaryDate": orderDelivaryDate?.toIso8601String(),
+    "orderCreatedDate": orderCreatedDate,
+    "orderUpdatedDate": orderUpdatedDate,
+    "orderAssignedDate": orderAssignedDate,
+    "orderDelivaryDate": orderDelivaryDate,
     "prescVerified": prescVerified,
     "prescAdded": prescAdded,
-    "prescIsExistingCutomer": prescIsExistingCustomer,
+    "prescIsExistingCutomer": prescIsExistingCutomer,
     "rewardPoints": rewardPoints,
     "validTillDate": validTillDate,
-    "prescImgs": prescImages,
+    "prescImgs": prescImgs,
     "consultDoctor": consultDoctor,
-    "paymentTrasactionId": paymentTransactionId,
+    "paymentTrasactionId": paymentTrasactionId,
     "categoryId": categoryId,
     "categoryName": categoryName,
     "subCategoryId": subCategoryId,
@@ -340,39 +344,143 @@ class AllOrders {
   };
 }
 
+class Address {
+  String? mobileNumber;
+  String? addressType;
+  dynamic addresslineMobileOne;
+  dynamic addresslineMobileTwo;
+  dynamic alterNateMobileNumber;
+  dynamic emailId;
+  dynamic pinCode;
+  String? addressLine1;
+  dynamic addressLine2;
+  dynamic landMark;
+  dynamic city;
+  dynamic region;
+  dynamic state;
+  String? latitude;
+  String? longitude;
+  GeoLocation? geoLocation;
+
+  Address({
+    this.mobileNumber,
+    this.addressType,
+    this.addresslineMobileOne,
+    this.addresslineMobileTwo,
+    this.alterNateMobileNumber,
+    this.emailId,
+    this.pinCode,
+    this.addressLine1,
+    this.addressLine2,
+    this.landMark,
+    this.city,
+    this.region,
+    this.state,
+    this.latitude,
+    this.longitude,
+    this.geoLocation,
+  });
+
+  factory Address.fromJson(Map<String, dynamic> json) => Address(
+    mobileNumber: json["mobileNumber"],
+    addressType: json["addressType"],
+    addresslineMobileOne: json["addresslineMobileOne"],
+    addresslineMobileTwo: json["addresslineMobileTwo"],
+    alterNateMobileNumber: json["alterNateMobileNumber"],
+    emailId: json["emailId"],
+    pinCode: json["pinCode"],
+    addressLine1: json["addressLine1"],
+    addressLine2: json["addressLine2"],
+    landMark: json["landMark"],
+    city: json["city"],
+    region: json["region"],
+    state: json["state"],
+    latitude: json["latitude"],
+    longitude: json["longitude"],
+    geoLocation: json["geoLocation"] == null ? null : GeoLocation.fromJson(json["geoLocation"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "mobileNumber": mobileNumber,
+    "addressType": addressType,
+    "addresslineMobileOne": addresslineMobileOne,
+    "addresslineMobileTwo": addresslineMobileTwo,
+    "alterNateMobileNumber": alterNateMobileNumber,
+    "emailId": emailId,
+    "pinCode": pinCode,
+    "addressLine1": addressLine1,
+    "addressLine2": addressLine2,
+    "landMark": landMark,
+    "city": city,
+    "region": region,
+    "state": state,
+    "latitude": latitude,
+    "longitude": longitude,
+    "geoLocation": geoLocation?.toJson(),
+  };
+}
+
+class GeoLocation {
+  num? x;
+  num? y;
+  List<num> coordinates;
+  String? type;
+
+  GeoLocation({
+    this.x,
+    this.y,
+    this.coordinates = const<num>[],
+    this.type,
+  });
+
+  factory GeoLocation.fromJson(Map<String, dynamic> json) => GeoLocation(
+    x: json["x"].toDouble(),
+    y: json["y"].toDouble(),
+    coordinates: List<num>.from(json["coordinates"].map((x) => x.toDouble())),
+    type: json["type"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "x": x,
+    "y": y,
+    "coordinates": List<dynamic>.from(coordinates.map((x) => x)),
+    "type": type,
+  };
+}
+
 class OrderItem {
   String? productId;
   String? productName;
   num? price;
-  num? mrp;
+  dynamic mrp;
   num? quantity;
-  num? freeQuantity;
-  num? confirmQuantity;
-  num? finalQuantity;
+  dynamic freeQuantity;
+  dynamic confirmQuantity;
+  dynamic finalQuantity;
   dynamic finalPtr;
-  num? discountAmount;
+  dynamic discountAmount;
   String? skuId;
   String? skuCode;
   num? totalPrice;
-  num? discountPrice;
+  dynamic discountPrice;
   String? itemUrl;
-  bool presRquried;
+  bool presRequired;
   dynamic measure;
   String? status;
-  num? gst;
-  num? cgst;
-  num? sgst;
-  String? gstPercent;
-  String? cgstPercent;
-  String? sgstPercent;
-  String? schemeName;
-  String? manufacturer;
-  String? batchNumber;
-  String? hsn;
-  String? mfdDate;
-  String? expDate;
-  String? packingType;
-  num? lineAmount;
+  dynamic gst;
+  dynamic cgst;
+  dynamic sgst;
+  dynamic gstPercent;
+  dynamic cgstPercent;
+  dynamic sgstPercent;
+  dynamic schemeName;
+  dynamic manufracuter;
+  dynamic batchNumer;
+  dynamic hsn;
+  dynamic mfdate;
+  dynamic expdate;
+  dynamic packingType;
+  dynamic lineAmount;
 
   OrderItem({
     this.productId,
@@ -390,7 +498,7 @@ class OrderItem {
     this.totalPrice,
     this.discountPrice,
     this.itemUrl,
-    this.presRquried = false,
+    this.presRequired = false,
     this.measure,
     this.status,
     this.gst,
@@ -400,11 +508,11 @@ class OrderItem {
     this.cgstPercent,
     this.sgstPercent,
     this.schemeName,
-    this.manufacturer,
-    this.batchNumber,
+    this.manufracuter,
+    this.batchNumer,
     this.hsn,
-    this.mfdDate,
-    this.expDate,
+    this.mfdate,
+    this.expdate,
     this.packingType,
     this.lineAmount,
   });
@@ -412,7 +520,7 @@ class OrderItem {
   factory OrderItem.fromJson(Map<String, dynamic> json) => OrderItem(
     productId: json["productId"],
     productName: json["productName"],
-    price: json["price"],
+    price: json["price"].toDouble(),
     mrp: json["mrp"],
     quantity: json["quantity"],
     freeQuantity: json["freeQuantity"],
@@ -422,10 +530,10 @@ class OrderItem {
     discountAmount: json["discountAmount"],
     skuId: json["skuId"],
     skuCode: json["skuCode"],
-    totalPrice: json["totalPrice"],
+    totalPrice: json["totalPrice"].toDouble(),
     discountPrice: json["discountPrice"],
     itemUrl: json["itemURL"],
-    presRquried: json["presRquried"],
+    presRequired: json["presRquried"],
     measure: json["measure"],
     status: json["status"],
     gst: json["gst"],
@@ -435,11 +543,11 @@ class OrderItem {
     cgstPercent: json["cgstPercent"],
     sgstPercent: json["sgstPercent"],
     schemeName: json["schemeName"],
-    manufacturer: json["manufracuter"],
-    batchNumber: json["batchNumer"],
+    manufracuter: json["manufracuter"],
+    batchNumer: json["batchNumer"],
     hsn: json["hsn"],
-    mfdDate: json["mfdate"],
-    expDate: json["expdate"],
+    mfdate: json["mfdate"],
+    expdate: json["expdate"],
     packingType: json["packingType"],
     lineAmount: json["lineAmount"],
   );
@@ -460,7 +568,7 @@ class OrderItem {
     "totalPrice": totalPrice,
     "discountPrice": discountPrice,
     "itemURL": itemUrl,
-    "presRquried": presRquried,
+    "presRquried": presRequired,
     "measure": measure,
     "status": status,
     "gst": gst,
@@ -470,11 +578,11 @@ class OrderItem {
     "cgstPercent": cgstPercent,
     "sgstPercent": sgstPercent,
     "schemeName": schemeName,
-    "manufracuter": manufacturer,
-    "batchNumer": batchNumber,
+    "manufracuter": manufracuter,
+    "batchNumer": batchNumer,
     "hsn": hsn,
-    "mfdate": mfdDate,
-    "expdate": expDate,
+    "mfdate": mfdate,
+    "expdate": expdate,
     "packingType": packingType,
     "lineAmount": lineAmount,
   };
@@ -482,60 +590,60 @@ class OrderItem {
 
 class Pageable {
   Sort? sort;
-  num? offset;
-  num? pageNumber;
   num? pageSize;
-  bool unPaged;
+  num? pageNumber;
+  num? offset;
   bool paged;
+  bool unpaged;
 
   Pageable({
     this.sort,
-    this.offset,
-    this.pageNumber,
     this.pageSize,
-    this.unPaged = false,
+    this.pageNumber,
+    this.offset,
     this.paged = false,
+    this.unpaged = false,
   });
 
   factory Pageable.fromJson(Map<String, dynamic> json) => Pageable(
     sort: Sort.fromJson(json["sort"]),
-    offset: json["offset"],
-    pageNumber: json["pageNumber"],
     pageSize: json["pageSize"],
-    unPaged: json["unpaged"],
+    pageNumber: json["pageNumber"],
+    offset: json["offset"],
     paged: json["paged"],
+    unpaged: json["unpaged"],
   );
 
   Map<String, dynamic> toJson() => {
     "sort": sort?.toJson(),
-    "offset": offset,
-    "pageNumber": pageNumber,
     "pageSize": pageSize,
-    "unpaged": unPaged,
+    "pageNumber": pageNumber,
+    "offset": offset,
     "paged": paged,
+    "unpaged": unpaged,
   };
 }
 
 class Sort {
-  bool empty;
   bool sorted;
   bool unsorted;
+  bool empty;
 
   Sort({
-    this.empty = false,
     this.sorted = false,
     this.unsorted = false,
+    this.empty = false,
   });
 
   factory Sort.fromJson(Map<String, dynamic> json) => Sort(
-    empty: json["empty"],
     sorted: json["sorted"],
     unsorted: json["unsorted"],
+    empty: json["empty"],
   );
 
   Map<String, dynamic> toJson() => {
-    "empty": empty,
     "sorted": sorted,
     "unsorted": unsorted,
+    "empty": empty,
   };
 }

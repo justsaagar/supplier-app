@@ -26,6 +26,12 @@ class RestConstants {
   final String storeCategory = 'api-product/categorys';
   final String editProfile = 'api-auth/store/profile';
   final String allOrders = 'api-oms/order/store';
+  final String uploadImage = 'api-auth/image';
+  final String registerRider = 'api-auth/rider/register';
+  final String getAllRiders = 'api-auth/emp/store/getAllRiders/';
+  final String searchProduct = 'api-product/product/text/search/';
+  final String productDetails = 'api-product/product/';
+  final String acceptedOrders = 'api-oms/order/store';
 }
 class RestServices {
   RestServices._privateConstructor();
@@ -72,6 +78,12 @@ class RestServices {
         case 500:
         case 502:
           logs('${response.statusCode}');
+          break;
+        case 405:
+          Map<String, dynamic> responseMap = jsonDecode(response.body);
+          if (responseMap.containsKey('error')) {
+            '${response.statusCode} : ${responseMap['error']}'.showError();
+          }
           break;
         default:
           logs('${response.statusCode} : ${response.body}');

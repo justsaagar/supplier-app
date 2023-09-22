@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:supplier/app/widget/app_app_bar.dart';
 import 'package:supplier/app/widget/app_drawer.dart';
 import 'package:supplier/app/widget/app_elevated_button.dart';
+import 'package:supplier/app/widget/app_loader.dart';
 import 'package:supplier/app/widget/app_tab_bar.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/new_orders_controller.dart';
+import 'package:supplier/model/all_orders_model.dart';
 import 'package:supplier/routes/route_helper.dart';
 
 class ManageOrderScreen extends StatelessWidget {
@@ -37,7 +40,14 @@ class ManageOrderScreen extends StatelessWidget {
                 onTabChanged: (index) => newOrdersController.onTabChanged(index),
                 currentIndex: newOrdersController.currentIndex,
               ),
-              NewAndAcceptedOrdersTab(isAcceptedOrder: newOrdersController.currentIndex == 1),
+              Expanded(
+                child: Stack(
+                  children: [
+                    NewAndAcceptedOrdersTab(isAcceptedOrder: newOrdersController.currentIndex == 1),
+                    if (newOrdersController.isLoading) const AppLoader(),
+                  ],
+                ),
+              ),
             ],
           ),
         );
@@ -55,63 +65,57 @@ class NewAndAcceptedOrdersTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.separated(
-        itemCount: newOrdersController.allOrdersModelList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            child: Column(
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppText('Order #253641', fontWeight: FontWeight.w500),
-                    AppText('2:05 pm', fontWeight: FontWeight.w500),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 2,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            'Suresh Store Ramnagar,Manikonda',
-                            maxLines: 2,
-                          ),
-                          Row(
-                            children: [
-                              AppText('Items : '),
-                              AppText('25'),
-                            ],
-                          ),
-                        ],
-                      ),
+    return ListView.separated(
+      itemCount: newOrdersController.allOrdersModelList.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        AllOrders allOrders = newOrdersController.allOrdersModelList[index];
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText('Order #${allOrders.id ?? ''}', fontWeight: FontWeight.w500),
+                  AppText(DateFormat('hh:mm a').format(allOrders.orderCreatedDate ?? DateTime.now()), fontWeight: FontWeight.w500),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                          allOrders.storeName ?? '',
+                          maxLines: 2,
+                        ),
+                        AppText('Items : ${allOrders.items.length}'),
+                      ],
                     ),
-                    const SizedBox(width: 20),
-                    Expanded(
-                      child: AppElevatedButton(
-                        buttonName: isAcceptedOrder ? 'Bill' : 'Review',
-                        buttonHeight: 35,
-                        onPressed: () =>
-                            Get.toNamed(RouteHelper.getReviewOrderRoute()),
-                        fontWeight: FontWeight.w400,
-                        buttonColor: AppColorConstant.appBluest,
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
-        separatorBuilder: (context, index) => Container(
-          height: 1,
-          color: AppColorConstant.appGrey.withOpacity(0.7),
-        ),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: AppElevatedButton(
+                      buttonName: isAcceptedOrder ? 'Bill' : 'Review',
+                      buttonHeight: 35,
+                      onPressed: () =>
+                          Get.toNamed(RouteHelper.getReviewOrderRoute()),
+                      fontWeight: FontWeight.w400,
+                      buttonColor: AppColorConstant.appBluest,
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+      separatorBuilder: (context, index) => Container(
+        height: 1,
+        color: AppColorConstant.appGrey.withOpacity(0.7),
       ),
     );
   }
