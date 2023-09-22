@@ -18,7 +18,7 @@ class RemoteConfigProvider extends GetxController {
       } else {
         RestConstants.instance.supplierBaseUrl = responseMap['supplierDev'];
       }
-      RestConstants.instance.supplierBaseUrl = 'http://137.59.201.34:8090'
+      RestConstants.instance.supplierBaseUrl = 'http://137.59.201.34:8090';
     } on FirebaseException catch (e) {
       e.message.toString().showError();
     }
