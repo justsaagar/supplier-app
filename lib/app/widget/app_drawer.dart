@@ -5,6 +5,7 @@ import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/controller/orders_controller.dart';
 import 'package:supplier/routes/route_helper.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -38,34 +39,60 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  InkWell buildDrawerOptions(String name, String count) {
-    return InkWell(
-      onTap: () => Get.toNamed(RouteHelper.getManageOrdersRoute(), parameters: {'pageName': name}),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(vertical: 30.px),
-            child: Row(
-              children: [
-                AppText(
-                  '$name ',
-                  color: AppColorConstant.appBluest,
-                  fontSize: 18.px,
-                  fontWeight: FontWeight.w500,
+  buildDrawerOptions(String name, String count) {
+    return GetBuilder<OrdersController>(
+      init: OrdersController(),
+      builder: (OrdersController ordersController) {
+        return InkWell(
+          onTap: () async {
+            await ordersController.getOrdersDetails(getIdByName(name));
+            Get.toNamed(RouteHelper.getManageOrdersRoute(), parameters: {'pageName': name});
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 30.px),
+                child: Row(
+                  children: [
+                    AppText(
+                      '$name ',
+                      color: AppColorConstant.appBluest,
+                      fontSize: 18.px,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    AppText('($count)', color: AppColorConstant.appOrange, fontWeight: FontWeight.w500),
+                    const Spacer(),
+                    const AppImageAsset(image: AppAsset.rightChevronIcon)
+                  ],
                 ),
-                AppText('($count)', color: AppColorConstant.appOrange, fontWeight: FontWeight.w500),
-                const Spacer(),
-                const AppImageAsset(image: AppAsset.rightChevronIcon)
-              ],
-            ),
+              ),
+              Container(
+                height: 1.px,
+                decoration: const BoxDecoration(color: AppColorConstant.appBottomBarGrey),
+              ),
+            ],
           ),
-          Container(
-            height: 1.px,
-            decoration: const BoxDecoration(color: AppColorConstant.appBottomBarGrey),
-          ),
-        ],
-      ),
+        );
+      }
     );
+  }
+
+  String getIdByName(String name) {
+    switch (name) {
+      case 'New orders':
+        return '0';
+      case 'Accepted':
+        return '1';
+      case 'Billed':
+        return '2';
+      case 'Packed':
+        return '5';
+      case 'Rejected':
+      case 'Cancelled':
+        return '3';
+      default:
+        return '0';
+    }
   }
 }

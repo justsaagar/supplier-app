@@ -31,6 +31,7 @@ class RestConstants {
   final String getAllRiders = 'api-auth/emp/store/getAllRiders/';
   final String searchProduct = 'api-product/product/text/search/';
   final String productDetails = 'api-product/product/';
+  final String acceptedOrders = 'api-oms/order/store';
 }
 class RestServices {
   RestServices._privateConstructor();
