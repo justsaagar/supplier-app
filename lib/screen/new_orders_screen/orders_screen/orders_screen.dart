@@ -26,8 +26,7 @@ class ManageOrdersScreen extends StatelessWidget {
       builder: (NewOrdersController newOrdersController) {
         return Scaffold(
           appBar: AppAppBar(
-            title: newOrdersController.manageOrderMap.isNotEmpty &&
-                    newOrdersController.manageOrderMap.containsKey('pageName')
+            title: newOrdersController.manageOrderMap.isNotEmpty && newOrdersController.manageOrderMap.containsKey('pageName')
                 ? newOrdersController.manageOrderMap['pageName']
                 : '',
             showSuffix: true,

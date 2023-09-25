@@ -113,7 +113,7 @@ class RestServices {
           ? '${RestConstants.instance.supplierBaseUrl}/$endpoint$addOns'
           : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
-      logs('Body map --> $body');
+      logs('Body map --> ${jsonEncode(body)}');
       headers['Content-Type'] = 'application/json';
       if (stringBody != null) {
         logs('String Body --> $stringBody');
