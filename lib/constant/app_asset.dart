@@ -7,6 +7,7 @@ class AppAsset {
   //     ======================= Animation =======================     //
   static const String loaderAnimation = '${animationPath}progress.json';
   static const String noInternetAnimation = '${animationPath}no_internet_connection.json';
+  static const String greenTickAnimation = '${animationPath}green_tick.json';
 
   //     ======================= Images =======================     //
   static const String loginImage = '${imagePath}login.png';

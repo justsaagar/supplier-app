@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:supplier/app/widget/app_success_animation.dart';
 import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/model/payment_request_model.dart';
 import 'package:supplier/service/rest_service.dart';
@@ -83,7 +84,12 @@ class PaymentController extends GetxController {
       if (response != null && response.isNotEmpty) {
         Map<String, dynamic> requestMap = jsonDecode(response);
         if (requestMap.isNotEmpty && requestMap.containsKey('status') && requestMap['status']) {
-          requestMap['message'].toString().showSuccess();
+          if (requestMap['message'].toString().toLowerCase().contains('saved')) {
+            Get.dialog(const AppSuccessAlert());
+            Future.delayed(const Duration(seconds: 2), () => Get.back());
+          } else {
+            requestMap['message'].toString().showError();
+          }
         }
       }
     } on SocketException catch (e) {
