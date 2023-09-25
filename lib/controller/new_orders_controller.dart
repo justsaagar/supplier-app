@@ -10,7 +10,6 @@ import 'package:supplier/utils/utils.dart';
 class NewOrdersController extends GetxController {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   int currentIndex = 0;
-  Map<String, dynamic> manageOrderMap = {};
   List<OrdersContent> allOrdersModelList = <OrdersContent>[];
   int currentPage = 0;
   bool isLoading = false;

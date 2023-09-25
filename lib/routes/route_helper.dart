@@ -56,8 +56,6 @@ class RouteHelper {
 
   static String getInvoiceDetailsRoute() => RouteConstant.invoiceDetailsScreen;
 
-  static String getNewOrdersRoute() => RouteConstant.newOrdersScreen;
-
   static String getManageOrdersRoute() => RouteConstant.manageOrderScreen;
 
   static String getReviewOrderRoute() => RouteConstant.reviewOrderScreen;
@@ -80,7 +78,6 @@ class RouteHelper {
     GetPage(name: RouteConstant.retailersDetails, page: () => const RetailersDetailsView()),
     GetPage(name: RouteConstant.addNewInVoiceScreen, page: () => const AddNewInVoiceScreen()),
     GetPage(name: RouteConstant.invoiceDetailsScreen, page: () => const InVoiceDetailsScreen()),
-    GetPage(name: RouteConstant.newOrdersScreen, page: () => const ManageOrdersScreen()),
     GetPage(name: RouteConstant.manageOrderScreen, page: () => const ManageOrdersScreen()),
     GetPage(name: RouteConstant.reviewOrderScreen, page: () => const ReviewOrderScreen()),
   ];
