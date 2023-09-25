@@ -162,9 +162,14 @@ class PaymentRequestScreen extends StatelessWidget {
                       Expanded(
                         child: AppElevatedButton(
                           buttonName: 'Request Payment',
-                          onPressed: () => Get.toNamed(
-                            RouteHelper.getPaymentDetailsRoute(),
-                            parameters: {'isFullyPaid': 'false'},
+                          onPressed: () => paymentController.requestPayment(
+                            orderId: paymentRequestModel.orderId ?? '',
+                            billedAmount: paymentRequestModel.billedAmount ?? 0,
+                            orderAmount: paymentRequestModel.orderAmount ?? 0,
+                            paidAmount: paymentRequestModel.amountPaid ?? 0,
+                            payerId: paymentRequestModel.payerId ?? '',
+                            paymentId: paymentRequestModel.id ?? '',
+                            storeId: paymentRequestModel.storeId ?? ''
                           ),
                           buttonHeight: 35,
                           buttonRadius: 5,
