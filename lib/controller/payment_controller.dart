@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/model/payment_request_model.dart';
 import 'package:supplier/service/rest_service.dart';
 import 'package:supplier/utils/utils.dart';
 
-import '../constant/string_constant.dart';
+enum PaymentType {billedOrders, fullyPaid }
 
 class PaymentController extends GetxController {
   int currentIndex = 0;
@@ -15,13 +16,13 @@ class PaymentController extends GetxController {
 
   Future<void> onTabChanged(index) async {
     currentIndex = index;
-    if (index == 0) {
-      await getPaymentRequest();
-    }
+    await getPaymentRequest(
+      index == 0 ? PaymentType.billedOrders : PaymentType.fullyPaid,
+    );
     update();
   }
 
-  Future<void> getPaymentRequest({bool isRefresh = true}) async {
+  Future<void> getPaymentRequest(PaymentType paymentType, {bool isRefresh = true}) async {
     isLoading = true;
     update();
     if (isRefresh) {
@@ -33,7 +34,9 @@ class PaymentController extends GetxController {
     try {
       final response = await RestServices.instance.getRestCall(
         endpoint: RestConstants.instance.billedOrders,
-        addOns: '/${AppStringConstants.storeLogInId}?size=10&page=$currentPage',
+        addOns: paymentType == PaymentType.fullyPaid
+            ? '/${paymentType.name}/${AppStringConstants.storeLogInId}?size=10&page=$currentPage'
+            : '/${AppStringConstants.storeLogInId}?size=10&page=$currentPage',
       );
       if (response != null && response.isNotEmpty) {
         PaymentRequestModel paymentRequestModel = paymentRequestModelFromJson(response);

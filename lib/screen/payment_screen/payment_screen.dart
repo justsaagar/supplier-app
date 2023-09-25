@@ -22,7 +22,7 @@ class PaymentScreen extends StatelessWidget {
           const Duration(microseconds: 300),
           () {
             final paymentController = Get.find<PaymentController>();
-            paymentController.getPaymentRequest();
+            paymentController.getPaymentRequest(PaymentType.billedOrders);
           },
         );
       },
@@ -64,7 +64,8 @@ class PaymentRequestScreen extends StatelessWidget {
           padding: const EdgeInsets.only(top: 5),
           itemCount: paymentController.paymentRequestContent.length,
           itemBuilder: (BuildContext context, int index) {
-            PaymentRequestContent paymentRequestModel = paymentController.paymentRequestContent[index];
+            PaymentRequestContent paymentRequestModel =
+                paymentController.paymentRequestContent[index];
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -96,9 +97,20 @@ class PaymentRequestScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   Row(
                     children: [
-                      titleAndSubTitleView('Order Id', paymentRequestModel.orderId ?? ''),
-                      titleAndSubTitleView('Order Date', DateFormat('dd/MM/yyy').format(paymentRequestModel.orderCreatedDate ?? DateTime.now())),
-                      titleAndSubTitleView('Order Amount', '₹ ${paymentRequestModel.orderAmount ?? 0}'),
+                      titleAndSubTitleView(
+                        'Order Id',
+                        paymentRequestModel.orderId ?? '',
+                      ),
+                      titleAndSubTitleView(
+                        'Order Date',
+                        DateFormat('dd/MM/yyy').format(
+                            paymentRequestModel.orderCreatedDate ??
+                                DateTime.now()),
+                      ),
+                      titleAndSubTitleView(
+                        'Order Amount',
+                        '₹ ${paymentRequestModel.orderAmount ?? 0}',
+                      ),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -215,72 +227,107 @@ class FullyPaidScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.only(top: 5),
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int index) => Container(
-        margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        decoration: AppColorConstant.boxDecoration,
-        child: Column(
-          children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                    child: AppText('Mishra ram retailer',
-                        maxLines: 2, fontWeight: FontWeight.w600)),
-                Row(
-                  children: [
-                    AppText('Status: ', fontSize: 12),
-                    AppText('Billed',
-                        fontWeight: FontWeight.w600, fontSize: 12),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                titleAndSubTitleView('Order Id', '1234'),
-                titleAndSubTitleView('Order Date', '20/08/2022'),
-                titleAndSubTitleView('Order Amount', '₹ 9,634'),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                titleAndSubTitleView('Billed Amount', '₹ 8,634',
-                    fontColor: AppColorConstant.appOrange),
-                titleAndSubTitleView('Amount Paid', '₹ 5,500',
-                    fontColor: AppColorConstant.appGreen),
-                const Spacer(),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Container(
-              height: 2,
-              color: AppColorConstant.appGrey.withOpacity(0.5),
-            ),
-            const SizedBox(height: 10),
-            AppElevatedButton(
-              onPressed: () => Get.toNamed(RouteHelper.getPaymentDetailsRoute(),
-                  parameters: {'isFullyPaid': 'true'}),
-              buttonName: 'Details',
-              buttonHeight: 35,
-              buttonRadius: 5,
-              fontSize: 12,
-              borderColor: AppColorConstant.appGrey,
-              buttonColor: AppColorConstant.appBluest,
-              fontWeight: FontWeight.w500,
-              isBorderShape: true,
-              fontColor: AppColorConstant.appBluest,
-            ),
-          ],
-        ),
-      ),
+    return GetBuilder<PaymentController>(
+      builder: (PaymentController paymentController) {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.only(top: 5),
+          itemCount: paymentController.paymentRequestContent.length,
+          itemBuilder: (BuildContext context, int index) {
+            PaymentRequestContent paymentRequestModel =
+                paymentController.paymentRequestContent[index];
+            return Container(
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              decoration: AppColorConstant.boxDecoration,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: AppText(
+                          paymentRequestModel.payerName ?? '',
+                          maxLines: 2,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          AppText('Status: ', fontSize: 12.px),
+                          AppText(
+                            paymentRequestModel.orderStatus ?? '',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 12,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      titleAndSubTitleView(
+                        'Order Id',
+                        paymentRequestModel.orderId ?? '',
+                      ),
+                      titleAndSubTitleView(
+                        'Order Date',
+                        DateFormat('dd/MM/yyy').format(
+                          paymentRequestModel.orderCreatedDate ??
+                              DateTime.now(),
+                        ),
+                      ),
+                      titleAndSubTitleView(
+                        'Order Amount',
+                        '₹ ${paymentRequestModel.orderAmount ?? 0}',
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      titleAndSubTitleView(
+                        'Billed Amount',
+                        '₹ ${paymentRequestModel.billedAmount ?? 0}',
+                        fontColor: AppColorConstant.appOrange,
+                      ),
+                      titleAndSubTitleView(
+                        'Amount Paid',
+                        '₹ ${paymentRequestModel.amountPaid ?? 0}',
+                        fontColor: AppColorConstant.appGreen,
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    height: 2,
+                    color: AppColorConstant.appGrey.withOpacity(0.5),
+                  ),
+                  const SizedBox(height: 10),
+                  AppElevatedButton(
+                    onPressed: () => Get.toNamed(
+                      RouteHelper.getPaymentDetailsRoute(),
+                      parameters: {'isFullyPaid': 'true'},
+                    ),
+                    buttonName: 'Details',
+                    buttonHeight: 35,
+                    buttonRadius: 5,
+                    fontSize: 12,
+                    borderColor: AppColorConstant.appGrey,
+                    buttonColor: AppColorConstant.appBluest,
+                    fontWeight: FontWeight.w500,
+                    isBorderShape: true,
+                    fontColor: AppColorConstant.appBluest,
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
