@@ -6,6 +6,7 @@ import 'package:supplier/app/widget/app_elevated_button.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/controller/payment_controller.dart';
 import 'package:supplier/model/payment_details_model.dart';
 import 'package:supplier/routes/route_helper.dart';
@@ -142,7 +143,13 @@ class PaymentDetailsScreen extends StatelessWidget {
                   child: AppElevatedButton(
                     buttonName: 'Print Invoice',
                     imageString: AppAsset.printIcon,
-                    onPressed: () => Get.toNamed(RouteHelper.getPrintInvoiceRoute()),
+                    onPressed: () => Get.toNamed(
+                      RouteHelper.getPrintInvoiceRoute(),
+                      parameters: {
+                        'orderId': paymentDetailsController.paymentDetailsModel?.orderId ?? '',
+                        'storeId': AppStringConstants.storeLogInId,
+                      },
+                    ),
                     buttonRadius: 7,
                     fontSize: 14,
                     isIconShow: true,

@@ -1,16 +1,20 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:supplier/app/widget/app_app_bar.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:supplier/app/widget/app_elevated_button.dart';
+import 'package:supplier/app/widget/app_pdf_screen.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/print_invoice_controller.dart';
+import 'package:supplier/model/orders_model.dart';
+import 'package:supplier/utils/utils.dart';
 
 class PrintInvoiceScreen extends StatelessWidget {
   const PrintInvoiceScreen({Key? key}) : super(key: key);
@@ -19,6 +23,15 @@ class PrintInvoiceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder(
         init: PrintInvoiceController(),
+        initState: (state) {
+          Future.delayed(
+            const Duration(microseconds: 300),
+            () {
+              final printInvoiceController = Get.find<PrintInvoiceController>();
+              printInvoiceController.getOrderDetails();
+            },
+          );
+        },
         builder: (PrintInvoiceController printInvoiceController) {
           return Scaffold(
             appBar: AppAppBar(title: 'Invoice'),
@@ -46,7 +59,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
@@ -54,12 +67,12 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       AppText(
-                                        'Sold By : XYZ General Store',
+                                        'Sold By : ${printInvoiceController.ordersContent?.storeName ?? ''}',
                                         fontWeight: FontWeight.w500,
                                         fontSize: 11,
                                       ),
                                       AppText(
-                                        'Shop 1&2, CGO Complex,\nKavadiguda, Hyderabad\n500080\nPhone No. 0000000000',
+                                        '${printInvoiceController.ordersContent?.pickupAddress?.addressLine1 ?? ''}\nPhone No. ${printInvoiceController.ordersContent?.pickupAddress?.mobileNumber ?? ''}',
                                         fontSize: 11,
                                       ),
                                     ],
@@ -70,28 +83,50 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          AppText('Order Id: ',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 10),
-                                          AppText('253658',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 10),
+                                          const AppText(
+                                            'Order Id: ',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 10,
+                                          ),
+                                          AppText(
+                                            printInvoiceController.ordersContent?.id ?? '',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 10,
+                                          ),
                                         ],
                                       ),
                                       Row(
                                         children: [
-                                          AppText('Order Date: ',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 10),
-                                          AppText('11-02-2022',fontSize: 10),
+                                          const AppText(
+                                            'Order Date: ',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 10,
+                                          ),
+                                          AppText(
+                                            DateFormat('dd-MM-yyyy').format(
+                                              DateTime.parse(
+                                                printInvoiceController.ordersContent?.orderCreatedDate ?? DateTime.now().toIso8601String(),
+                                              ),
+                                            ),
+                                            fontSize: 10,
+                                          ),
                                         ],
                                       ),
                                       Row(
                                         children: [
-                                          AppText('Invoice Date: ',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 10),
-                                          AppText('11-02-2022',fontSize: 10),
+                                          const AppText(
+                                            'Invoice Date: ',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 10,
+                                          ),
+                                          AppText(
+                                            DateFormat('dd-MM-yyyy').format(
+                                              DateTime.parse(
+                                                printInvoiceController.ordersContent?.orderAssignedDate ?? DateTime.now().toIso8601String(),
+                                              ),
+                                            ),
+                                            fontSize: 10,
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -104,36 +139,62 @@ class PrintInvoiceScreen extends StatelessWidget {
                               color: AppColorConstant.appGrey,
                               margin: const EdgeInsets.symmetric(vertical: 10),
                             ),
-                            const Row(
+                            Row(
                               children: [
                                 Expanded(
                                   flex: 3,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      AppText('Delivery to:',
-                                          color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('S. Srinivas', fontWeight: FontWeight.w600, fontSize: 10),
+                                      const AppText(
+                                        'Delivery to:',
+                                        color: AppColorConstant.appGrey,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                      ),
                                       AppText(
-                                          'Flat no.- 307, JyothiGiri Mansion,Opp. Military Ground,West Maredpally, Hyderabad,Telangana 500026Contact - 0000000000',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 10),
+                                        printInvoiceController.ordersContent?.userName ?? '',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10,
+                                      ),
+                                      AppText(
+                                        '${printInvoiceController.ordersContent?.deliveryAddress?.addressLine1 ?? ''}Contact - ${printInvoiceController.ordersContent?.deliveryAddress?.mobileNumber ?? ''}',
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                      ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(width: 15),
+                                const SizedBox(width: 15),
                                 Expanded(
                                   flex: 2,
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      AppText('Payment Method ',
-                                          color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('BHIM UPI',fontWeight: FontWeight.w600, fontSize: 10),
-                                      SizedBox(height: 5),
-                                      AppText('Delivery Date and Type',
-                                          color: AppColorConstant.appGrey, fontWeight: FontWeight.w500, fontSize: 10),
-                                      AppText('11 February 2022 \nInstant',fontWeight: FontWeight.w600, fontSize: 10),
+                                      const AppText(
+                                        'Payment Method ',
+                                        color: AppColorConstant.appGrey,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                      ),
+                                      AppText(
+                                        printInvoiceController.ordersContent?.paymentMode ?? '',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10,
+                                      ),
+                                      const SizedBox(height: 5),
+                                      const AppText(
+                                        'Delivery Date and Type',
+                                        color: AppColorConstant.appGrey,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 10,
+                                      ),
+                                      AppText(
+                                        '${printInvoiceController.ordersContent?.orderDelivaryDate} \nInstant',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -151,7 +212,10 @@ class PrintInvoiceScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     flex: 2,
-                                    child: AppText('\u20B9Product', fontSize: 12),
+                                    child: AppText(
+                                      '\u20B9Product',
+                                      fontSize: 12,
+                                    ),
                                   ),
                                   Expanded(
                                     child: AppText('Qty', fontSize: 12),
@@ -170,31 +234,33 @@ class PrintInvoiceScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            ListView.builder(
+                            ListView.separated(
                               shrinkWrap: true,
-                              itemCount: 4,
-                              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                              itemBuilder: (context, index) => Container(
-                                margin: const EdgeInsets.symmetric(vertical: 5),
-                                height: 30,
-                                child: const Row(
+                              itemCount: printInvoiceController.ordersContent?.items.length ?? 0,
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+                              itemBuilder: (context, index) {
+                                OrderItem? orderItem = printInvoiceController.ordersContent?.items[index];
+                                return Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Expanded(
                                       flex: 2,
                                       child: AppText(
-                                        'India Gate Basmati Rice',
+                                        orderItem?.productName ?? '',
                                         fontSize: 11,
                                         maxLines: 2,
                                       ),
                                     ),
                                     Expanded(
-                                      child:
-                                          AppText('11kg', fontSize: 12, maxLines: 2),
+                                      child: AppText(
+                                        '${orderItem?.quantity ?? ''}',
+                                        fontSize: 12,
+                                        maxLines: 2,
+                                      ),
                                     ),
                                     Expanded(
                                       child: AppText(
-                                        '₹10000',
+                                        '₹${orderItem?.mrp ?? 0}',
                                         fontSize: 12,
                                         maxLines: 2,
                                       ),
@@ -202,7 +268,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     Expanded(
                                       flex: 2,
                                       child: AppText(
-                                        '₹ 2',
+                                        '₹ ${orderItem?.discountPrice ?? 0}',
                                         fontSize: 12,
                                         textAlign: TextAlign.center,
                                         maxLines: 2,
@@ -210,14 +276,15 @@ class PrintInvoiceScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: AppText(
-                                        '₹ 98',
+                                        '₹ ${orderItem?.totalPrice ?? 0}',
                                         fontSize: 12,
                                         maxLines: 2,
                                       ),
                                     ),
                                   ],
-                                ),
-                              ),
+                                );
+                              },
+                              separatorBuilder: (context, index) => const SizedBox(height: 12),
                             ),
                             Container(
                               height: 1,
@@ -228,13 +295,12 @@ class PrintInvoiceScreen extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(horizontal: 20),
                               child: Column(
                                 children: [
-                                  paymentDetailsView('Total', '₹ 285'),
-                                  paymentDetailsView('Retailer’s Coupon Discount', '-₹ 27',
-                                      fontWeight: FontWeight.w500),
-                                  paymentDetailsView('Sub total', '-₹ 27'),
-                                  paymentDetailsView('Delivery charges', '₹ 285'),
-                                  paymentDetailsView('Service Charges (incl. GST)', '₹ 285'),
-                                  paymentDetailsView('Net Payable', '₹ 285', fontWeight: FontWeight.w500),
+                                  paymentDetailsView('Total', '₹ ${printInvoiceController.ordersContent?.orderTotalValue ?? 0}'),
+                                  paymentDetailsView('Retailer’s Coupon Discount', '-₹ ${printInvoiceController.ordersContent?.couponInfo ?? ''}', fontWeight: FontWeight.w500),
+                                  paymentDetailsView('Sub total', '-₹ ${printInvoiceController.ordersContent?.orderValue}'),
+                                  paymentDetailsView('Delivery charges', '₹ ${printInvoiceController.ordersContent?.deliveryCharges ?? 0}'),
+                                  paymentDetailsView('Service Charges (incl. GST)', '₹ ${printInvoiceController.ordersContent?.serviceCharges ?? 0}'),
+                                  paymentDetailsView('Net Payable', '₹ ${printInvoiceController.ordersContent?.paidAmount ?? 0}', fontWeight: FontWeight.w500),
                                 ],
                               ),
                             ),
@@ -251,7 +317,7 @@ class PrintInvoiceScreen extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               child: AppElevatedButton(
                 buttonName: 'Download',
-                onPressed: () => createPdf(),
+                onPressed: () => createPdf(printInvoiceController),
                 buttonRadius: 7,
                 fontSize: 14,
                 isIconShow: true,
@@ -278,7 +344,7 @@ class PrintInvoiceScreen extends StatelessWidget {
     );
   }
 
-  Future<void> createPdf() async {
+  Future<void> createPdf(PrintInvoiceController printInvoiceController) async {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
       build: (pw.Context context) => pw.Container(
@@ -315,14 +381,14 @@ class PrintInvoiceScreen extends StatelessWidget {
                         child: pw.Column(
                           crossAxisAlignment: pw.CrossAxisAlignment.start,
                           children: [
-                            pw.Text('Sold By : XYZ General Store',
+                            pw.Text('Sold By : ${printInvoiceController.ordersContent?.storeName ?? ''}',
                                 style: pw.TextStyle(
                                   fontSize: 17,
                                   fontWeight: pw.FontWeight.bold,
                                   color: PdfColor.fromHex('000000'),
                                 )),
                             pw.Text(
-                              'Shop 1&2, CGO Complex,\nKavadiguda, Hyderabad\n500080\nPhone No. 0000000000',
+                              '${printInvoiceController.ordersContent?.pickupAddress?.addressLine1 ?? ''}\nPhone No. ${printInvoiceController.ordersContent?.pickupAddress?.mobileNumber ?? ''}',
                             ),
                           ],
                         ),
@@ -338,12 +404,15 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       fontWeight: pw.FontWeight.bold,
                                       color: PdfColor.fromHex('000000'),
                                     )),
-                                pw.Text('253658',
-                                    style: pw.TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: pw.FontWeight.bold,
-                                      color: PdfColor.fromHex('000000'),
-                                    )),
+                                pw.Text(
+                                  printInvoiceController.ordersContent?.id ??
+                                      '',
+                                  style: pw.TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: pw.FontWeight.bold,
+                                    color: PdfColor.fromHex('000000'),
+                                  ),
+                                ),
                               ],
                             ),
                             pw.Row(
@@ -354,7 +423,12 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       fontWeight: pw.FontWeight.bold,
                                       color: PdfColor.fromHex('000000'),
                                     )),
-                                pw.Text('11-02-2022'),
+                                pw.Text(
+                                  DateFormat('dd-MM-yyyy').format(
+                                    DateTime.parse(
+                                      printInvoiceController.ordersContent?.orderCreatedDate ?? DateTime.now().toIso8601String(),
+                                    ),
+                                  ),),
                               ],
                             ),
                             pw.Row(
@@ -365,7 +439,12 @@ class PrintInvoiceScreen extends StatelessWidget {
                                       fontWeight: pw.FontWeight.bold,
                                       color: PdfColor.fromHex('000000'),
                                     )),
-                                pw.Text('11-02-2022'),
+                                pw.Text(
+                                  DateFormat('dd-MM-yyyy').format(
+                                    DateTime.parse(
+                                      printInvoiceController.ordersContent?.orderAssignedDate ?? DateTime.now().toIso8601String(),
+                                    ),
+                                  ),),
                               ],
                             ),
                           ],
@@ -385,14 +464,15 @@ class PrintInvoiceScreen extends StatelessWidget {
                           crossAxisAlignment: pw.CrossAxisAlignment.start,
                           children: [
                             pw.Text('Delivery to:'),
-                            pw.Text('S. Srinivas',
+                            pw.Text(
+                                printInvoiceController.ordersContent?.userName ?? '',
                                 style: pw.TextStyle(
                                   fontSize: 17,
                                   fontWeight: pw.FontWeight.bold,
                                   color: PdfColor.fromHex('000000'),
                                 )),
                             pw.Text(
-                              'Flat no.- 307, JyothiGiri Mansion,Opp. Military Ground,West Maredpally, Hyderabad,Telangana 500026Contact - 0000000000',
+                              '${printInvoiceController.ordersContent?.deliveryAddress?.addressLine1 ?? ''}Contact - ${printInvoiceController.ordersContent?.deliveryAddress?.mobileNumber ?? ''}',
                             ),
                           ],
                         ),
@@ -404,20 +484,24 @@ class PrintInvoiceScreen extends StatelessWidget {
                           crossAxisAlignment: pw.CrossAxisAlignment.start,
                           children: [
                             pw.Text('Payment Method '),
-                            pw.Text('BHIM UPI',
-                                style: pw.TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: pw.FontWeight.bold,
-                                  color: PdfColor.fromHex('000000'),
-                                )),
+                            pw.Text(
+                              printInvoiceController.ordersContent?.paymentMode ?? '',
+                              style: pw.TextStyle(
+                                fontSize: 17,
+                                fontWeight: pw.FontWeight.bold,
+                                color: PdfColor.fromHex('000000'),
+                              ),
+                            ),
                             pw.SizedBox(height: 5),
                             pw.Text('Delivery Date and Type'),
-                            pw.Text('11 February 2022 \nInstant',
-                                style: pw.TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: pw.FontWeight.bold,
-                                  color: PdfColor.fromHex('000000'),
-                                )),
+                            pw.Text(
+                              '${printInvoiceController.ordersContent?.orderDelivaryDate} \nInstant',
+                              style: pw.TextStyle(
+                                fontSize: 17,
+                                fontWeight: pw.FontWeight.bold,
+                                color: PdfColor.fromHex('000000'),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -454,42 +538,47 @@ class PrintInvoiceScreen extends StatelessWidget {
                     ),
                   ),
                   pw.ListView.builder(
-                    itemCount: 4,
-                    padding: const pw.EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                    itemBuilder: (context, index) => pw.Container(
-                      margin: const pw.EdgeInsets.symmetric(vertical: 5),
-                      height: 30,
-                      child: pw.Row(
-                        crossAxisAlignment: pw.CrossAxisAlignment.start,
-                        children: [
-                          pw.Expanded(
-                            flex: 2,
-                            child: pw.Text('India Gate Basmati Rice'),
-                          ),
-                          pw.Expanded(
-                            child: pw.Text('11kg'),
-                          ),
-                          pw.Expanded(
-                            child: pw.Text(
-                              '\u20B910000',
-                              maxLines: 2,
+                    itemCount: printInvoiceController.ordersContent?.items.length ?? 0,
+                    padding: const pw.EdgeInsets.symmetric(horizontal: 6, vertical: 10),
+                    itemBuilder: (context, index) {
+                      OrderItem? orderItem = printInvoiceController.ordersContent?.items[index];
+                      return pw.Container(
+                        margin: const pw.EdgeInsets.symmetric(vertical: 5),
+                        height: 30,
+                        child: pw.Row(
+                          crossAxisAlignment: pw.CrossAxisAlignment.start,
+                          children: [
+                            pw.Expanded(
+                              flex: 2,
+                              child: pw.Text(orderItem?.productName ?? ''),
                             ),
-                          ),
-                          pw.Expanded(
-                            flex: 2,
-                            child: pw.Text(
-                              '\u20B9 2',
-                              maxLines: 2,
+                            pw.Expanded(
+                              child: pw.Text(
+                                '${orderItem?.quantity ?? ''}',
+                              ),
                             ),
-                          ),
-                          pw.Expanded(
-                            child: pw.Text(
-                              '\u20B9 98',
+                            pw.Expanded(
+                              child: pw.Text(
+                                '\u20B9${orderItem?.mrp ?? 0}',
+                                maxLines: 2,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
+                            pw.Expanded(
+                              flex: 2,
+                              child: pw.Text(
+                                '\u20B9 ${orderItem?.discountPrice ?? 0}',
+                                maxLines: 2,
+                              ),
+                            ),
+                            pw.Expanded(
+                              child: pw.Text(
+                                '\u20B9 ${orderItem?.totalPrice ?? 0}',
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                   pw.Container(
                     height: 1,
@@ -505,7 +594,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                           children: [
                             pw.Text('Total'),
                             pw.SizedBox(width: 25),
-                            pw.Text('\u20B9 285'),
+                            pw.Text('\u20B9 ${printInvoiceController.ordersContent?.orderTotalValue ?? 0}'),
                           ],
                         ),
                         pw.Row(
@@ -521,7 +610,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                             ),
                             pw.SizedBox(width: 25),
                             pw.Text(
-                              '-\u20B9 27',
+                              '-\u20B9 ${printInvoiceController.ordersContent?.couponInfo ?? ''}',
                               style: pw.TextStyle(
                                 fontSize: 17,
                                 fontWeight: pw.FontWeight.bold,
@@ -535,7 +624,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                           children: [
                             pw.Text('Delivery charges'),
                             pw.SizedBox(width: 25),
-                            pw.Text('\u20B9 285'),
+                            pw.Text('\u20B9 ${printInvoiceController.ordersContent?.deliveryCharges}'),
                           ],
                         ),
                         pw.Row(
@@ -543,7 +632,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                           children: [
                             pw.Text('Service Charges (incl. GST)'),
                             pw.SizedBox(width: 25),
-                            pw.Text('\u20B9 285'),
+                            pw.Text('\u20B9 ${printInvoiceController.ordersContent?.serviceCharges}'),
                           ],
                         ),
                         pw.Row(
@@ -559,7 +648,7 @@ class PrintInvoiceScreen extends StatelessWidget {
                             ),
                             pw.SizedBox(width: 25),
                             pw.Text(
-                              '\u20B9 285',
+                              '\u20B9 ${printInvoiceController.ordersContent?.paidAmount}',
                               style: pw.TextStyle(
                                 fontSize: 17,
                                 fontWeight: pw.FontWeight.bold,
@@ -578,13 +667,16 @@ class PrintInvoiceScreen extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    ),);
 
     Directory? documentDirectory = await getExternalStorageDirectory();
     String documentPath = '${documentDirectory!.absolute.path}/bill';
     Directory billDirectory = await Directory(documentPath).create(recursive: true);
-    final file = File('${billDirectory.path}/Supplier.pdf');
+    String pdfFilePath = '${billDirectory.path}/Supplier.pdf';
+    final file = File(pdfFilePath);
     await file.writeAsBytes(await pdf.save());
-    OpenFile.open(file.path);
+    logs('message --> $pdfFilePath');
+    Get.to(()=> PdfUploadScreen(pdfPath: File(pdfFilePath)));
+    // OpenFile.open(file.path);
   }
 }
