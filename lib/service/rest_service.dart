@@ -34,6 +34,7 @@ class RestConstants {
   final String acceptedOrders = 'api-oms/order/store';
   final String billedOrders = 'api-oms/billedOrders';
   final String paymentRequest = 'api-oms/b2b/paymentRequest';
+  final String paymentHistoryByOrder = 'api-oms/b2b/paymentDetails';
 }
 class RestServices {
   RestServices._privateConstructor();

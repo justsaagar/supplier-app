@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:supplier/app/widget/app_success_animation.dart';
 import 'package:supplier/constant/string_constant.dart';
+import 'package:supplier/model/payment_details_model.dart';
 import 'package:supplier/model/payment_request_model.dart';
 import 'package:supplier/service/rest_service.dart';
 import 'package:supplier/utils/string_extensions.dart';
@@ -16,6 +17,7 @@ class PaymentController extends GetxController {
   List<PaymentRequestContent> paymentRequestContent = <PaymentRequestContent>[];
   int currentPage = 0;
   bool isLoading = false;
+  PaymentDetailsModel? paymentDetailsModel;
 
   Future<void> onTabChanged(index) async {
     currentIndex = index;
@@ -63,6 +65,8 @@ class PaymentController extends GetxController {
     required String storeId,
     required String payerId,
   }) async {
+    isLoading = true;
+    update();
     try {
       final Map<String, dynamic> bodyMap = {
         'paymentId': paymentId,
@@ -83,8 +87,13 @@ class PaymentController extends GetxController {
       );
       if (response != null && response.isNotEmpty) {
         Map<String, dynamic> requestMap = jsonDecode(response);
-        if (requestMap.isNotEmpty && requestMap.containsKey('status') && requestMap['status']) {
-          if (requestMap['message'].toString().toLowerCase().contains('saved')) {
+        if (requestMap.isNotEmpty &&
+            requestMap.containsKey('status') &&
+            requestMap['status']) {
+          if (requestMap['message']
+              .toString()
+              .toLowerCase()
+              .contains('saved')) {
             Get.dialog(const AppSuccessAlert());
             Future.delayed(const Duration(seconds: 2), () => Get.back());
           } else {
@@ -94,6 +103,27 @@ class PaymentController extends GetxController {
       }
     } on SocketException catch (e) {
       logs('Catch socketException in requestPayment --> ${e.message}');
+    }
+    isLoading = false;
+    update();
+  }
+
+  Future<void> paymentHistoryByOrder(
+      {required String payerId,
+      required String storeId,
+      required String orderId}) async {
+    isLoading = true;
+    update();
+    try {
+      final response = await RestServices.instance.getRestCall(
+        endpoint: RestConstants.instance.paymentHistoryByOrder,
+        addOns: '/payerId/$payerId/storeId/$storeId/order/$orderId/details',
+      );
+      if (response != null && response.isNotEmpty) {
+        paymentDetailsModel = paymentDetailsModelFromJson(response);
+      }
+    } on SocketException catch (e) {
+      logs('Catch socketException in paymentHistoryByOrder --> ${e.message}');
     }
     isLoading = false;
     update();
