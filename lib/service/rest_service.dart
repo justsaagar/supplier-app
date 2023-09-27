@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/service/connectivity_service.dart';
 import 'package:supplier/utils/string_extensions.dart';
 import 'package:supplier/utils/utils.dart';
@@ -36,6 +37,7 @@ class RestConstants {
   final String paymentRequest = 'api-oms/b2b/paymentRequest';
   final String paymentHistoryByOrder = 'api-oms/b2b/paymentDetails';
   final String orderDetails = 'api-oms/order';
+  final String storeInventory = 'api-product/inventory/all/store/${AppStringConstants.storeLogInId}';
 }
 class RestServices {
   RestServices._privateConstructor();

@@ -16,15 +16,139 @@ class InventoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppAppBar(title: 'Inventory'),
       body: GetBuilder(
-          init: InventoryController(),
-          builder: (InventoryController inventoryController) {
-            return Column(
-              children: [
-                searchBarView(inventoryController),
-                inventoryItemView(),
-              ],
-            );
-          }),
+        init: InventoryController(),
+        autoRemove: false,
+        global: true,
+        initState: (state) {
+          Future.delayed(
+            const Duration(microseconds: 300),
+            () {
+              final inventoryController = Get.find<InventoryController>();
+              inventoryController.getStoreInventory(isRefresh: true);
+            },
+          );
+        },
+        builder: (InventoryController inventoryController) {
+          return Column(
+            children: [
+              searchBarView(inventoryController),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: inventoryController.allInventoryList.length,
+                  padding: const EdgeInsets.only(bottom: 15),
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.ideographic,
+                            children: [
+                              Expanded(
+                                child: AppText(
+                                  'Tata Chana dal',
+                                  fontWeight: FontWeight.w500,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  AppText('Sale Price  '),
+                                  AppText(
+                                    '₹70',
+                                    color: AppColorConstant.appBlack,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  AppText(
+                                    '1 kg',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  AppText(
+                                    'MRP : ',
+                                    fontSize: 12,
+                                  ),
+                                  AppText(
+                                    '₹75',
+                                    color: AppColorConstant.appGrey,
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 3),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  AppText(
+                                    'In Stock: ',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  AppText(
+                                    '50',
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  AppText(
+                                    'PTR : ',
+                                    fontSize: 12,
+                                  ),
+                                  AppText(
+                                    '₹75',
+                                    color: AppColorConstant.appGreen,
+                                    textAlign: TextAlign.start,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 13,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const AppText(
+                            'LocUniGro000009_Orgveg',
+                            fontSize: 11,
+                            color: AppColorConstant.appGrey,
+                          ),
+                          Container(
+                            height: 1,
+                            margin: const EdgeInsets.only(top: 10),
+                            color: AppColorConstant.appGrey.withOpacity(0.7),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 
@@ -40,119 +164,6 @@ class InventoryScreen extends StatelessWidget {
         prefixIcon: const AppImageAsset(
           image: AppAsset.searchIcon,
           color: AppColorConstant.appGrey,
-        ),
-      ),
-    );
-  }
-
-  inventoryItemView() {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: 5,
-        padding: const EdgeInsets.only(bottom: 15),
-        itemBuilder: (context, index) => Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                textBaseline: TextBaseline.ideographic,
-                children: [
-                  Expanded(
-                    child: AppText(
-                      'Tata Chana dal',
-                      fontWeight: FontWeight.w500,
-                      maxLines: 2,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      AppText('Sale Price  '),
-                      AppText(
-                        '₹70',
-                        color: AppColorConstant.appBlack,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      AppText(
-                        '1 kg',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      AppText(
-                        'MRP : ',
-                        fontSize: 12,
-                      ),
-                      AppText(
-                        '₹75',
-                        color: AppColorConstant.appGrey,
-                        textAlign: TextAlign.start,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 3),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      AppText(
-                        'In Stock: ',
-                        fontWeight: FontWeight.w500,
-                      ),
-                      AppText(
-                        '50',
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      AppText(
-                        'PTR : ',
-                        fontSize: 12,
-                      ),
-                      AppText(
-                        '₹75',
-                        color: AppColorConstant.appGreen,
-                        textAlign: TextAlign.start,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 13,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const AppText(
-                'LocUniGro000009_Orgveg',
-                fontSize: 11,
-                color: AppColorConstant.appGrey,
-              ),
-              Container(
-                height: 1,
-                margin: const EdgeInsets.only(top: 10),
-                color: AppColorConstant.appGrey.withOpacity(0.7),
-              ),
-            ],
-          ),
         ),
       ),
     );
