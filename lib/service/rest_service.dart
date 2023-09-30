@@ -37,7 +37,7 @@ class RestConstants {
   final String paymentRequest = 'api-oms/b2b/paymentRequest';
   final String paymentHistoryByOrder = 'api-oms/b2b/paymentDetails';
   final String orderDetails = 'api-oms/order';
-  final String storeInventory = 'api-product/inventory/all/store/${AppStringConstants.storeLogInId}';
+  final String storeInventory = 'api-product/inventory/all/store';
 }
 class RestServices {
   RestServices._privateConstructor();
