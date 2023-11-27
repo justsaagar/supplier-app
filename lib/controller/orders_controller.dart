@@ -7,20 +7,34 @@ import 'package:supplier/service/rest_service.dart';
 import 'package:supplier/utils/utils.dart';
 
 class OrdersController extends GetxController {
-  OrdersModel? ordersModel;
+  List<OrdersContent> ordersContent = <OrdersContent>[];
+  int currentIndex = 0;
+  int currentPage = 0;
+  bool isLoading = false;
 
-  Future<void> getOrdersDetails(String statusCode) async {
+  Future<void> getOrdersDetails(String statusCode, {bool isRefresh = true}) async {
+    isLoading = true;
+    update();
+    if (isRefresh) {
+      ordersContent.clear();
+      currentPage = 0;
+    } else {
+      currentPage++;
+    }
     try {
-      final response = await RestServices.instance.getRestCall(
+      final String? response = await RestServices.instance.getRestCall(
         endpoint: RestConstants.instance.acceptedOrders,
-        addOns: '/${AppStringConstants.storeLogInId}/status/$statusCode?page=0&size=20',
+        addOns: '/${AppStringConstants.storeLogInId}/status/$statusCode?page=$currentPage&size=20',
       );
       if (response != null && response.isNotEmpty) {
-        ordersModel = ordersModelFromJson(response);
+        OrdersModel ordersModel = ordersModelFromJson(response);
+        if (!ordersModel.empty){
+          ordersContent.addAll(ordersModel.ordersContent);
+        }
       }
       update();
     } on SocketException catch (e) {
-      logs('Catch exception in getStoreProfile --> ${e.message}');
+      logs('Catch exception in getOrdersDetails --> ${e.message}');
     }
   }
 }

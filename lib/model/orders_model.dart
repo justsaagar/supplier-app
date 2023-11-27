@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final ordersModel = ordersModelFromJson(jsonString);
-
 import 'dart:convert';
 
 OrdersModel ordersModelFromJson(String str) => OrdersModel.fromJson(json.decode(str));
@@ -347,17 +343,17 @@ class OrdersContent {
 class Address {
   String? mobileNumber;
   String? addressType;
-  dynamic addresslineMobileOne;
-  dynamic addresslineMobileTwo;
-  dynamic alterNateMobileNumber;
-  dynamic emailId;
-  dynamic pinCode;
+  String? addresslineMobileOne;
+  String? addresslineMobileTwo;
+  String? alterNateMobileNumber;
+  String? emailId;
+  String? pinCode;
   String? addressLine1;
-  dynamic addressLine2;
-  dynamic landMark;
-  dynamic city;
-  dynamic region;
-  dynamic state;
+  String? addressLine2;
+  String? landMark;
+  String? city;
+  String? region;
+  String? state;
   String? latitude;
   String? longitude;
   GeoLocation? geoLocation;
@@ -452,20 +448,20 @@ class OrderItem {
   String? productId;
   String? productName;
   num? price;
-  dynamic mrp;
+  num? mrp;
   num? quantity;
-  dynamic freeQuantity;
-  dynamic confirmQuantity;
-  dynamic finalQuantity;
-  dynamic finalPtr;
-  dynamic discountAmount;
+  num? freeQuantity;
+  num? confirmQuantity;
+  num? finalQuantity;
+  num? finalPtr;
+  num? discountAmount;
   String? skuId;
   String? skuCode;
   num? totalPrice;
-  dynamic discountPrice;
+  num? discountPrice;
   String? itemUrl;
   bool presRequired;
-  dynamic measure;
+  String? measure;
   String? status;
   dynamic gst;
   dynamic cgst;
@@ -473,14 +469,14 @@ class OrderItem {
   dynamic gstPercent;
   dynamic cgstPercent;
   dynamic sgstPercent;
-  dynamic schemeName;
-  dynamic manufracuter;
+  String? schemeName;
+  String? manufracuter;
   dynamic batchNumer;
   dynamic hsn;
   dynamic mfdate;
   dynamic expdate;
-  dynamic packingType;
-  dynamic lineAmount;
+  String? packingType;
+  num? lineAmount;
 
   OrderItem({
     this.productId,

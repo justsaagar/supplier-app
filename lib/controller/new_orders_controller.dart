@@ -3,15 +3,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:supplier/constant/string_constant.dart';
-import 'package:supplier/model/all_orders_model.dart';
+import 'package:supplier/model/orders_model.dart';
 import 'package:supplier/service/rest_service.dart';
 import 'package:supplier/utils/utils.dart';
 
 class NewOrdersController extends GetxController {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   int currentIndex = 0;
-  Map<String, dynamic> manageOrderMap = {};
-  List<AllOrders> allOrdersModelList = [];
+  List<OrdersContent> allOrdersModelList = <OrdersContent>[];
   int currentPage = 0;
   bool isLoading = false;
 
@@ -36,8 +35,8 @@ class NewOrdersController extends GetxController {
         addOns: '/${AppStringConstants.storeLogInId}/status/$orderType?size=10&page=$currentPage',
       );
       if (response != null && response.isNotEmpty) {
-        AllOrdersModel allOrdersModel = allOrdersModelFromJson(response);
-        allOrdersModelList.addAll(allOrdersModel.allOrdersModelList);
+        OrdersModel allOrdersModel = ordersModelFromJson(response);
+        allOrdersModelList.addAll(allOrdersModel.ordersContent);
       }
     } on SocketException catch (e) {
       logs('Catch socketException in getAllOrders --> ${e.message}');

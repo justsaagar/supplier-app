@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:supplier/constant/string_constant.dart';
 import 'package:supplier/service/connectivity_service.dart';
 import 'package:supplier/utils/string_extensions.dart';
 import 'package:supplier/utils/utils.dart';
@@ -32,6 +33,11 @@ class RestConstants {
   final String searchProduct = 'api-product/product/text/search/';
   final String productDetails = 'api-product/product/';
   final String acceptedOrders = 'api-oms/order/store';
+  final String billedOrders = 'api-oms/billedOrders';
+  final String paymentRequest = 'api-oms/b2b/paymentRequest';
+  final String paymentHistoryByOrder = 'api-oms/b2b/paymentDetails';
+  final String orderDetails = 'api-oms/order';
+  final String storeInventory = 'api-product/inventory/all/store';
 }
 class RestServices {
   RestServices._privateConstructor();
@@ -113,7 +119,7 @@ class RestServices {
           ? '${RestConstants.instance.supplierBaseUrl}/$endpoint$addOns'
           : '${RestConstants.instance.supplierBaseUrl}/$endpoint';
       Uri? requestedUri = Uri.tryParse(requestUrl);
-      logs('Body map --> $body');
+      logs('Body map --> ${jsonEncode(body)}');
       headers['Content-Type'] = 'application/json';
       if (stringBody != null) {
         logs('String Body --> $stringBody');

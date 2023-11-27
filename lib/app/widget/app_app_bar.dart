@@ -5,6 +5,8 @@ import 'package:supplier/app/widget/app_image_assets.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/app_asset.dart';
 import 'package:supplier/constant/color_constant.dart';
+import 'package:supplier/routes/route_helper.dart';
+import 'package:supplier/utils/shared_preference.dart';
 
 class AppAppBar extends PreferredSize {
   final bool showSuffix;
@@ -50,7 +52,7 @@ class AppAppBar extends PreferredSize {
               fontWeight: FontWeight.w600,
               color: AppColorConstant.appWhite,
             ),
-            if (showSuffix)const Spacer(),
+            const Spacer(),
             if (showSuffix)
               InkWell(
                 onTap: () => Scaffold.of(context).openDrawer(),
@@ -60,6 +62,25 @@ class AppAppBar extends PreferredSize {
                   children: [
                     AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
                     AppText('Orders', fontSize: 10.px, color: AppColorConstant.appWhite),
+                  ],
+                ),
+              ),
+            if (!showSuffix)
+              InkWell(
+                onTap: () async {
+                  Get.offAllNamed(RouteHelper.getMobileVerificationRoute());
+                  await setPrefBoolValue(authenticateUser, false);
+                  await removePrefValue(authenticationToken);
+                  await removePrefValue(storeLogInId);
+                  await removePrefValue(storeCategoryId);
+                  await removePrefValue(storeName);
+                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.logout, color: AppColorConstant.appWhite,),
+                    // AppImageAsset(image: AppAsset.ordersIcon, height: 26.px, width: 26.px),
+                    AppText('Logout', fontSize: 10.px, color: AppColorConstant.appWhite),
                   ],
                 ),
               ),

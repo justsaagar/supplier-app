@@ -9,7 +9,7 @@ import 'package:supplier/app/widget/app_tab_bar.dart';
 import 'package:supplier/app/widget/app_text.dart';
 import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/controller/new_orders_controller.dart';
-import 'package:supplier/model/all_orders_model.dart';
+import 'package:supplier/model/orders_model.dart';
 import 'package:supplier/routes/route_helper.dart';
 
 class ManageOrderScreen extends StatelessWidget {
@@ -69,7 +69,7 @@ class NewAndAcceptedOrdersTab extends StatelessWidget {
       itemCount: newOrdersController.allOrdersModelList.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        AllOrders allOrders = newOrdersController.allOrdersModelList[index];
+        OrdersContent allOrders = newOrdersController.allOrdersModelList[index];
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
           child: Column(

@@ -6,7 +6,6 @@ import 'package:supplier/constant/color_constant.dart';
 import 'package:supplier/constant/app_asset.dart';
 
 class AppNoInternetAlert extends StatelessWidget {
-
   const AppNoInternetAlert({Key? key}) : super(key: key);
 
   @override
@@ -28,7 +27,9 @@ class AppNoInternetAlert extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: AppColorConstant.lightBlue,
-                borderRadius: BorderRadius.only(topRight: Radius.circular(8.px), topLeft: Radius.circular(8.px)),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(8.px),
+                    topLeft: Radius.circular(8.px)),
               ),
               child: AppText(
                 'Internet Issue',
